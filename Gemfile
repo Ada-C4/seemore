@@ -25,7 +25,7 @@ gem 'omniauth'
 
 gem 'omniauth-twitter'
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'font-awesome-rails'
 
