@@ -43,6 +43,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'hirb'
   gem 'dotenv-rails'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 group :production do
