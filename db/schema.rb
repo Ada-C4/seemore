@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106222413) do
+ActiveRecord::Schema.define(version: 20160106224158) do
+
+  create_table "stories", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "text"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string   "username"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "avatar_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "uid"
