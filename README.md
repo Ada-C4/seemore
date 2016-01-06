@@ -1,5 +1,7 @@
 # SeeMore
 
+[Trello Link](https://trello.com/b/JOAhFTnm/skynet)
+
 ![SeeMore](http://www.theirishduck.info/wp-content/uploads/2013/06/plant.png)
 
 A **feed** is an API that a web service uses to provide users with frequently updated content. A *feed aggregator*  is an application that acts as a central location for reviewing the content of feeds. It **injests** feeds and stores their content in its own datastore after transforming it into a standard format.
