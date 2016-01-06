@@ -1,0 +1,2 @@
+class SpiesController < ApplicationController
+end
