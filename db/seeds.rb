@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+sample_subscribers = [
+  { username: "Schwarzenegger", uid: "12044602" , provider: "twitter", avatar_url: "https://pbs.twimg.com/profile_images/665340796510466048/-nsoU1Q5.jpg" }
+]
+
+sample_stories = Twitter.user_time("Schwarzenegger")
+
+sample_subscribers.each do |subscriber|
+  Subscriber.create(subscriber)
+end
