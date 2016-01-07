@@ -16,11 +16,11 @@
       <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
       <div class="timeline-panel">
         <div class="timeline-heading">
-          <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+          <h4 class="timeline-title"><%= story.user.username %></h4>
+          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.created_at %> via Twitter</small></p>
         </div>
         <div class="timeline-body">
-          <p><%= story %></p>
+          <p><%= story.text %></p>
         </div>
       </div>
     </li>
