@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem "omniauth"
+gem 'omniauth-oauth2', '~> 1.3.1'
 gem "omniauth-twitter"
 gem 'twitter'
 

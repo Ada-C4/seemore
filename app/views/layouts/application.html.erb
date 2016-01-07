@@ -7,8 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <% if !flash.empty? %>
+    <div>
+      <% flash.each do |key, value| %><%= value %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= yield %>
 
 </body>
 </html>
