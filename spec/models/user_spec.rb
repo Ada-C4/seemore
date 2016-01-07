@@ -8,6 +8,20 @@ RSpec.describe User, type: :model do
     image: "http://wiki.hydrogenaud.io/images/2/2a/Beagle_50x50.gif")
   }
 
+  let(:bad_user) { User.new(
+    uid:      "123",
+    provider: "twitter",
+    name: "Beagle",
+    image: "http://wiki.hydrogenaud.io/images/2/2a/Beagle_50x50.gif")
+  }
+
+  let(:good_user) { User.new(
+    uid:      "234",
+    provider: "twitter",
+    name: "Beagle",
+    image: "http://wiki.hydrogenaud.io/images/2/2a/Beagle_50x50.gif")
+  }
+
   describe "validations" do
     it "is valid" do
       expect(user).to be_valid
@@ -21,6 +35,12 @@ RSpec.describe User, type: :model do
     it "requires a uid" do
       user.uid = nil
       expect(user).to be_invalid
+    end
+
+    it "requires a unique uid" do
+      user.save
+      expect(bad_user.save).to be false
+      expect(good_user.save).to be true
     end
 
     it "requires a provider" do
