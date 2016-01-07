@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get "marks/search/:provider", to: "marks#search", as: "search"
   post "search_redirect", to: "marks#redirect", as: 'create_search'
   get "search/results", to: "marks#results", as: "results"
+
+  get "/auth/:provider/callback", to: "sessions#create"
 end

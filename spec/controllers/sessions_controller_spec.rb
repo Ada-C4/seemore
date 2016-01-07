@@ -25,6 +25,31 @@ RSpec.describe SessionsController, type: :controller do
           expect(session[:spy_id]).to eq assigns(:spy).id
         end
       end
+
+      context "when using twitter authentication" do
+        context "is successful" do
+          before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter] }
+
+          it "redirects to the home page" do
+            get :create, provider: :twitter
+            expect(response).to redirect_to root_path
+          end
+
+          it "creates a spy" do
+            expect { get :create, provider: :twitter }.to change(Spy, :count).by(1)
+          end
+
+          it "doesn't create a new spy if spy already exists" do
+            Spy.create(uid: "123545", provider: "twitter", username: "Brittany")
+            expect { get :create, provider: :twitter }.to change(Spy, :count).by(0)
+          end
+
+          it "assigns the session[:spy_id]" do
+            get :create, provider: :twitter
+            expect(session[:spy_id]).to eq assigns(:spy).id
+          end
+        end
+      end
     end
   end
 end
