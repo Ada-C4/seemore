@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
   end
 
   describe ".initialize_from_omniauth" do
-    let(:user) { User.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:twitter]) }
+    let(:user) { User.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:prov]) }
 
     it "creates a valid user" do
       expect(user).to be_valid

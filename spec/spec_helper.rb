@@ -42,7 +42,7 @@ RSpec.configure do |config|
     # set per-provider (or default) authentication
     # hashes to return during testing.
 
-    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({:provider => 'twitter', :uid => '123545', info: {image: "http://thecabbagepatch.us/wp-content/uploads/2012/03/Peanuts-50x50.jpg", name: "Peanut"}})
+    OmniAuth.config.mock_auth[:prov] = OmniAuth::AuthHash.new({:provider => 'prov', :uid => '123545', info: {image: "http://thecabbagepatch.us/wp-content/uploads/2012/03/Peanuts-50x50.jpg", name: "Peanut"}})
   end
 
 # The settings below are suggested to provide a good initial experience
