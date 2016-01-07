@@ -9,6 +9,18 @@
     <%= link_to "Sign in as OmniAuth Dev", "/auth/developer", class:"btn btn-default" %>
     <hr>
   </div>
+  <div class="row">
+    <form class="navbar-search">
+      <input type="text" class="search-query span3" placeholder="Search Twitter">
+      <%= link_to "Placeholder Twitter Search Results", "/twitter_results", class:"btn btn-default" %>
+    </form>
+    <br>
+    <form class="navbar-search">
+      <input type="text" class="search-query span3" placeholder="Search Vimeo">
+      <%= link_to "Placeholder Vimeo Search Results", "/vimeo_results", class:"btn btn-default" %>
+    </form>
+    <hr>
+  </div>
 
   <ul class="timeline">
     <% @sample_stories.each do |story| %>

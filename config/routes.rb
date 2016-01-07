@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
 root 'users#show'
-match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post] 
+match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post]
+
+get '/vimeo_results' => 'users#vimeo'
+get '/twitter_results' => 'users#twitter'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
