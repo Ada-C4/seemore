@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     #Seemore::Application.config.twitter
     @sample_stories = twitter.user_timeline("Schwarzenegger")
-    @vimeo_stories = vimeo.user.info("Schwarzenegger")
+    @vimeo_stories = Vimeo::Simple::User.videos("15397797")
   end
 
 end
