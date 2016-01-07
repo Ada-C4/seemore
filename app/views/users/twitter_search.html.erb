@@ -3,6 +3,7 @@ This is a placeholder page. Twitter search results will appear here and users wi
 <h1> Search Results </h1>
 <div class="col-sm-6">
   <% @search_results.each do |search| %>
+  <a href="/twitter_results/<%= search.screen_name %>" >
   <div class="well well-lg">
     <table width="100%">
       <tr>
@@ -12,6 +13,7 @@ This is a placeholder page. Twitter search results will appear here and users wi
       </tr>
     </table>
   </div>
+  </a>
   <% end %>
   </div>
   <div class="col-sm-8"></div>
