@@ -7,6 +7,8 @@ get '/vimeo_results' => 'users#vimeo_search'
 get '/twitter_results' => 'users#twitter_search', as: :twittter_search
 get '/twitter_results/:id' => 'users#twitter_search_user', as: :twitter_search_user
 
+get '/logout' => 'sessions#destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
