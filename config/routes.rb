@@ -4,8 +4,9 @@ root 'users#show'
 match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post]
 
 get '/vimeo_results' => 'users#vimeo_search'
-get '/twitter_results' => 'users#twitter_search', as: :twittter_search
+get '/twitter_results' => 'users#twitter_search', as: :twitter_search
 get '/twitter_results/:id' => 'users#twitter_search_user', as: :twitter_search_user
+post '/twitter_results/:id' => 'users#twitter_subscribe', as: :twitter_subscribe
 
 get '/logout' => 'sessions#destroy'
 
