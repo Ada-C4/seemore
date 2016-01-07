@@ -9,11 +9,14 @@
     <%= link_to "Sign in as OmniAuth Dev", "/auth/developer", class:"btn btn-default" %>
     <hr>
   </div>
+
   <div class="row">
-    <form class="navbar-search">
-      <input type="text" class="search-query span3" placeholder="Search Twitter">
-      <%= link_to "Placeholder Twitter Search Results", "/twitter_results", class:"btn btn-default" %>
-    </form>
+    <%= form_tag "/twitter_results", :method => 'get' do %>
+      <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search Twitter", class:"btn btn-default" %>
+      </p>
+    <% end %>
     <br>
     <form class="navbar-search">
       <input type="text" class="search-query span3" placeholder="Search Vimeo">
@@ -38,21 +41,6 @@
     </li>
     <% end %>
   </ul>
-  <ul class="timeline">
-    <% vimeo_stories.each do |story| %>
-    <li>
-      <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
-      <div class="timeline-panel">
-        <div class="timeline-heading">
-          <h4 class="timeline-title"><%= story.user.username %></h4>
-          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.created_at %> via Vimeo</small></p>
-        </div>
-        <div class="timeline-body">
-          <p><%= story.url %></p>
-        </div>
-      </div>
-    </li>
-    <% end %>
-  </ul>
+
 
 HELLO SKYNET TWEET TWEET

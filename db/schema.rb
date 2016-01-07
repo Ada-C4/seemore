@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(version: 20160106224158) do
     t.string   "uid"
     t.string   "text"
     t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "subscription_id"
+    t.string   "post_time"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "subscriptions", force: :cascade do |t|

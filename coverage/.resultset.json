@@ -306,6 +306,22 @@
         null,
         1
       ],
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/vimeo.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1
+      ],
       "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/wrap_parameters.rb": [
         null,
         null,
@@ -323,6 +339,9 @@
         null
       ],
       "/Users/jessica/Documents/Ada/project-forks/seemore/config/routes.rb": [
+        1,
+        null,
+        1,
         1,
         null,
         1,
@@ -439,8 +458,14 @@
         null,
         null,
         1,
+        0,
+        null,
+        null,
+        1,
         null,
         0,
+        0,
+        null,
         null,
         null
       ],
@@ -608,6 +633,6 @@
         null
       ]
     },
-    "timestamp": 1452189603
+    "timestamp": 1452193179
   }
 }

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   validates :uid, :provider, :username, presence: true
+  has_and_belongs_to_many :subscriptions
 
   def self.find_or_create_from_omniauth(auth_hash)
     user = self.find_by(uid: auth_hash["uid"], provider: auth_hash["provider"])

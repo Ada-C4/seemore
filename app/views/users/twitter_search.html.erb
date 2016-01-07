@@ -1,1 +1,10 @@
 This is a placeholder page. Twitter search results will appear here and users will be able to view and subscribe to particular feeds.
+
+<h1> Search Results </h1>
+<ul>
+  <% @search_results.each do |search| %>
+  <li>
+    <%= search.text %>
+  </li>
+  <% end %>
+</ul>

@@ -9,9 +9,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    #Seemore::Application.config.twitter
+
     @sample_stories = twitter.user_timeline("Schwarzenegger")
-    @vimeo_stories = vimeo.user.info("Schwarzenegger")
+  #  @vimeo_stories = vimeo.user.info("Schwarzenegger")
   end
 
+  def twitter_search
+    search_term = params[:search]
+    @search_results = twitter.search(search_term, result_type: "recent").take(20)
+  end
 end
