@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    Seemore::Application.config.twitter
+    #Seemore::Application.config.twitter
     @sample_stories = twitter.user_timeline("Schwarzenegger")
   end
 end
