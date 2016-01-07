@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  root 'media#index'
+  root "media#index"
+  post "/auth/developer/callback", to: "sessions#create"
 end
