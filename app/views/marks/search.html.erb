@@ -1,0 +1,20 @@
+<div class="col-xs-4 col-xs-offset-4">
+  <% if params[:provider] == "twitter" %> 
+
+    TWITTER!
+    <form role="form">
+      <div class="form-group">
+        <%= render partial: "shared/search", locals: {provider: :twitter, url: create_search_path }  %> 
+      </div>
+    </form>
+  <% elsif params[:provider] == "vimeo" %>
+    VIMEO!!!
+    <form role="form">
+      <div class="form-group">
+        <%= render partial: "shared/search", locals: {provider: :vimeo, url: create_search_path }  %> 
+      </div>
+    </form>
+  <% else %> 
+    You are lost.
+  <% end %>
+</div>

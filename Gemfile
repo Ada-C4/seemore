@@ -7,9 +7,9 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 
 # omniauth
 gem 'omniauth'
-gem 'omniauth-github'
+gem 'omniauth-oauth2', '~> 1.3.1'
+gem "omniauth-vimeo"
 gem 'omniauth-twitter'
-gem 'omniauth-instagram'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 

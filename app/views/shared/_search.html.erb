@@ -1,0 +1,5 @@
+<%= form_for provider, url: url, html: { class: "form-inline" } do |f| %>
+  <%= f.label :username, "Search for #{params[:provider].titlecase} Marks" %> 
+  <%= f.text_field :username, placeholder: "Search Marks", class: "form-control form-group" %>
+  <%= f.submit "Search", class: 'btn btn-defualt' %>  
+<% end %>  

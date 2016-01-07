@@ -1,5 +1,7 @@
 <h1>YOUR FEED</h1>
 
-<% if @spy %>
-  Hi <%= @spy.username %>.
+<% if current_spy %>
+  Hi <%= current_spy.username %>.
+  <%= link_to "Search on Twitter", search_path("twitter") %> 
+  <%= link_to "Search on Vimeo", search_path("vimeo") %> 
 <% end %>
