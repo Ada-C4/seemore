@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get 'login' => 'sessions#new'
-  get "/auth/:provider/callback", to: "sessions#create"
+  get "/auth/:provider/callback" => 'sessions#create'
+  post "/auth/developer/callback" => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   post 'users' => 'users#create'
   resources :authors, except: [:show, :new]

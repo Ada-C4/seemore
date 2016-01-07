@@ -6,3 +6,14 @@ About <%= @me.screen_name %>: <%= @me.description %>
 <%= @you.screen_name %> has <%= @you.friends_count %> friends
 <br />
 About <%= @you.screen_name %>: <%= @you.description %>
+
+<br />
+<br />
+
+
+<% if !!current_user %>
+  <%= image_tag current_user.image %>
+  <h1><%= current_user.name %></h1>
+<% else %>
+  <%= link_to "Login", "/auth/developer" %>
+<% end %>
