@@ -15,4 +15,10 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    session[:user_id] = nil if session[:user_id]
+    flash[:notice] = "You have been logged out."
+    redirect_to root_path
+  end
+
 end
