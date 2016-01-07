@@ -1,0 +1,77 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/controllers/handles_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/controllers/media_controller.rb": [
+        1,
+        null,
+        null
+      ],
+      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/controllers/sessions_controller.rb": [
+        1,
+        null
+      ],
+      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/controllers/users_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/controllers/welcome_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/models/handle.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/models/identity.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/models/medium.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/models/user.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1452121758
+  }
+}
