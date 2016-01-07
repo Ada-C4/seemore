@@ -18,4 +18,9 @@ class UsersController < ApplicationController
     search_term = params[:search]
     @search_results = twitter.user_search(search_term).take(20)
   end
+
+  def twitter_search_user
+    @user_name = params[:id]
+    @user_tweets = twitter.user_timeline(@user_name)
+  end
 end
