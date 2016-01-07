@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    binding.pry
     @sample_stories = twitter.user_timeline("Schwarzenegger")
     @vimeo_stories = Vimeo::Simple::User.videos("15397797")
   end

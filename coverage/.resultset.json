@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/meighanrasley/ada/project_forks/seemore/spec/controllers/sessions_controller_spec.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/spec/controllers/sessions_controller_spec.rb": [
         1,
         null,
         1,
@@ -70,7 +70,7 @@
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/spec/rails_helper.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/spec/rails_helper.rb": [
         null,
         1,
         1,
@@ -129,14 +129,14 @@
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/environment.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/application.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/application.rb": [
         1,
         null,
         1,
@@ -173,12 +173,12 @@
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/boot.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/boot.rb": [
         1,
         null,
         1
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/environments/test.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/environments/test.rb": [
         1,
         null,
         null,
@@ -222,7 +222,7 @@
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/initializers/assets.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -235,7 +235,7 @@
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/initializers/backtrace_silencers.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -244,69 +244,69 @@
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/initializers/cookies_serializer.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/cookies_serializer.rb": [
         null,
         null,
         1
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/initializers/filter_parameter_logging.rb": [
-        null,
-        null,
-        null,
-        1
-      ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/initializers/inflections.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/initializers/mime_types.rb": [
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/initializers/omniauth.rb": [
-        1,
-        1,
-        1,
-        null
-      ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/initializers/session_store.rb": [
-        null,
-        null,
-        1
-      ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/initializers/twitter.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/initializers/vimeo.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/inflections.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/mime_types.rb": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/omniauth.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/session_store.rb": [
+        null,
+        null,
+        1
+      ],
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/twitter.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1
+      ],
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/vimeo.rb": [
         1,
         null,
         1,
@@ -322,7 +322,7 @@
         null,
         1
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/initializers/wrap_parameters.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -338,12 +338,13 @@
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/config/routes.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/config/routes.rb": [
         1,
         null,
         1,
         1,
         null,
+        1,
         1,
         1,
         1,
@@ -406,19 +407,19 @@
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/app/helpers/application_helper.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/app/helpers/sessions_helper.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/app/helpers/sessions_helper.rb": [
         1,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/app/helpers/users_helper.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/app/helpers/users_helper.rb": [
         1,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/app/controllers/sessions_controller.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/app/controllers/sessions_controller.rb": [
         1,
         null,
         1,
@@ -443,7 +444,7 @@
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/app/controllers/application_controller.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/app/controllers/application_controller.rb": [
         null,
         1,
         null,
@@ -459,14 +460,14 @@
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/spec/controllers/users_controller_spec.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/spec/controllers/users_controller_spec.rb": [
         1,
         null,
         1,
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/app/controllers/users_controller.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/app/controllers/users_controller.rb": [
         1,
         null,
         1,
@@ -489,28 +490,25 @@
         null,
         1,
         0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
         0,
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/spec/helpers/sessions_helper_spec.rb": [
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        1,
-        null
-      ],
-      "/Users/meighanrasley/ada/project_forks/seemore/spec/helpers/users_helper_spec.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/spec/helpers/sessions_helper_spec.rb": [
         1,
         null,
         null,
@@ -527,19 +525,36 @@
         1,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/spec/models/story_spec.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/spec/helpers/users_helper_spec.rb": [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/jessica/Documents/Ada/project-forks/seemore/spec/models/story_spec.rb": [
         1,
         null,
         1,
         1,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/app/models/story.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/app/models/story.rb": [
         1,
         1,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/spec/models/subscription_spec.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/spec/models/subscription_spec.rb": [
         1,
         1,
         null,
@@ -572,14 +587,34 @@
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/app/models/subscription.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/app/models/subscription.rb": [
         1,
         1,
         1,
         1,
+        null,
+        1,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/spec/models/user_spec.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/spec/models/user_spec.rb": [
         1,
         1,
         null,
@@ -633,7 +668,7 @@
         null,
         null
       ],
-      "/Users/meighanrasley/ada/project_forks/seemore/app/models/user.rb": [
+      "/Users/jessica/Documents/Ada/project-forks/seemore/app/models/user.rb": [
         1,
         1,
         1,
@@ -661,6 +696,6 @@
         null
       ]
     },
-    "timestamp": 1452206182
+    "timestamp": 1452206744
   }
 }
