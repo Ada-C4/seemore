@@ -17,18 +17,18 @@ RSpec.describe TwitterUser, type: :model do
     end
 
     it "requires a twitter_id" do
-      user.name = nil
-      expect(user).to be_invalid
+      twitter_user.twitter_id = nil
+      expect(twitter_user).to be_invalid
     end
 
     it "requires a screen_name" do
-      user.uid = nil
-      expect(user).to be_invalid
+      twitter_user.screen_name = nil
+      expect(twitter_user).to be_invalid
     end
 
     it "requires a uri" do
-      user.uid = nil
-      expect(user).to be_invalid
+      twitter_user.uri = nil
+      expect(twitter_user).to be_invalid
     end
   end
 
