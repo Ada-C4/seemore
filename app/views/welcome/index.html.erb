@@ -18,3 +18,13 @@ About <%= @you.screen_name %>: <%= @you.description %>
 <% else %>
   <%= link_to "Login", "/auth/developer" %>
 <% end %>
+<br />
+<br />
+
+
+<% @instagram.each do |instagram| %>
+
+  <%= image_tag instagram.images.standard_resolution.url %>
+
+<% end %>
+<% raise %>
