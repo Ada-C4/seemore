@@ -1,56 +1,64 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/controllers/marks_controller.rb": [
+      "/Users/amyhunter/Desktop/first_two_weeks_of_ada_files/Amy/Ada/project-forks/seemore/app/controllers/marks_controller.rb": [
         1,
         null
       ],
-      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/controllers/application_controller.rb": [
+      "/Users/amyhunter/Desktop/first_two_weeks_of_ada_files/Amy/Ada/project-forks/seemore/app/controllers/application_controller.rb": [
         1,
         null,
         null,
         1,
-        null
-      ],
-      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/controllers/media_controller.rb": [
-        1,
-        1,
         null,
-        null
-      ],
-      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/controllers/sessions_controller.rb": [
-        1,
         1,
         null,
         1,
-        0,
-        0,
-        0,
-        null,
-        null
-      ],
-      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/controllers/spies_controller.rb": [
-        1,
-        null
-      ],
-      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/models/mark.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null
-      ],
-      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/models/medium.rb": [
-        1,
-        1,
-        null,
         1,
         null,
         null
       ],
-      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/models/spy.rb": [
+      "/Users/amyhunter/Desktop/first_two_weeks_of_ada_files/Amy/Ada/project-forks/seemore/app/controllers/media_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/amyhunter/Desktop/first_two_weeks_of_ada_files/Amy/Ada/project-forks/seemore/app/controllers/sessions_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        8,
+        8,
+        8,
+        8,
+        null,
+        null
+      ],
+      "/Users/amyhunter/Desktop/first_two_weeks_of_ada_files/Amy/Ada/project-forks/seemore/app/controllers/spies_controller.rb": [
+        1,
+        null
+      ],
+      "/Users/amyhunter/Desktop/first_two_weeks_of_ada_files/Amy/Ada/project-forks/seemore/app/models/mark.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/amyhunter/Desktop/first_two_weeks_of_ada_files/Amy/Ada/project-forks/seemore/app/models/medium.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/amyhunter/Desktop/first_two_weeks_of_ada_files/Amy/Ada/project-forks/seemore/app/models/spy.rb": [
         1,
         1,
         1,
@@ -59,19 +67,30 @@
         1,
         null,
         1,
-        0,
-        0,
+        8,
+        8,
         null,
-        0,
+        2,
+        6,
+        null,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
         null,
         null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        null,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
         null,
         null,
         null,
@@ -80,6 +99,6 @@
         null
       ]
     },
-    "timestamp": 1452186542
+    "timestamp": 1452196383
   }
 }
