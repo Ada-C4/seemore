@@ -1,10 +1,17 @@
 This is a placeholder page. Twitter search results will appear here and users will be able to view and subscribe to particular feeds.
 
 <h1> Search Results </h1>
-<ul>
+<div class="col-sm-6">
   <% @search_results.each do |search| %>
-  <li>
-    <%= search.name %>
-  </li>
+  <div class="well well-lg">
+    <table width="100%">
+      <tr>
+        <td width="40%"><%= search.screen_name %></td>
+        <td width="40%"><%= search.name %></td>
+        <td width="20%"><%= image_tag(search.profile_image_url, height: '50', width: '50') %></td>
+      </tr>
+    </table>
+  </div>
   <% end %>
-</ul>
+  </div>
+  <div class="col-sm-8"></div>
