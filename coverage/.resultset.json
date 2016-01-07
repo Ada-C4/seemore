@@ -1,0 +1,85 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/controllers/marks_controller.rb": [
+        1,
+        null
+      ],
+      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/controllers/media_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/controllers/sessions_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null
+      ],
+      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/controllers/spies_controller.rb": [
+        1,
+        null
+      ],
+      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/models/mark.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/models/medium.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/annaleeherrera/class-exs/project-forks/seemore/app/models/spy.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1452186542
+  }
+}
