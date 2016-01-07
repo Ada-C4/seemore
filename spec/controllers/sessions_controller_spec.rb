@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
   describe "GET #create" do
-      context "when using github authentication" do
+      context "when using twitter authentication" do
         context "is successful" do
           before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter] }
 
