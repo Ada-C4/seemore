@@ -18,10 +18,16 @@
       </p>
     <% end %>
     <br>
-    <form class="navbar-search">
-      <input type="text" class="search-query span3" placeholder="Search Vimeo">
-      <%= link_to "Placeholder Vimeo Search Results", "/vimeo_results", class:"btn btn-default" %>
-    </form>
+    <%= form_tag "/vimeo_results", :method => 'get' do %>
+      <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search Vimeo", class:"btn btn-default" %>
+      </p>
+    <% end %>
+    <!-- <form class="navbar-search"> -->
+      <!-- <input type="text" class="search-query span3" placeholder="Search Vimeo"> -->
+      <!-- <%= link_to "Placeholder Vimeo Search Results", "/vimeo_results", class:"btn btn-default" %> -->
+    <!-- </form> -->
     <hr>
   </div>
 

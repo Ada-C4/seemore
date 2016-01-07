@@ -18,4 +18,9 @@ class UsersController < ApplicationController
     search_term = params[:search]
     @search_results = twitter.user_search(search_term).take(20)
   end
+
+  def vimeo_search
+    search_term = params[:search]
+    @vimeo_results = Vimeo::Simple::User.info(search_term)
+  end
 end

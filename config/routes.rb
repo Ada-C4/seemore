@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 root 'users#show'
 match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post]
 
-get '/vimeo_results' => 'users#vimeo_search'
+get '/vimeo_results' => 'users#vimeo_search', as: :vimeo_search
 get '/twitter_results' => 'users#twitter_search', as: :twittter_search
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,1 +1,16 @@
 This is a placeholder page. Vimeo search results will appear here and users will be able to view and subscribe to particular feeds.
+
+<h1> Search Results </h1>
+<div class="col-sm-6">
+  <% @vimeo_results.each do |search| %>
+  <div class="well well-lg">
+    <table width="100%">
+      <tr>
+        <td width="40%"><%= search["user_name"] %></td>
+        <td width="40%"><%= search["bio"]%></td>
+      </tr>
+    </table>
+  </div>
+  <% end %>
+  </div>
+  <div class="col-sm-8"></div>
