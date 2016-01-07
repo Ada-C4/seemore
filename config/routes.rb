@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   post 'users' => 'users#create'
   resources :authors, except: [:show, :new]
+  post 'twitter_users' => 'twitter_users#create'
   get 'search_results' => 'search#index'
 
 
