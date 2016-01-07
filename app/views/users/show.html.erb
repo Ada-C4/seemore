@@ -42,5 +42,19 @@
     <% end %>
   </ul>
 
-
-HELLO SKYNET TWEET TWEET
+  <ul class="timeline">
+    <% @vimeo_stories.each do |story| %>
+    <li>
+      <div class="timeline-badge"><i class="fa fa-vimeo"></i></div>
+      <div class="timeline-panel">
+        <div class="timeline-heading">
+          <h4 class="timeline-title"><%= story["user_name"] %></h4>
+          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story["upload_date"] %> via Vimeo</small></p>
+        </div>
+        <div class="timeline-body">
+          <p><%= story["url"] %></p>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </ul>

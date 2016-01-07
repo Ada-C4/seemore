@@ -9,9 +9,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    #@sample_stories = twitter.user_timeline("Schwarzenegger")
+    @vimeo_stories = Vimeo::Simple::User.videos("15397797")
 
-    @sample_stories = twitter.user_timeline("Schwarzenegger")
-  #  @vimeo_stories = vimeo.user.info("Schwarzenegger")
   end
 
   def twitter_search
