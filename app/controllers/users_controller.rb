@@ -16,6 +16,6 @@ class UsersController < ApplicationController
 
   def twitter_search
     search_term = params[:search]
-    @search_results = twitter.search(search_term, result_type: "recent").take(20)
+    @search_results = twitter.user_search(search_term).take(20)
   end
 end
