@@ -1,8 +1,8 @@
 class TwitterUsersController < ApplicationController
   def create
-    # screen_name = strong_params[:screen_name]
+    screen_name = strong_params[:screen_name]
     # find user using Twitter API
-    new_twitter_user = $client.user("kdefliese")
+    new_twitter_user = $client.user(screen_name)
     # create hash using info from Twitter API
     twitter_user_hash = {
       twitter_id: new_twitter_user.id,
@@ -13,12 +13,8 @@ class TwitterUsersController < ApplicationController
       uri: new_twitter_user.uri,
       profile_image_uri: new_twitter_user.profile_image_uri
     }
-    @twitter_user = TwitterUser.new(twitter_user_hash)
-    if @twitter_user.save
-      redirect_to :root
-    else
-      render :search_results
-    end
+    @twitter_user = TwitterUser.create(twitter_user_hash)
+    redirect_to :root
   end
 
   private
