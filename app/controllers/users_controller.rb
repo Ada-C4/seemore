@@ -36,4 +36,9 @@ class UsersController < ApplicationController
     end
     redirect_to root_path
   end
+
+  def vimeo_search
+    search_term = params[:search]
+    @vimeo_results = Vimeo::Simple::User.info(search_term)
+  end
 end
