@@ -33,7 +33,17 @@ class Spy < ActiveRecord::Base
       else
         return nil
       end
-    elsif
+    elsif auth_hash["provider"] == "vimeo"
+      spy            = Spy.new
+      spy.uid        = auth_hash["uid"]
+      spy.provider   = auth_hash["provider"]
+      spy.username   = auth_hash["info"]["nickname"]
+      spy.image_url = auth_hash["info"]["pictures"][0]["link"]
+      if spy.save
+        return spy
+      else
+        return nil
+      end
     end
   end
 end
