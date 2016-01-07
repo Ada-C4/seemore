@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160107011848) do
+ActiveRecord::Schema.define(version: 20160107230927) do
 
   create_table "marks", force: :cascade do |t|
     t.string   "username"
@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20160107011848) do
     t.string   "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "bio"
+    t.string   "location"
+    t.string   "link"
   end
 
   create_table "marks_spies", id: false, force: :cascade do |t|
