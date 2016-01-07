@@ -1,0 +1,17 @@
+<h1><%= @user_name %></h1>
+<%= image_tag(@user_tweets[0].user.profile_image_url) %>
+<br>
+<br>
+
+<%= button_to "Subscribe", twitter_subscribe_path(@user_name), class:"btn btn-default" %>
+
+<br>
+<br>
+
+  <% @user_tweets.each do |tweet| %>
+  <div class="well">
+      <%= tweet.text %>
+  </div>
+  <% end %>
+
+</ul>

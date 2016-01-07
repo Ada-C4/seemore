@@ -1,35 +1,41 @@
 
 <div class="container">
   <div class="page-header">
-    <h1 id="timeline">Skynet</h1>
+      <% if @current_user %>
+        <h1 id="timeline">Welome to Skynet, <%= "#{@current_user.username}" %></h1>
+      <% else %>
+        <h1 id="timeline">Skynet</h1>
+      <% end %>
   </div>
   <div class="row">
-    <%= link_to "Sign in with Twitter", "/auth/twitter", class:"btn btn-default" %>
-    <%= link_to "Sign in with Instagram", "/auth/instagram", class:"btn btn-default" %>
-    <%= link_to "Sign in as OmniAuth Dev", "/auth/developer", class:"btn btn-default" %>
+    <% if @current_user %>
+      <%= link_to "Logout", "/logout", class: "btn btn-default" %>
+    <% else %>
+      <%= link_to "Sign in with Twitter", "/auth/twitter", class:"btn btn-default" %>
+      <%= link_to "Sign in with Instagram", "/auth/instagram", class:"btn btn-default" %>
+      <%= link_to "Sign in as OmniAuth Dev", "/auth/developer", class:"btn btn-default" %>
+    <% end %>
     <hr>
   </div>
 
-  <div class="row">
-    <%= form_tag "/twitter_results", :method => 'get' do %>
-      <p>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search Twitter", class:"btn btn-default" %>
-      </p>
-    <% end %>
-    <br>
-    <%= form_tag "/vimeo_results", :method => 'get' do %>
-      <p>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search Vimeo", class:"btn btn-default" %>
-      </p>
-    <% end %>
-    <!-- <form class="navbar-search"> -->
-      <!-- <input type="text" class="search-query span3" placeholder="Search Vimeo"> -->
-      <!-- <%= link_to "Placeholder Vimeo Search Results", "/vimeo_results", class:"btn btn-default" %> -->
-    <!-- </form> -->
-    <hr>
-  </div>
+  <% if @current_user %>
+    <div class="row">
+      <%= form_tag "/twitter_results", :method => 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search Twitter", class:"btn btn-default" %>
+        </p>
+      <% end %>
+      <br>
+      <%= form_tag "/vimeo_results", :method => 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search Vimeo", class:"btn btn-default" %>
+        </p>
+      <% end %>
+      <hr>
+    </div>
+  <% end %>
 
   <ul class="timeline">
     <% @sample_stories.each do |story| %>
