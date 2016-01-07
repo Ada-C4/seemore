@@ -4,10 +4,13 @@
     <h1 id="timeline">Skynet</h1>
   </div>
   <div class="row">
-    <%= link_to "Sign in with Twitter", "/auth/twitter", class:"btn btn-default" %>
-    <%= link_to "Sign in with Instagram", "/auth/instagram", class:"btn btn-default" %>
-    <%= link_to "Sign in as OmniAuth Dev", "/auth/developer", class:"btn btn-default" %>
-    <%= link_to "Logout", "/logout", class: "btn btn-default" %>
+    <% if @current_user %>
+      <%= link_to "Logout", "/logout", class: "btn btn-default" %>
+    <% else %>
+      <%= link_to "Sign in with Twitter", "/auth/twitter", class:"btn btn-default" %>
+      <%= link_to "Sign in with Instagram", "/auth/instagram", class:"btn btn-default" %>
+      <%= link_to "Sign in as OmniAuth Dev", "/auth/developer", class:"btn btn-default" %>
+    <% end %>
     <hr>
   </div>
 
