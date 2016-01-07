@@ -14,7 +14,4 @@ About <%= @you.screen_name %>: <%= @you.description %>
 <% if !!current_user %>
   <%= image_tag current_user.image %>
   <h1><%= current_user.name %></h1>
-  <%= link_to "Logout", logout_path %>
-<% else %>
-  <%= link_to "Login", "/auth/developer" %>
 <% end %>

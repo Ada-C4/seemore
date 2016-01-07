@@ -13,6 +13,17 @@
       <% end %>
     </div>
   <% end %>
+
+  <% if !current_user.nil? %>
+  <div class="">
+    <%= link_to "LOGOUT", logout_path, method: :delete %>
+  </div>
+  <% else %>
+  <div class="">
+    <%= link_to "LOGIN", "/auth/developer" %>
+  </div>
+<% end %>
+
   <%= yield %>
 
 </body>

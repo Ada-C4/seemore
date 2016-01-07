@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   get "/auth/:provider/callback" => 'sessions#create'
   post "/auth/developer/callback" => 'sessions#create'
-  get 'logout' => 'sessions#destroy'
+  delete 'logout' => 'sessions#destroy'
   post 'users' => 'users#create'
   resources :authors, except: [:show, :new]
   get 'search_results' => 'search#index'
