@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
 
   def create
     auth_hash = request.env['omniauth.auth']
-    Spy.find_or_create_from_omniauth(auth_hash)
+    @spy = Spy.find_or_create_from_omniauth(auth_hash)
+    session[:spy_id] = @spy.id
     redirect_to root_path
   end
 end

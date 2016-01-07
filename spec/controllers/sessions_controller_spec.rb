@@ -10,6 +10,15 @@ RSpec.describe SessionsController, type: :controller do
           get :create, provider: :developer
           expect(response).to redirect_to root_path
         end
+
+        it "creates a spy" do
+          expect { get :create, provider: :developer }.to change(Spy, :count).by(1)
+        end
+
+        it "assigns the session[:spy_id]" do
+          get :create, provider: :developer
+          expect(session[:spy_id]).to eq assigns(:spy).id
+        end
       end
     end
   end
