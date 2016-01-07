@@ -1,6 +1,6 @@
 class TwitterUsersController < ApplicationController
   def create
-    screen_name = strong_params[:screen_name]
+  screen_name = strong_params[:screen_name]
     # find user using Twitter API
     new_twitter_user = $client.user(screen_name)
     # create hash using info from Twitter API
