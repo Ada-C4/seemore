@@ -33,6 +33,7 @@ class Spy < ActiveRecord::Base
       else
         return nil
       end
+    elsif
     end
   end
 end
