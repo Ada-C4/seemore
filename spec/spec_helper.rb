@@ -1,3 +1,4 @@
+require "factory_girl"
 require "simplecov"
 require "rails_helper"
 
@@ -7,6 +8,7 @@ end
 
 
 RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
   
   config.expect_with :rspec do |expectations|
    
