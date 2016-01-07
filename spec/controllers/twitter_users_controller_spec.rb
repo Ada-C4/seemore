@@ -32,12 +32,14 @@ RSpec.describe TwitterUsersController, type: :controller do
       post :create, good_params
       expect(TwitterUser.all.length).to eq 1
       expect(response.status).to eq 302
+      expect(subject).to redirect_to :root
     end
 
     it "will not create a new TwitterUser with bad params" do
       post :create, bad_params
       expect(TwitterUser.all.length).to eq 0
       expect(response.status).to eq 200
+      expect(subject).to render_template :search_results
     end
   end
 
