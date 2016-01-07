@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 #style 
 gem "font-awesome-rails"
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
@@ -49,6 +50,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'pry'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'vcr', '2.2.5'
 end
 
 group :development do
