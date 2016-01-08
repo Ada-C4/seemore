@@ -2,7 +2,8 @@ class MarksController < ApplicationController
   before_action :search, only: [:vimeo_subscribe]
 
   def index
-    @marks = Mark.all
+    @marks = current_spy.marks
+    # raise
   end
 
   def search 
@@ -16,9 +17,14 @@ class MarksController < ApplicationController
     end
   end
 
+  def show 
+
+  end
+
   def vimeo_subscribe
     @mark = Mark.vimeo_lookup(params[:name])
     @mark.save
+    current_spy.marks << @mark
     redirect_to marks_path
   end
 end
