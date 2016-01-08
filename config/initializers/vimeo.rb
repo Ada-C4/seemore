@@ -2,7 +2,7 @@ require 'vimeo'
 
 class VimeoClient
   def self.connect
-    vimeo_client = Vimeo::Simple::Base.new do |config|
+    vimeo_client = Vimeo::Simple::User.new do |config|
       config.consumer_key        = ENV["VIMEO_CLIENT_ID"]
       config.consumer_secret     = ENV["VIMEO_CLIENT_SECRET"]
       #config.access_token        = ENV["VIMEO_ACCESS_TOKEN"]
