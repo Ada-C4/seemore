@@ -1,0 +1,8 @@
+<%= form_tag(search_path, :method => "get", id: "search-form") do %>
+    <div class="search-box">
+      <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+      <button class="btn btn-default search-button" type="submit">Search</button>
+    </div>
+  <% end %>
+<%= link_to "Creators I Follow", creators_path %>
+<%= link_to "Feed", root_path %>
