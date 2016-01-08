@@ -36,7 +36,7 @@ class Mark < ActiveRecord::Base
           image = mark_parsed["pictures"]["sizes"].last
         end
 
-        if image.nil? 
+        if image.nil?
           profile_image = "blank.png"
         else
           profile_image = image["link"]

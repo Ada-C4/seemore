@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'httparty'
+gem 'twitter'
 #style
 gem "font-awesome-rails"
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
