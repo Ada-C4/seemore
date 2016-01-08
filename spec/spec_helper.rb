@@ -35,5 +35,6 @@ RSpec.configure do |config|
 
     OmniAuth.config.mock_auth[:developer] = OmniAuth::AuthHash.new({:provider => 'developer', :uid => '123545', info: {username: "Brittany"}})
     OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({:provider => 'twitter', :uid => '123545', info: {nickname: "Brittany"}})
+    OmniAuth.config.mock_auth[:vimeo] = OmniAuth::AuthHash.new({:provider => 'vimeo', :uid => '777777', info: {nickname: "Amy"}})
   end
 end
