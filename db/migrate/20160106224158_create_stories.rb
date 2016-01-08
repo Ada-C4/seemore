@@ -5,7 +5,7 @@ class CreateStories < ActiveRecord::Migration
       t.string :text
       t.string :url
       t.integer :subscription_id
-      t.string :post_time
+      t.datetime :post_time
 
       t.timestamps null: false
     end

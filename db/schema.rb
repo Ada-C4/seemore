@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160108003824) do
     t.string   "text"
     t.string   "url"
     t.integer  "subscription_id"
-    t.string   "post_time"
+    t.datetime "post_time"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

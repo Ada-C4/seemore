@@ -1,34 +1,31 @@
 <ul class="timeline">
   <% @sample_stories.each do |story| %>
-  <li>
-    <div class="timeline-badge"><i class="fa fa-twitter"></i></div>
-    <div class="timeline-panel">
-      <div class="timeline-heading">
-        <h4 class="timeline-title"><%= story.user.username %></h4>
-        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.created_at %> via Twitter</small></p>
-      </div>
-      <div class="timeline-body">
-        <p><%= story.text %></p>
-      </div>
-    </div>
-  </li>
-  <% end %>
-</ul>
-
-<ul class="timeline">
-  <% @vimeo_stories.each do |story| %>
-  <li>
-    <div class="timeline-badge"><i class="fa fa-vimeo"></i></div>
-    <div class="timeline-panel">
-      <div class="timeline-heading">
-        <h4 class="timeline-title"><%= story["user_name"] %></h4>
-        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story["upload_date"] %> via Vimeo</small></p>
-      </div>
-      <div class="timeline-body">
-        <iframe src="//player.vimeo.com/video/<%= story["id"] %>" width="WIDTH" height="HEIGHT" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-      </div>
-    </div>
-  </li>
-  <% end %>
+    <% if story.subscription_id == 1 %>
+      <li>
+        <div class="timeline-badge"><i class="fa fa-twitter"></i></div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4 class="timeline-title"><%= story.subscription.username %></h4>
+            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.post_time %> via Twitter</small></p>
+          </div>
+          <div class="timeline-body">
+            <p><%= story.text %></p>
+          </div>
+        </div>
+      </li>
+    <% elsif story.subscription_id == 2 %>
+      <li class="timeline-inverted">
+        <div class="timeline-badge"><i class="fa fa-vimeo"></i></div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4 class="timeline-title"><%= story.subscription.username %></h4>
+            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.post_time %> via Vimeo</small></p>
+          </div>
+          <div class="timeline-body">
+            <iframe src="//player.vimeo.com/video/<%= story.uid %>" width="WIDTH" height="HEIGHT" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+        </div>
+      </li>
+      <% end %>
+    <% end %>
 </ul>

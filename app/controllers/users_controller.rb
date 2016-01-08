@@ -9,8 +9,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @sample_stories = twitter.user_timeline("Schwarzenegger")
-    @vimeo_stories = Vimeo::Simple::User.videos("15397797")
+    # @sample_stories = twitter.user_timeline("Schwarzenegger")
+    # @vimeo_stories = Vimeo::Simple::User.videos("15397797")
+    @sample_stories = []
+    @sample_stories.push(Story.where(subscription_id: 1))
+    @sample_stories.push(Story.where(subscription_id: 2))
+    @sample_stories.flatten!
+    @sample_stories.sort_by! { |story| story[:post_time] }.reverse!
   end
 
   def twitter_search
@@ -32,7 +37,7 @@ class UsersController < ApplicationController
     avatar_url = @tweets[0].user.profile_image_url
     subscription = Subscription.find_or_create(uid, provider, username, avatar_url)
     @tweets.each do |tweet|
-      Story.create(uid: tweet.id, text: tweet.text, subscription_id: subscription.id, post_time: tweet.created_at)
+      Story.create(uid: tweet.id, text: tweet.text, subscription_id: subscription.id, post_time: DateTime.parse(tweet.created_at))
     end
     redirect_to root_path
   end
