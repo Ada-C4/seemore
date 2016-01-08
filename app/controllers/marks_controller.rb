@@ -30,6 +30,7 @@ class MarksController < ApplicationController
       link: user.url,
       image_url: user.profile_image_url,
       uid: user.id,
+      location: user.location,
       provider: "twitter"
     )
     return mark
