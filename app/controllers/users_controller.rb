@@ -11,11 +11,21 @@ class UsersController < ApplicationController
   def show
     # @sample_stories = twitter.user_timeline("Schwarzenegger")
     # @vimeo_stories = Vimeo::Simple::User.videos("15397797")
-    @sample_stories = []
-    @sample_stories.push(Story.where(subscription_id: 1))
-    @sample_stories.push(Story.where(subscription_id: 2))
-    @sample_stories.flatten!
-    @sample_stories.sort_by! { |story| story[:post_time] }.reverse!
+    @stories = []
+    if !@current_user
+      @stories.push(Story.where(subscription_id: 1))
+      @stories.push(Story.where(subscription_id: 2))
+      @stories.flatten!
+    # else
+    #   user = User.where(id: session[:user_id])
+    #   subscriptions = user.subscriptions
+    #   subscriptions.each do |subscription|
+    #     subscription.stories.each do |story|
+    #       @stories.push(story)
+    #     end
+    #   end
+    end
+    @stories.sort_by! { |story| story[:post_time] }.reverse!
   end
 
   def twitter_search

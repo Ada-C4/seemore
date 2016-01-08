@@ -1,5 +1,6 @@
 <ul class="timeline">
-  <% @sample_stories.each do |story| %>
+  <% if !@stories.nil? %>
+  <% @stories.each do |story| %>
     <% if story.subscription_id == 1 %>
       <li>
         <div class="timeline-badge"><i class="fa fa-twitter"></i></div>
@@ -27,5 +28,8 @@
         </div>
       </li>
       <% end %>
+    <% end %>
+    <% else %>
+    You haven't followed any users yet! Follow users to build your feed.
     <% end %>
 </ul>
