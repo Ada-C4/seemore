@@ -1,5 +1,5 @@
 <%= form_tag results_path, method: "get" do %>
-  <%= label_tag :username, "Search for #{params[:provider].titlecase} Marks" %> 
-  <%= text_field_tag :username, nil, placeholder: "Search Marks", class: "form-control form-group" %>
+  <h1><%= label_tag :username, "Search for #{params[:provider].titlecase} Marks" %> </h1>
+  <h1><%= text_field_tag :username, nil, placeholder: "Search Marks", class: "form-control form-group" %></h1>
   <%= submit_tag "Search", class: 'btn btn-default' %>  
 <% end %>  

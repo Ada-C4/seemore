@@ -7,7 +7,7 @@ class MarksController < ApplicationController
 
   def index
     @marks = current_spy.marks
-    # raise
+    raise
   end
 
   def search

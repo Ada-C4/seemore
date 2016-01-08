@@ -1,11 +1,41 @@
-<h1>YOUR FEED</h1>
-
-<% if current_spy %>
-  Hi <%= current_spy.username %>.
-  <%= link_to "Search on Twitter", search_path("twitter") %> 
-  <%= link_to "Search on Vimeo", search_path("vimeo") %>
-  <%= link_to "Log Out", logout_path %>
-<% else %> 
-  <%= link_to "Login through Vimeo", login_path("vimeo") %>  
-  <%= link_to "Login through Twitter", login_path("twitter") %>  
-<% end %>
+<% if !current_spy.nil? %>
+  <div class="container">
+    <div class="page-header">
+      <h1 id="timeline">Trail Your Marks</h1>
+    </div>
+    <ul class="timeline">
+      <li>
+        <div class="timeline-badge twitter"><i class="fa fa-twitter"></i></div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4 class="timeline-title">Title</h4>
+            <p><small class="text-muted"><i class="fa fa-clock-o"></i> Time</small></p>
+          </div>
+          <div class="timeline-body">
+            <p>CONTENT</p>
+          </div>
+        </div>
+      </li>
+      <li class="timeline-inverted">
+        <div class="timeline-badge vimeo"><i class="fa fa-vimeo"></i></div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4 class="timeline-title">Title</h4>
+            <p><small class="text-muted"><i class="fa fa-clock-o"></i> Time</small></p>
+          </div>
+          <div class="timeline-body">
+            <p>CONTENT</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+<% else %>
+  <%= link_to login_path("vimeo") do %>
+    <%= image_tag("vimeo.png", class: "company_logo") %>
+  <% end %>  
+  <br>
+  <%= link_to login_path("twitter") do %>
+    <%= image_tag("twitter.png", class: "company_logo") %>
+  <% end %>  
+<% end %> 
