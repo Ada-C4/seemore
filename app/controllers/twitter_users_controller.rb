@@ -17,9 +17,29 @@ class TwitterUsersController < ApplicationController
     redirect_to :root
   end
 
+  def subscribe
+    screen_name = params[:screen_name]
+    if !twitter_user_exists?
+      # create new twitter_user
+      # create new tweets
+    end
+    #subscribe to twitter_user
+    redirect_to :root
+  end
+
   private
 
   def strong_params
     params.require(:twitter_user).permit(:screen_name)
   end
+
+  def twitter_user_exists?
+    check_for_screen_name = params[:screen_name]
+    if TwitterUser.find_by(screen_name: check_for_screen_name)
+      return true
+    else
+      return false
+    end
+  end
+
 end

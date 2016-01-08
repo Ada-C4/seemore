@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   post "/auth/developer/callback" => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   post 'users' => 'users#create'
-  patch 'users/subscribe' => 'users#subscribe'
   resources :authors, except: [:show, :new]
   post 'twitter_users' => 'twitter_users#create'
+  patch 'subscribe' => 'twitter_users#subscribe'
   get 'search_results' => 'search#index'
 
 

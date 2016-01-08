@@ -4,7 +4,7 @@
   <% @results.each do |result| %>
     <li>
       <%= result.screen_name %>
-      <%= button_to "Subscribe", users_subscribe_path,  method: :patch, class: 'btn btn-primary' %>
+      <%= button_to "Subscribe", subscribe_path,  method: :patch, class: 'btn btn-primary', params: { screen_name: result.screen_name } %>
     <br />
     </li>
   <% end %>
