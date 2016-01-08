@@ -2,6 +2,16 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
   describe "GET #create" do
+    before(:each) do
+      Subscription.create(
+        username: "Schwarzenegger", uid: "12044602" , provider: "twitter", avatar_url: "https://pbs.twimg.com/profile_images/665340796510466048/-nsoU1Q5.jpg"
+        )
+
+      Subscription.create(
+        username: "Schwarzenegger", uid: "12044602" , provider: "vimeo", avatar_url: "https://pbs.twimg.com/profile_images/665340796510466048/-nsoU1Q5.jpg"
+        )
+    end
+
       context "when using twitter authentication" do
         context "is successful" do
           before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter] }
@@ -28,6 +38,7 @@ RSpec.describe SessionsController, type: :controller do
 
         context "when the user has already signed up" do
         before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter] }
+
         # the let! forces the user to get created - don't need to call it
         let!(:user) { User.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:twitter]) }
 
