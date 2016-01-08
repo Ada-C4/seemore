@@ -16,9 +16,7 @@ class Spy < ActiveRecord::Base
       spy.uid        = auth_hash["uid"]
       spy.provider   = auth_hash["provider"]
       spy.username   = auth_hash["info"]["username"]
-      if spy.image_url.present?
-        spy.image_url = auth_hash["info"]["image"]
-      else
+      if !spy.image_url.present?
         spy.image_url = "blank.png"
       end
       if spy.save
@@ -31,9 +29,7 @@ class Spy < ActiveRecord::Base
       spy.uid        = auth_hash["uid"]
       spy.provider   = auth_hash["provider"]
       spy.username   = auth_hash["info"]["nickname"]
-      if spy.image_url.present?
-        spy.image_url = auth_hash["info"]["image"]
-      else
+      if !spy.image_url.present?
         spy.image_url = "blank.png"
       end
       if spy.save
@@ -46,9 +42,7 @@ class Spy < ActiveRecord::Base
       spy.uid        = auth_hash["uid"]
       spy.provider   = auth_hash["provider"]
       spy.username   = auth_hash["info"]["nickname"]
-      if spy.image_url.present?
-        spy.image_url = auth_hash["info"]["pictures"][0]["link"]
-      else
+      if !spy.image_url.present?
         spy.image_url = "blank.png"
       end
       if spy.save
