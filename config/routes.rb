@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get "/auth/:provider/callback", to: "sessions#create"
 
-  post "/auth/developer/callback", provider: "developer"
+  post "/auth/developer/callback", to: "sessions#create"
 
   post "vimeo_subscribe", to: "marks#vimeo_subscribe", as: :vimeo_subscribe
 end

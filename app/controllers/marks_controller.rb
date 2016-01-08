@@ -17,6 +17,8 @@ class MarksController < ApplicationController
   end
 
   def vimeo_subscribe
+    @mark = Mark.vimeo_lookup(params[:name])
+    @mark.save
     redirect_to marks_path
   end
 end
