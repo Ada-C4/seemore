@@ -21,3 +21,5 @@
 # Mac Stuff
 *.DS_Store
 *.keep
+
+coverage
