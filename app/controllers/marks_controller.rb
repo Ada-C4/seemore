@@ -1,17 +1,22 @@
 class MarksController < ApplicationController
   before_action :search, only: [:vimeo_subscribe]
 
+  def twitter
+    Seemore::Application.config.twitter
+  end
+
   def index
     @marks = Mark.all
   end
 
-  def search 
+  def search
     if params[:username].present?
       search_params = { username: params[:username], provider: params[:provider], id: params[:id] }
-      # raise
       @search_term = search_params[:username]
       if search_params[:provider] == "vimeo"
         @mark = Mark.vimeo_lookup(@search_term)
+      elsif search_params[:provider] == "twitter"
+        @mark = Mark.twitter_lookup(@search_term)
       end
     end
   end
