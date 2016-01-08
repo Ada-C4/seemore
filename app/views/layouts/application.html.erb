@@ -15,22 +15,25 @@
     </div>
   <% end %>
 
-  <% if !current_user.nil? %>
-  <div class="">
-    <%= link_to "LOGOUT", logout_path, method: :delete %>
-  </div>
-  <% else %>
-
-    <%= form_tag(search_results_path, :method => "get") do %>
-      <%= select_tag("provider", options_for_select([["Twitter", 1], ["Instagram", 2]])) %>
-        <div class="search-box">
-          <%= text_field_tag :search_term, params[:search_term], placeholder: "Search" %>
-            <button class="btn btn-default search-button" type="submit"></button>
-        </div>
-    <% end %>
+  <div class="container-fluid">
+    <% if !current_user.nil? %>
+    <div class="row">
+      <%= link_to "LOGOUT", logout_path, method: :delete %>
+    </div>
+    <% else %>
+    <div class="col-lg-1 col-xs-3 nav-link-container">
       <%= link_to "LOGIN", "/auth/developer" %>
-  <% end %>
+    </div>
 
+    <div class="form-inline">
+      <%= form_tag(search_results_path, :method => "get", class: "form-group") do %>
+        <%= select_tag("provider", options_for_select([["Twitter", 1], ["Instagram", 2]]), class: "form-control") %>
+          <%= text_field_tag :search_term, params[:search_term], placeholder: "Search", class: "form-control" %>
+            <button class="btn btn-default search-button" type="submit">Search</button>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
   <%= yield %>
 
 </body>
