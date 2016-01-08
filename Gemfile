@@ -5,9 +5,8 @@ gem 'omniauth-oauth2', '~> 1.3.1'
 gem "omniauth-twitter"
 gem "omniauth-vimeo"
 gem 'twitter'
+gem 'httparty'
 gem 'instagram'
-gem 'gemcutter'
-gem 'vimeo'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

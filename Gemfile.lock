@@ -87,7 +87,6 @@ GEM
       faraday (>= 0.7.4, < 0.10)
     font-awesome-rails (4.5.0.0)
       railties (>= 3.2, < 5.0)
-    gemcutter (0.7.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashie (3.4.3)
@@ -104,7 +103,6 @@ GEM
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    httpclient (2.7.1)
     i18n (0.7.0)
     instagram (1.1.6)
       faraday (>= 0.7, < 0.10)
@@ -267,12 +265,6 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
-    vimeo (1.5.4)
-      httparty (>= 0.4.5)
-      httpclient (>= 2.1.5.2)
-      json (>= 1.1.9)
-      multipart-post (>= 1.0.1)
-      oauth (>= 0.4.3)
     web-console (2.2.1)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -292,8 +284,8 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails (~> 4.0)
   font-awesome-rails
-  gemcutter
   hirb
+  httparty
   instagram
   jbuilder (~> 2.0)
   jquery-rails
@@ -314,7 +306,6 @@ DEPENDENCIES
   turbolinks
   twitter
   uglifier (>= 1.3.0)
-  vimeo
   web-console (~> 2.0)
 
 BUNDLED WITH

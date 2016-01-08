@@ -14,12 +14,3 @@
 <% end %>
 <br />
 <br />
-
-<div>
-  <p> vimeo examples </p>
-<%= @user_info["display_name"] %>
-<%= image_tag @user_info["portrait_small"] %>
-
-<% @user_videos.each do |video| %>
-    <%= image_tag video["thumbnail_large"] %>
-<% end %>
