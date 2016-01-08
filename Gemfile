@@ -4,6 +4,7 @@ gem "omniauth"
 gem 'omniauth-oauth2', '~> 1.3.1'
 gem "omniauth-twitter"
 gem 'twitter'
+gem 'instagram'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

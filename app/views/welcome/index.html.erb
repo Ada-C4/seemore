@@ -12,3 +12,20 @@
   <%= f.text_field :screen_name %>
   <%= f.submit %>
 <% end %>
+<br />
+<br />
+
+<div>
+<% @instagram.each do |instagram| %>
+
+  <%= image_tag instagram.images.standard_resolution.url %>
+
+<% end %>
+</div>
+<br />
+<div>
+  <p> Here is an example of using a user search result</p>
+</div>
+<% @instagram_search.each do |result| %>
+  <h1><%= result.full_name %></h1>
+<% end %>
