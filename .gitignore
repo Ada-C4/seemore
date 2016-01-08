@@ -16,3 +16,7 @@
 !/log/.keep
 /tmp
 /.env
+# Mac Stuff
+*.DS_Store
+*.keep
+coverage
