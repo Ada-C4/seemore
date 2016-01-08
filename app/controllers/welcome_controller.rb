@@ -1,8 +1,6 @@
 class WelcomeController < ApplicationController
 
   def index
-    @me = $client.user("kdefliese")
-    @you = $client.user("DreyDavis")
-    render :index
+    @twitter_user = TwitterUser.new()
   end
 end

@@ -1,17 +1,14 @@
 <h1>This is the index page</h1>
-<%= @me.screen_name %> has <%= @me.friends_count %> friends
-<br />
-About <%= @me.screen_name %>: <%= @me.description %>
-<br />
-<%= @you.screen_name %> has <%= @you.friends_count %> friends
-<br />
-About <%= @you.screen_name %>: <%= @you.description %>
 
-<br />
-<br />
 
 
 <% if !!current_user %>
   <%= image_tag current_user.image %>
   <h1><%= current_user.name %></h1>
+<% end %>
+
+<%= form_for @twitter_user do |f| %>
+  <%= f.label "Screen name:" %>
+  <%= f.text_field :screen_name %>
+  <%= f.submit %>
 <% end %>
