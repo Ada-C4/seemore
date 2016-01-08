@@ -5,7 +5,7 @@ class Mark < ActiveRecord::Base
   validates :username, :provider, :uid, presence: true
   validates :username, :uid, uniqueness: true
 
-  def self.lookup(search_term)
+  def self.vimeo_lookup(search_term)
     auth = "Bearer #{ENV['VIMEO_ACCESS_TOKEN']}"
     mark = HTTParty.get("https://api.vimeo.com/users/#{search_term}/", headers: { "Authorization" => auth })
 
@@ -27,7 +27,7 @@ class Mark < ActiveRecord::Base
 
         uid = mark_parsed["uri"].gsub(/[^\d]/, '')
 
-        result =  Mark.create(
+        result =  Mark.new(
           username: mark_parsed["name"],
           bio: mark_parsed["bio"],
           location: mark_parsed["location"],

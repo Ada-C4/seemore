@@ -21,7 +21,14 @@
         <h5><%= image_tag @mark.image_url %></h5> 
         <h5>Location: <%=if  @mark.location.nil? then "N/A" else @mark.location end %></h5> 
         <h5><%= link_to "Go to Profile", @mark.link %></h5>
-        <h5>Add <%= @mark.username %> to your Marks.</h5>
+        <h5><%= link_to "Add to your Marks.", vimeo_subscribe_path(
+            params: {
+              name: params[:username],
+              profile_picture: params["image_url"] 
+            } 
+          ),
+            method: :post, 
+            class: "btn btn-default" %></h5>
       <% end %>
     <% end %>
   <% else %> 
