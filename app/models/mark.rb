@@ -40,22 +40,4 @@ class Mark < ActiveRecord::Base
 
     return result
   end
-
-  def twitter
-    Seemore::Application.config.twitter
-  end
-
-  def self.twitter_lookup(search_term)
-    user = twitter.user(search_term)
-    result = Mark.new(
-    username: user.screen_name,
-    name: user.name,
-    bio: user.description,
-    link: user.url,
-    image_url: user.profile_image_url,
-    uid: user.id,
-    provider: "twitter"
-    )
-    return result
-  end
 end

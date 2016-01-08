@@ -1,37 +1,29 @@
 <div class="col-xs-4 col-xs-offset-4">
-  <% if params[:provider] == "twitter" %> 
-
+  <% if params[:provider] == "twitter" || params[:provider] == "vimeo" %>
     <form role="form">
       <div class="form-group">
-        <%= render partial: "shared/search", locals: { provider: :twitter }  %>
+        <%= render partial: "shared/search", locals: { provider: params[:provider] }  %>
       </div>
     </form>
-
-  <% elsif params[:provider] == "vimeo" %>
-    <form role="form">
-      <div class="form-group">
-        <%= render partial: "shared/search" %>
-      </div>
-    </form>
-    <% if !@search_term.nil? %> 
-     <% if @mark.class == String %> 
-        <%= @mark %> 
-      <% else %> 
-        <h5><%= @mark.username %></h5> 
-        <h5><%= image_tag @mark.image_url %></h5> 
-        <h5>Location: <%=if  @mark.location.nil? then "N/A" else @mark.location end %></h5> 
+    <% if !@search_term.nil? %>
+     <% if @mark.class == String %>
+        <%= @mark %>
+      <% else %>
+        <h5><%= @mark.username %></h5>
+        <h5><%= image_tag @mark.image_url %></h5>
+        <h5>Location: <%=if  @mark.location.nil? then "N/A" else @mark.location end %></h5>
         <h5><%= link_to "Go to Profile", @mark.link %></h5>
-        <h5><%= link_to "Add to your Marks.", vimeo_subscribe_path(
+        <h5><%= link_to "Add to your Marks", vimeo_subscribe_path(
             params: {
               name: params[:username],
-              profile_picture: params["image_url"] 
-            } 
+              profile_picture: params["image_url"]
+            }
           ),
-            method: :post, 
+            method: :post,
             class: "btn btn-default" %></h5>
       <% end %>
     <% end %>
-  <% else %> 
+  <% else %>
     You are lost.
   <% end %>
 </div>

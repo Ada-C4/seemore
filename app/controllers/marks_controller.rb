@@ -16,7 +16,16 @@ class MarksController < ApplicationController
       if search_params[:provider] == "vimeo"
         @mark = Mark.vimeo_lookup(@search_term)
       elsif search_params[:provider] == "twitter"
-        @mark = Mark.twitter_lookup(@search_term)
+        user = twitter.user(@search_term)
+        @mark = Mark.new(
+        username: user.screen_name,
+        name: user.name,
+        bio: user.description,
+        link: user.url,
+        image_url: user.profile_image_url,
+        uid: user.id,
+        provider: "twitter"
+        )
       end
     end
   end
