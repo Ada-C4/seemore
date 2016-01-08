@@ -6,7 +6,8 @@ class MarksController < ApplicationController
   end
 
   def index
-    @marks = Mark.all
+    @marks = current_spy.marks
+    # raise
   end
 
   def search
@@ -21,6 +22,9 @@ class MarksController < ApplicationController
     end
   end
 
+  def show 
+  end
+
   def twitter_lookup(search_term)
     user = twitter.user(search_term)
     mark = Mark.new(
@@ -30,6 +34,7 @@ class MarksController < ApplicationController
       link: user.url,
       image_url: user.profile_image_url,
       uid: user.id,
+      location: user.location,
       provider: "twitter"
     )
     return mark
@@ -38,6 +43,7 @@ class MarksController < ApplicationController
   def vimeo_subscribe
     @mark = Mark.vimeo_lookup(params[:name])
     @mark.save
+    current_spy.marks << @mark
     redirect_to marks_path
   end
 

@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   root "media#index"
 
+  get '/login' => 'sessions#new'
+  get '/logout' => 'sessions#destroy'
+
   get "marks/search/:provider", to: "marks#search", as: "search"
 
   get "marks/search/:provider/results", to: "marks#results", as: "results"
 
   get "marks", to: "marks#index"
+  get "mark/info", to: "marks#show"
 
   get "/auth/:provider/callback", to: "sessions#create"
 
