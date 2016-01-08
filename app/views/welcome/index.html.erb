@@ -16,16 +16,10 @@
 <br />
 
 <div>
-<% @instagram.each do |instagram| %>
+  <p> vimeo examples </p>
+<%= @user_info["display_name"] %>
+<%= image_tag @user_info["portrait_small"] %>
 
-  <%= image_tag instagram.images.standard_resolution.url %>
-
-<% end %>
-</div>
-<br />
-<div>
-  <p> Here is an example of using a user search result</p>
-</div>
-<% @instagram_search.each do |result| %>
-  <h1><%= result.full_name %></h1>
+<% @user_videos.each do |video| %>
+    <%= image_tag video["thumbnail_large"] %>
 <% end %>
