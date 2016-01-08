@@ -68,9 +68,10 @@ class MarksController < ApplicationController
     redirect_to marks_path
   end
 
-  def destroy(id)
-    @mark = current_spy.marks.find_by(id)
+  def destroy
+    @mark = current_spy.marks.find_by(params[:name])
+    @mark.save
     @mark.destroy
-    redirect_to marks_path, flash: { alert: MESSAGES[:success] }
+    redirect_to marks_path
   end
 end

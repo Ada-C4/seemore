@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get "marks/search/:provider/results", to: "marks#results", as: "results"
 
-  get "marks", to: "marks#index"
+  resources :marks, only: [:index, :destroy]
   get "mark/info", to: "marks#show"
 
   get "/auth/:provider/callback", to: "sessions#create"
