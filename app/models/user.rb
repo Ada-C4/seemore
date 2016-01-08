@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
       user.username = auth_hash["info"]["name"]
       user.email = auth_hash["info"]["email"]
       user.avatar_url = auth_hash["info"]["profile_image_url"]
+      user.subscriptions << Subscription.find(1)
+      user.subscriptions << Subscription.find(2)
       if user.save
         return user
       else
