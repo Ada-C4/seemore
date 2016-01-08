@@ -57,10 +57,20 @@ RSpec.describe SessionsController, type: :controller do
         }
 
         it "redirect to home with flash error" do
-          get :create, provider: :github
+          get :create, provider: :twitter
           expect(response).to redirect_to root_path
           expect(flash[:notice]).to include "Failed to save the user"
         end
+      end
+    end
+  end
+
+  describe "DELETE #destroy" do
+    context "when using twitter authentication" do
+      before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter] }
+      it "allows users to log out and destroys session" do
+        get :destroy, provider: :twitter
+        expect(session[:user_id]).to eq nil
       end
     end
   end
