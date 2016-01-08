@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_spy
-  helper_method :twitter
 
   def current_spy
     @current_spy ||= Spy.find(session[:spy_id]) if session[:spy_id]
