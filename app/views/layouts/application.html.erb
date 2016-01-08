@@ -22,9 +22,9 @@
   <% else %>
 
     <%= form_tag(search_results_path, :method => "get") do %>
-      <%= select_tag("/", options_for_select([["Twitter", 1], ["Instagram", 2]])) %>
+      <%= select_tag("provider", options_for_select([["Twitter", 1], ["Instagram", 2]])) %>
         <div class="search-box">
-          <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+          <%= text_field_tag :search_term, params[:search_term], placeholder: "Search" %>
             <button class="btn btn-default search-button" type="submit"></button>
         </div>
     <% end %>
