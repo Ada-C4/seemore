@@ -3,5 +3,9 @@
 <% if current_spy %>
   Hi <%= current_spy.username %>.
   <%= link_to "Search on Twitter", search_path("twitter") %> 
-  <%= link_to "Search on Vimeo", search_path("vimeo") %> 
+  <%= link_to "Search on Vimeo", search_path("vimeo") %>
+  <%= link_to "Log Out", logout_path %>
+<% else %> 
+  <%= link_to "Login through Vimeo", login_path("vimeo") %>  
+  <%= link_to "Login through Twitter", login_path("twitter") %>  
 <% end %>
