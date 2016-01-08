@@ -34,4 +34,22 @@ describe "GET 'twitter_search_user'" do
   end
 
 end
+
+describe "POST 'twitter_subscribe'" do
+  let(:params) do
+    {
+      id: "justinbieber"
+    }
+  end
+
+    it "subscribes to a new subscription" do
+      expect { post :twitter_subscribe, params }.to change(Subscription, :count).by(1)
+      expect(subject).to redirect_to root_path
+    end
+
+    it "creates new stories" do
+      expect { post :twitter_subscribe, params }.to change(Story, :count).by(20)
+      expect(subject).to redirect_to root_path
+    end
+end
 end
