@@ -1,0 +1,24 @@
+<div class="row">
+  <%= link_to "All your Creators", creators_path %>
+  <h1>
+    Search Results
+  </h1>
+</div>
+<% if !@results.nil? %>
+  <% @results.in_groups_of(3, false) do |group| %>
+    <div class="row">
+      <% group.each do |result| %>
+        <div class="col-sm-4 col-md-4 creator-col">
+          <% if !result["pictures"].nil? %>
+            <% picture = result["pictures"]["sizes"][2]["link"] %>
+            <%= image_tag(picture, class: "creator-image") %>
+          <% end %>
+          <h4 class="creator-name">
+            <%= result["name"] %>
+          </h4>
+          <%= button_to "Follow", {:controller => "creators", :name => result["name"], :profile_pic=> result["pictures"], :bio=> result["bio"], :provider=> @provider} ,class: "btn btn-default follow-btn" %>
+        </div>
+    <% end %>
+    </div>
+  <% end %>
+<% end %>
