@@ -18,6 +18,7 @@
     <hr>
   </div>
 
+
   <% if @current_user %>
     <div class="row">
       <%= form_tag "/twitter_results", :method => 'get' do %>
@@ -35,39 +36,10 @@
       <% end %>
       <hr>
     </div>
+
+    <p>
+      You are signed in and will see your own subscriptions once we write that code.
+    </p>
+  <% else %>
+    <%= render 'common/default_content' %>
   <% end %>
-
-  <ul class="timeline">
-    <% @sample_stories.each do |story| %>
-    <li>
-      <div class="timeline-badge"><i class="fa fa-twitter"></i></div>
-      <div class="timeline-panel">
-        <div class="timeline-heading">
-          <h4 class="timeline-title"><%= story.user.username %></h4>
-          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.created_at %> via Twitter</small></p>
-        </div>
-        <div class="timeline-body">
-          <p><%= story.text %></p>
-        </div>
-      </div>
-    </li>
-    <% end %>
-  </ul>
-
-  <ul class="timeline">
-    <% @vimeo_stories.each do |story| %>
-    <li>
-      <div class="timeline-badge"><i class="fa fa-vimeo"></i></div>
-      <div class="timeline-panel">
-        <div class="timeline-heading">
-          <h4 class="timeline-title"><%= story["user_name"] %></h4>
-          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story["upload_date"] %> via Vimeo</small></p>
-        </div>
-        <div class="timeline-body">
-          <iframe src="//player.vimeo.com/video/<%= story["id"] %>" width="WIDTH" height="HEIGHT" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-        </div>
-      </div>
-    </li>
-    <% end %>
-  </ul>
