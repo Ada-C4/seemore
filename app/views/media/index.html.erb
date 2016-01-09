@@ -1,7 +1,7 @@
 <% if !current_spy.nil? %>
   <div class="container">
     <div class="page-header">
-      <h1 id="timeline">Trail Your Marks</h1>
+      <h1 id="timeline">Track Your Marks</h1>
     </div>
     <ul class="timeline">
       <li>
@@ -31,11 +31,8 @@
     </ul>
   </div>
 <% else %>
-  <%= link_to login_path("vimeo") do %>
-    <%= image_tag("vimeo.png", class: "company_logo") %>
-  <% end %>  
-  <br>
-  <%= link_to login_path("twitter") do %>
-    <%= image_tag("twitter.png", class: "company_logo") %>
-  <% end %>  
+
+  <h1><div class="logo">AP<%= fa_icon "eye" %> SPY</div></h1>
+  <h1><a class="company" href="/auth/twitter"><%= fa_icon "twitter" %></a>
+  <a class="company" href="/auth/vimeo"><%= fa_icon "vimeo" %></a></h1>
 <% end %> 
