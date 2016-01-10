@@ -7,7 +7,6 @@ class MarksController < ApplicationController
 
   def index
     @marks = current_spy.marks
-    # raise
   end
 
   def search
@@ -22,7 +21,7 @@ class MarksController < ApplicationController
     end
   end
 
-  def show 
+  def show
   end
 
   def twitter_lookup(search_term)

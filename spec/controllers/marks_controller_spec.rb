@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe MarksController, type: :controller do
+    let(:new_spy) { build(:spy) }
+
   describe "GET #search" do
     context "twitter" do
       it "renders the search template" do
@@ -19,6 +21,8 @@ RSpec.describe MarksController, type: :controller do
 
   describe "GET #index" do
     it "renders the index page" do
+      new_spy.save
+      session[:spy_id] = new_spy.id
       get :index
       expect(response).to render_template :index
     end
@@ -26,11 +30,15 @@ RSpec.describe MarksController, type: :controller do
 
   describe "POST #vimeo_subscribe" do
     it "redirects to the marks index page" do
+      new_spy.save
+      session[:spy_id] = new_spy.id
       post :vimeo_subscribe, name: "hi"
       expect(response).to redirect_to marks_path
     end
 
     it "creates a new mark" do
+      new_spy.save
+      session[:spy_id] = new_spy.id
       expect{ post :vimeo_subscribe, name: "hi" }.to change(Mark, :count).by(1)
     end
   end
@@ -40,7 +48,7 @@ RSpec.describe MarksController, type: :controller do
       post :twitter_subscribe, name: "hi"
       expect(response).to redirect_to marks_path
     end
-    
+
     it "creates a new mark" do
       expect{ post :twitter_subscribe, name: "hi" }.to change(Mark, :count).by(1)
     end
