@@ -19,8 +19,13 @@ module VimeoHelper
     HTTParty.get( "https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/#{video_id}&maxwidth=#{VIMEO_MAX_WIDTH}&maxheight=#{VIMEO_MAX_HEIGHT}", headers: {"Authorization" => vimeo_auth, 'Accept' => 'application/json' }, format: :json).parsed_response
   end
 
+  def get_vimeo_user(user_uri)
+    HTTParty.get(vim_base_uri + user_uri,
+    headers: {"Authorization" => vimeo_auth, 'Accept' => 'application/json' }, format: :json).parsed_response
+  end
+
   def search_vimeo(search_term)
-    HTTParty.get(vim_base_uri + "/users?page=1&per_page=25&query=#{search_term}&fields=uri,name,bio,pictures",
+    HTTParty.get(vim_base_uri + "/users?page=1&per_page=25&query=#{search_term}&fields=uri,name,bio,pictures,location",
     headers: {"Authorization" => vimeo_auth, 'Accept' => 'application/json' }, format: :json).parsed_response
   end
 end

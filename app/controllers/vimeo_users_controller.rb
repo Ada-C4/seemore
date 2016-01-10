@@ -1,54 +1,54 @@
 class VimeoUsersController < ApplicationController
   before_action :current_user
+  include VimeoHelper
 
   def subscribe
-    @screen_name = params[:screen_name]
-    if !twitter_user_exists?
-      # if twitter_user doesn't exist, create twitter_user and their tweets
-      create_twitter_user(@screen_name)
-      create_tweets(@twitter_user)
+    @vim_uri = params[:uri]
+    if !vimeo_user_exists?
+      # if vimeo_user doesn't exist, create vimeo_user and their videos
+      create_vimeo_user(@vim_uri)
+      create_videos(@vimeo_user)
     end
-    @twitter_user = TwitterUser.find_by(screen_name: @screen_name)
-    #subscribe to twitter_user
-    @current_user.twitter_users << @twitter_user
+    @vimeo_user = VimeoUser.find_by(uri: @vim_uri)
+    #subscribe to vimeo_user
+    @current_user.vimeo_users << @vimeo_user
     redirect_to :root
   end
 
   private
 
-  def twitter_user_exists?
-    if TwitterUser.find_by(screen_name: @screen_name)
+  def vimeo_user_exists?
+    if VimeoUser.find_by(uri: @vim_uri)
       return true
     else
       return false
     end
   end
 
-  def create_twitter_user(screen_name)
-    new_twitter_user = $client.user(screen_name)
-    # create hash using info from Twitter API
-    twitter_user_hash = {
-      twitter_id: new_twitter_user.id,
-      screen_name: new_twitter_user.screen_name,
-      name: new_twitter_user.name,
-      description: new_twitter_user.description,
-      location: new_twitter_user.location,
-      uri: new_twitter_user.uri,
-      profile_image_uri: new_twitter_user.profile_image_uri
+  def create_vimeo_user(uri)
+    new_vimeo_user = get_vimeo_user(uri)
+    # create hash using info from Vimeo API
+    vimeo_user_hash = {
+      uri: new_vimeo_user["uri"],
+      name: new_vimeo_user["name"],
+      description: new_vimeo_user["bio"],
+      location: new_vimeo_user.location,
+      uri: new_vimeo_user.uri,
+      profile_image_uri: new_vimeo_user.profile_image_uri
     }
-    @twitter_user = TwitterUser.create(twitter_user_hash)
+    @vimeo_user = VimeoUser.create(vimeo_user_hash)
   end
 
-  def create_tweets(twitter_user)
-    # grab tweets from Twitter API - most recent 20 tweets by default
-    tweets_array = $client.user_timeline(twitter_user.twitter_id.to_i)
+  def create_tweets(vimeo_user)
+    # grab tweets from Vimeo API - most recent 20 tweets by default
+    tweets_array = $client.user_timeline(vimeo_user.vimeo_id.to_i)
     # turn each tweet into a Tweet object
     tweets_array.each do |tweet|
       tweet_hash = {
-        twitter_id: tweet.id.to_s,
+        vimeo_id: tweet.id.to_s,
         text: tweet.text,
         uri: tweet.uri,
-        twitter_user_id: twitter_user.id
+        vimeo_user_id: vimeo_user.id
       }
       Tweet.create(tweet_hash)
     end
