@@ -8,12 +8,5 @@ module SearchHelper
     params[:provider] == "2"
   end
 
-  def vim_base_uri
-    "https://api.vimeo.com"
-  end
-
-  def vimeo_access_token
-    ENV["VIMEO_ACCESS_TOKEN"]
-  end
 
 end
