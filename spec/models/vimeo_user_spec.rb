@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe VimeoUser, type: :model do
   let(:vimeo_user) { VimeoUser.new(
-    name:      "jlo",
-    description: "Look at meee",
+    name: "Kutay Cengil",
+    description: "Hi there",
     location: "Los Angeles, CA",
-    uri: "https://twitter.com/kdefliese",
+    uri: "/users/2543732",
     profile_image_uri: "http://pbs.twimg.com/profile_images/672319002706706432/_MQlTm-A_normal.jpg")
   }
 
