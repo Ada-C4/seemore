@@ -1,5 +1,11 @@
 <h1>These are your search results</h1>
 
-<% @results.each do |result| %>
-  <%= result.screen_name %>
-<% end %>
+<ul>
+  <% @results.each do |result| %>
+    <li>
+      <%= result.screen_name %>
+      <%= button_to "Subscribe", users_subscribe_path,  method: :patch, class: 'btn btn-primary' %>
+    <br />
+    </li>
+  <% end %>
+</ul>
