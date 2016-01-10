@@ -42,7 +42,7 @@ RSpec.describe TwitterUsersController, type: :controller do
     before(:each) do
       session[:user_id] = user.id
     end
-    
+
     it "successfully creates a new TwitterUser if the TwitterUser does not exist" do
       patch :subscribe, good_params
       expect(TwitterUser.all.length).to eq 1

@@ -1,5 +1,6 @@
 require 'pry'
 class TwitterUsersController < ApplicationController
+  before_action :current_user
 
   def subscribe
     @screen_name = params[:screen_name]
