@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160107222520) do
+ActiveRecord::Schema.define(version: 20160110001832) do
 
   create_table "tweets", force: :cascade do |t|
     t.string   "twitter_id"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20160107222520) do
     t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "vimeo_users", force: :cascade do |t|
+    t.string   "naame"
+    t.string   "description"
+    t.string   "location"
+    t.string   "uri"
+    t.string   "profile_image_uri"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
 end
