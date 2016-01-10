@@ -1,2 +1,3 @@
 class VimeoUsersController < ApplicationController
+  
 end

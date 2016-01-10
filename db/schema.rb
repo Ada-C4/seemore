@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110223313) do
+ActiveRecord::Schema.define(version: 20160110223715) do
 
   create_table "tweets", force: :cascade do |t|
     t.string   "twitter_id"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160110223313) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "vimeo_user_id"
-    t.integer  "vimeo_video_id"
+    t.string   "vimeo_video_id"
   end
 
   add_index "videos", ["vimeo_user_id"], name: "index_videos_on_vimeo_user_id"
