@@ -50,6 +50,7 @@ class MarksController < ApplicationController
   def twitter_subscribe
     @mark = twitter_lookup(params[:name])
     @mark.save
+    current_spy.marks << @mark
     redirect_to marks_path
   end
 end
