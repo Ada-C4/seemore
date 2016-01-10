@@ -1,3 +1,9 @@
+<div class="col-md-12 text-center">
+<% if !flash[:error].nil? %>
+  <%= flash[:error] %>
+<% end %>
+</div>
+
 <% if !current_spy.nil? %>
   <div class="container">
     <div class="page-header">
@@ -48,4 +54,4 @@
   <h1><div class="logo">AP<%= fa_icon "eye" %> SPY</div></h1>
   <h1><a class="company" href="/auth/twitter"><%= fa_icon "twitter" %></a>
   <a class="company" href="/auth/vimeo"><%= fa_icon "vimeo" %></a></h1>
-<% end %> 
+<% end %>
