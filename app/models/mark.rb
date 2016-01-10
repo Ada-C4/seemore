@@ -1,3 +1,5 @@
+require 'pry'
+
 class Mark < ActiveRecord::Base
   has_and_belongs_to_many :spies
   has_many :media
@@ -54,7 +56,6 @@ class Mark < ActiveRecord::Base
           provider: "vimeo"
           )
       end
-
     return result
   end
 end

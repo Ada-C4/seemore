@@ -8,6 +8,7 @@ RSpec.describe MarksController, type: :controller do
         expect(response).to render_template :search
       end
     end
+
     context "vimeo" do
       it "renders the search page" do
         get :search, provider: "vimeo", username: "loganmeetsworld"
@@ -28,6 +29,7 @@ RSpec.describe MarksController, type: :controller do
       post :vimeo_subscribe, name: "hi"
       expect(response).to redirect_to marks_path
     end
+
     it "creates a new mark" do
       expect{ post :vimeo_subscribe, name: "hi" }.to change(Mark, :count).by(1)
     end
@@ -38,6 +40,7 @@ RSpec.describe MarksController, type: :controller do
       post :twitter_subscribe, name: "hi"
       expect(response).to redirect_to marks_path
     end
+    
     it "creates a new mark" do
       expect{ post :twitter_subscribe, name: "hi" }.to change(Mark, :count).by(1)
     end
