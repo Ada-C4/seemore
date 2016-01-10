@@ -11,18 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108003344) do
-
-  create_table "instagram_users", force: :cascade do |t|
-    t.string   "instagram_id"
-    t.string   "screen_name"
-    t.string   "name"
-    t.string   "description"
-    t.string   "uri"
-    t.string   "profile_image_uri"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
+ActiveRecord::Schema.define(version: 20160107222520) do
 
   create_table "tweets", force: :cascade do |t|
     t.string   "twitter_id"
