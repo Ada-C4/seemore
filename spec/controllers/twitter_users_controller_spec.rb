@@ -50,24 +50,17 @@ RSpec.describe TwitterUsersController, type: :controller do
       expect(subject).to redirect_to :root
     end
 
-    # it "does not create a new TwitterUser if the TwitterUser already exists" do
-    #   existing_TwitterUser = TwitterUser.create()
-    #   patch :subscribe, good_params
-    #   expect(TwitterUser.all.length).to eq 1
-    #   expect(response.status).to eq 200
-    #   expect(subject).to redirect_to :root
-    # end
-
-    # it "will not create a new TwitterUser with bad params" do
-    #   post :create, bad_params
-    #   expect(TwitterUser.all.length).to eq 0
-    #   expect(response.status).to eq 200
-    #   expect(subject).to render_template :search_results
-    # end
+    it "does not create a new TwitterUser if the TwitterUser already exists" do
+      existing_TwitterUser = TwitterUser.create(twitter_id: "3320848554", screen_name: "kdefliese", name: "Katherine Defliese", uri: "https://twitter.com/kdefliese")
+      patch :subscribe, good_params
+      expect(TwitterUser.all.length).to eq 1
+      expect(response.status).to eq 302
+      expect(subject).to redirect_to :root
+    end
 
     it "associates a TwitterUser with a User" do
       patch :subscribe, good_params
-      expect(@current_user.twitter_users).to include(@twitter_user)
+      expect(User.first.twitter_users).to include(TwitterUser.first)
       expect(subject).to redirect_to :root
     end
 
