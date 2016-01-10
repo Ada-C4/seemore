@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
   include SearchHelper
-  
+  include VimeoHelper
+
   def index
     #add logic for if there are no results returned
     search_term = params[:search_term]

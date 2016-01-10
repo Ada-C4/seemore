@@ -10,13 +10,4 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def vim_base_uri
-    "https://api.vimeo.com"
-  end
-
-  def vimeo_access_token
-    ENV["VIMEO_ACCESS_TOKEN"]
-  end
-
-
 end

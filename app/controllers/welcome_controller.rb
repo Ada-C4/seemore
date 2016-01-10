@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   before_action :current_user
-  include ApplicationHelper
+  include VimeoHelper
 
   def index
     @twitter_user = TwitterUser.new()
