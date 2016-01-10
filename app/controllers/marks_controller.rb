@@ -1,5 +1,6 @@
 class MarksController < ApplicationController
   before_action :search, only: [:vimeo_subscribe]
+  before_action :require_spy, only: [:index, :search, :show]
 
   def twitter
     Seemore::Application.config.twitter
