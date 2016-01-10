@@ -13,9 +13,7 @@ RSpec.describe TwitterUsersController, type: :controller do
   end
 
   let(:good_params) do  {
-    twitter_user: {
     screen_name: "kdefliese"
-    }
   }
   end
 
@@ -31,20 +29,34 @@ RSpec.describe TwitterUsersController, type: :controller do
   end
 
   let(:bad_params) do  {
-    twitter_user: {
     screen_name: "kdefliese"
-    }
   }
   end
 
-  describe "POST 'create'" do
+  let(:user) do
+    User.create(uid:"1234",provider:"developer",name:"Test")
+  end
 
-    it "successfully creates a new TwitterUser" do
-      post :create, good_params
+
+  describe "PATCH 'subscribe'" do
+    before(:each) do
+      session[:user_id] = user.id
+    end
+    
+    it "successfully creates a new TwitterUser if the TwitterUser does not exist" do
+      patch :subscribe, good_params
       expect(TwitterUser.all.length).to eq 1
       expect(response.status).to eq 302
       expect(subject).to redirect_to :root
     end
+
+    # it "does not create a new TwitterUser if the TwitterUser already exists" do
+    #   existing_TwitterUser = TwitterUser.create()
+    #   patch :subscribe, good_params
+    #   expect(TwitterUser.all.length).to eq 1
+    #   expect(response.status).to eq 200
+    #   expect(subject).to redirect_to :root
+    # end
 
     # it "will not create a new TwitterUser with bad params" do
     #   post :create, bad_params
@@ -52,6 +64,12 @@ RSpec.describe TwitterUsersController, type: :controller do
     #   expect(response.status).to eq 200
     #   expect(subject).to render_template :search_results
     # end
+
+    it "associates a TwitterUser with a User" do
+      patch :subscribe, good_params
+      expect(@current_user.twitter_users).to include(@twitter_user)
+      expect(subject).to redirect_to :root
+    end
 
   end
 

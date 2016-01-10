@@ -1,7 +1,33 @@
+require 'pry'
 class TwitterUsersController < ApplicationController
-  def create
-  screen_name = strong_params[:screen_name]
-    # find user using Twitter API
+
+  def subscribe
+    @screen_name = params[:screen_name]
+    if !twitter_user_exists?
+      create_twitter_user(@screen_name)
+      # create new tweets
+    end
+    @twitter_user = TwitterUser.find_by(screen_name: @screen_name)
+    #subscribe to twitter_user
+    @current_user.twitter_users << @twitter_user
+    redirect_to :root
+  end
+
+  private
+
+  def strong_params
+    params.require(:twitter_user).permit(:screen_name)
+  end
+
+  def twitter_user_exists?
+    if TwitterUser.find_by(screen_name: @screen_name)
+      return true
+    else
+      return false
+    end
+  end
+
+  def create_twitter_user(screen_name)
     new_twitter_user = $client.user(screen_name)
     # create hash using info from Twitter API
     twitter_user_hash = {
@@ -14,32 +40,9 @@ class TwitterUsersController < ApplicationController
       profile_image_uri: new_twitter_user.profile_image_uri
     }
     @twitter_user = TwitterUser.create(twitter_user_hash)
-    redirect_to :root
   end
 
-  def subscribe
-    screen_name = params[:screen_name]
-    if !twitter_user_exists?
-      # create new twitter_user
-      # create new tweets
-    end
-    #subscribe to twitter_user
-    redirect_to :root
-  end
-
-  private
-
-  def strong_params
-    params.require(:twitter_user).permit(:screen_name)
-  end
-
-  def twitter_user_exists?
-    check_for_screen_name = params[:screen_name]
-    if TwitterUser.find_by(screen_name: check_for_screen_name)
-      return true
-    else
-      return false
-    end
+  def create_tweets
   end
 
 end
