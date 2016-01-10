@@ -12,7 +12,7 @@ RSpec.describe TwitterUsersController, type: :controller do
       }
   end
 
-  let(:good_params) do  {
+  let(:params) do  {
     screen_name: "kdefliese"
   }
   end
@@ -28,11 +28,6 @@ RSpec.describe TwitterUsersController, type: :controller do
     }
   end
 
-  let(:bad_params) do  {
-    screen_name: "kdefliese"
-  }
-  end
-
   let(:user) do
     User.create(uid:"1234",provider:"developer",name:"Test")
   end
@@ -44,7 +39,7 @@ RSpec.describe TwitterUsersController, type: :controller do
     end
 
     it "successfully creates a new TwitterUser if the TwitterUser does not exist" do
-      patch :subscribe, good_params
+      patch :subscribe, params
       expect(TwitterUser.all.length).to eq 1
       expect(response.status).to eq 302
       expect(subject).to redirect_to :root
@@ -52,14 +47,29 @@ RSpec.describe TwitterUsersController, type: :controller do
 
     it "does not create a new TwitterUser if the TwitterUser already exists" do
       existing_TwitterUser = TwitterUser.create(twitter_id: "3320848554", screen_name: "kdefliese", name: "Katherine Defliese", uri: "https://twitter.com/kdefliese")
-      patch :subscribe, good_params
+      patch :subscribe, params
       expect(TwitterUser.all.length).to eq 1
       expect(response.status).to eq 302
       expect(subject).to redirect_to :root
     end
 
+    it "creates Tweets for new TwitterUsers" do
+      patch :subscribe, params
+      expect(TwitterUser.first.tweets).not_to be_empty
+      expect(response_status).to eq 302
+      expect(subject).to redirect_to :root
+    end
+
+    it "does not create Tweets if the TwitterUser already exists" do
+      existing_TwitterUser = TwitterUser.create(twitter_id: "3320848554", screen_name: "kdefliese", name: "Katherine Defliese", uri: "https://twitter.com/kdefliese")
+      patch :subscribe, params
+      expect(TwitterUser.first.tweets).to be_empty
+      expect(response.status).to eq 302
+      expect(subject).to redirect_to :root
+    end
+
     it "associates a TwitterUser with a User" do
-      patch :subscribe, good_params
+      patch :subscribe, params
       expect(User.first.twitter_users).to include(TwitterUser.first)
       expect(subject).to redirect_to :root
     end

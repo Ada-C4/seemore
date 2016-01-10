@@ -3,4 +3,7 @@ class Tweet < ActiveRecord::Base
   validates :twitter_id, presence: true
   validates :text, presence: true
   validates :uri, presence:true
+
+  def create_tweets
+  end
 end
