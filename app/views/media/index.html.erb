@@ -3,19 +3,32 @@
     <div class="page-header">
       <h1 id="timeline">Track Your Marks</h1>
     </div>
+
     <ul class="timeline">
-      <li>
-        <div class="timeline-badge twitter"><i class="fa fa-twitter"></i></div>
-        <div class="timeline-panel">
-          <div class="timeline-heading">
-            <h4 class="timeline-title">Title</h4>
-            <p><small class="text-muted"><i class="fa fa-clock-o"></i> Time</small></p>
+      <% @marks.each do |m| %>
+      <% array = Mark.video_lookup(m.username) %> 
+      <% marks_count = array.length %>
+        <% array.each do |a| %>
+          <% if marks_count % 2 == 0 %>
+            <li>
+          <% else %>
+            <li class="timeline-inverted">
+          <% end %>
+            <div class="timeline-badge <%= m.provider %>"><i class="fa fa-<%= m.provider %>"></i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="timeline-title"><%= a.title %> by <%= m.name %></h4>
+                  <p><small class="text-muted"><i class="fa fa-clock-o"></i> <%= distance_of_time_in_words(DateTime.strptime(a.date_posted), Time.now) %> ago</small></p>
+                  <iframe src="https://player.vimeo.com/video/<%= a.link.gsub(/[^\d]/, '') %>?badge=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+              <div class="timeline-body">
+            </div>
           </div>
-          <div class="timeline-body">
-            <p>CONTENT</p>
-          </div>
-        </div>
-      </li>
+          <% marks_count -= 1 %>
+          </li>
+        <% end %>
+      <% end %>
+
       <li class="timeline-inverted">
         <div class="timeline-badge vimeo"><i class="fa fa-vimeo"></i></div>
         <div class="timeline-panel">

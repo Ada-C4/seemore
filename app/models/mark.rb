@@ -16,7 +16,15 @@ class Mark < ActiveRecord::Base
     array = []
 
     data.each do |d|
-      array << Medium.create(mark_id: 1, media_url: d["link"], date_posted: d["created_time"], link: d["link"], text: d["description"], medium_type: "vimeo")
+      array << Medium.create(
+        mark_id: 1, 
+        media_url: d["link"], 
+        date_posted: d["created_time"], 
+        link: d["link"], 
+        text: d["description"], 
+        title: d["name"],
+        medium_type: "vimeo"
+        )
     end
 
     return array
@@ -45,7 +53,8 @@ class Mark < ActiveRecord::Base
         uid = mark_parsed["uri"].gsub(/[^\d]/, '')
 
         result =  Mark.new(
-          username: mark_parsed["name"],
+          username: search_term,
+          name: mark_parsed["name"],
           bio: mark_parsed["bio"],
           location: mark_parsed["location"],
           link: mark_parsed["link"],
