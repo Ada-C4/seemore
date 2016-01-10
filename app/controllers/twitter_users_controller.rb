@@ -17,10 +17,6 @@ class TwitterUsersController < ApplicationController
 
   private
 
-  def strong_params
-    params.require(:twitter_user).permit(:screen_name)
-  end
-
   def twitter_user_exists?
     if TwitterUser.find_by(screen_name: @screen_name)
       return true
