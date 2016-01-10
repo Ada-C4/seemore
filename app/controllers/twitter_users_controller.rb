@@ -5,8 +5,9 @@ class TwitterUsersController < ApplicationController
   def subscribe
     @screen_name = params[:screen_name]
     if !twitter_user_exists?
+      # if twitter_user doesn't exist, create twitter_user and their tweets
       create_twitter_user(@screen_name)
-      # create new tweets
+      create_tweets(@twitter_user)
     end
     @twitter_user = TwitterUser.find_by(screen_name: @screen_name)
     #subscribe to twitter_user
@@ -43,7 +44,19 @@ class TwitterUsersController < ApplicationController
     @twitter_user = TwitterUser.create(twitter_user_hash)
   end
 
-  def create_tweets
+  def create_tweets(twitter_user)
+    # grab tweets from Twitter API
+    tweets_array = $client.user_timeline(twitter_user.twitter_id.to_i)
+    # turn each tweet into a Tweet object
+    tweets_array.each do |tweet|
+      tweet_hash = {
+        twitter_id: tweet.id.to_s,
+        text: tweet.text,
+        uri: tweet.uri,
+        twitter_user_id: twitter_user.id
+      }
+      Tweet.create(tweet_hash)
+    end
   end
 
 end

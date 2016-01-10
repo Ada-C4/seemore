@@ -56,7 +56,7 @@ RSpec.describe TwitterUsersController, type: :controller do
     it "creates Tweets for new TwitterUsers" do
       patch :subscribe, params
       expect(TwitterUser.first.tweets).not_to be_empty
-      expect(response_status).to eq 302
+      expect(response.status).to eq 302
       expect(subject).to redirect_to :root
     end
 
