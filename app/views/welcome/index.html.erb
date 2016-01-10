@@ -6,11 +6,3 @@
   <%= image_tag current_user.image %>
   <h1><%= current_user.name %></h1>
 <% end %>
-
-<%= form_for @twitter_user do |f| %>
-  <%= f.label "Screen name:" %>
-  <%= f.text_field :screen_name %>
-  <%= f.submit %>
-<% end %>
-<br />
-<br />
