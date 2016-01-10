@@ -19,15 +19,14 @@
   <div class="">
     <%= link_to "LOGOUT", logout_path, method: :delete %>
   </div>
+  <%= form_tag(search_results_path, :method => "get") do %>
+    <%= select_tag("provider", options_for_select([["Twitter", 1], ["Instagram", 2]])) %>
+      <div class="search-box">
+        <%= text_field_tag :search_term, params[:search_term], placeholder: "Search" %>
+          <button class="btn btn-default search-button" type="submit"></button>
+      </div>
+  <% end %>
   <% else %>
-
-    <%= form_tag(search_results_path, :method => "get") do %>
-      <%= select_tag("provider", options_for_select([["Twitter", 1], ["Instagram", 2]])) %>
-        <div class="search-box">
-          <%= text_field_tag :search_term, params[:search_term], placeholder: "Search" %>
-            <button class="btn btn-default search-button" type="submit"></button>
-        </div>
-    <% end %>
       <%= link_to "LOGIN", "/auth/developer" %>
   <% end %>
 

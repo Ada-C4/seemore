@@ -45,7 +45,7 @@ class TwitterUsersController < ApplicationController
   end
 
   def create_tweets(twitter_user)
-    # grab tweets from Twitter API
+    # grab tweets from Twitter API - most recent 20 tweets by default
     tweets_array = $client.user_timeline(twitter_user.twitter_id.to_i)
     # turn each tweet into a Tweet object
     tweets_array.each do |tweet|
