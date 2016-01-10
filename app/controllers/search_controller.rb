@@ -18,7 +18,4 @@ class SearchController < ApplicationController
     headers: {"Authorization" => "bearer #{vimeo_access_token}", 'Accept' => 'application/json' }, format: :json).parsed_response
   end
 
-  def vimeo_access_token
-    ENV["VIMEO_ACCESS_TOKEN"]
-  end
 end

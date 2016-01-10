@@ -7,6 +7,7 @@ RSpec.describe VimeoUser, type: :model do
     location: "Los Angeles, CA",
     uri: "/users/2543732",
     profile_image_uri: "http://pbs.twimg.com/profile_images/672319002706706432/_MQlTm-A_normal.jpg")
+    videos_uri: ""
   }
 
   describe "model validations" do

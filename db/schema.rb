@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110181348) do
+ActiveRecord::Schema.define(version: 20160110195836) do
 
   create_table "tweets", force: :cascade do |t|
     t.string   "twitter_id"
@@ -57,11 +57,11 @@ ActiveRecord::Schema.define(version: 20160110181348) do
     t.string   "description"
     t.string   "location"
     t.string   "uri"
-    t.string   "profile_image_uri"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "videos_uri"
     t.string   "name"
+    t.string   "profile_images_uri"
   end
 
 end

@@ -12,4 +12,8 @@ module SearchHelper
     "https://api.vimeo.com"
   end
 
+  def vimeo_access_token
+    ENV["VIMEO_ACCESS_TOKEN"]
+  end
+
 end
