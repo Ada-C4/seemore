@@ -5,7 +5,7 @@
     <li>
       <% if twitter_result? %>
         <%= result.screen_name %>
-        <%= button_to "Subscribe", subscribe_path,  method: :patch, class: 'btn btn-primary' %>
+        <%= button_to "Subscribe", subscribe_path, method: :patch, class: 'btn btn-primary', params: { screen_name: result.screen_name } %>
       <% elsif vimeo_result? %>
         <%= result["name"] %>
       <% end %>
