@@ -6,7 +6,7 @@ class VimeoUsersController < ApplicationController
     # create hash using info from Vimeo API
     vimeo_user_hash = {
       vimeo_id: new_vimeo_user.id,
-      screen_name: new_vimeo_user.screen_name,
+      screen_name: new_vimeo_user.ßscreen_name,
       name: new_vimeo_user.name,
       description: new_vimeo_user.description,
       location: new_vimeo_user.location,
