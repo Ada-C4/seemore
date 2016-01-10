@@ -1,5 +1,4 @@
 module SearchHelper
-  VIMEO_BASE_URI = "https://api.vimeo.com"
 
   def twitter_result?
     params[:provider] == "1"
@@ -7,6 +6,10 @@ module SearchHelper
 
   def vimeo_result?
     params[:provider] == "2"
+  end
+
+  def vim_base_uri
+    "https://api.vimeo.com"
   end
 
 end

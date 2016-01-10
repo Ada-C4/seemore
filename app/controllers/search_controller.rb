@@ -14,7 +14,7 @@ class SearchController < ApplicationController
   private
 
   def search_vimeo(search_term)
-    HTTParty.get("https://api.vimeo.com/users?page=1&per_page=25&query=#{search_term}&fields=uri,name,bio,pictures",
+    HTTParty.get(vim_base_uri + "/users?page=1&per_page=25&query=#{search_term}&fields=uri,name,bio,pictures",
     headers: {"Authorization" => "bearer #{vimeo_access_token}", 'Accept' => 'application/json' }, format: :json).parsed_response
   end
 
