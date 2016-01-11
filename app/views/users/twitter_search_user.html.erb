@@ -3,7 +3,11 @@
 <br>
 <br>
 
-<%= button_to "Subscribe", twitter_subscribe_path(@user_name), class:"btn btn-default" %>
+<% if @button == true %>
+  <%= button_to "Subscribe", twitter_subscribe_path(@user_name), class:"btn btn-default" %>
+<% else %>
+  <p>You are already subscribed to this feed</p>
+<% end %>
 
 <br>
 <br>
