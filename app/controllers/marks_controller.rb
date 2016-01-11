@@ -34,7 +34,7 @@ class MarksController < ApplicationController
         name: user.name,
         bio: user.description,
         link: user.url,
-        image_url: user.profile_image_url,
+        image_url: user.profile_image_url(size = :original),
         uid: user.id,
         location: user.location,
         provider: "twitter"
@@ -51,7 +51,7 @@ class MarksController < ApplicationController
       name: user.name,
       bio: user.description,
       link: user.url,
-      image_url: user.profile_image_url,
+      image_url: user.profile_image_url(size = :original),
       uid: user.id,
       location: user.location,
       provider: "twitter"
