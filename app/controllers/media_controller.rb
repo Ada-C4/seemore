@@ -4,4 +4,9 @@ class MediaController < ApplicationController
       @marks = current_spy.marks
     end
   end
+
+  def embed_tweets(mark)
+    
+
+  end
 end
