@@ -58,9 +58,10 @@ class Mark < ActiveRecord::Base
           end
 
           uid = mark["uri"].gsub(/[^\d]/, '')
+          username = mark["link"].split('/')[-1]
 
           result <<  Mark.new(
-            username: search_term,
+            username: username,
             name: mark["name"],
             bio: mark["bio"],
             location: mark["location"],
