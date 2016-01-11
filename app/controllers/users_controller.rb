@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   def vimeo_search
     vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
     search_term = params[:search]
-    results = HTTParty.get("https://api.vimeo.com/users?page=1&per_page=25&query=#{search_term}&fields=name,bio,pictures", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
+    results = HTTParty.get("https://api.vimeo.com/users?page=1&per_page=25&query=#{search_term}&fields=name,bio,pictures,metadata", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
       if results["total"] == 0
         flash.now[:error] = "No results matched your search."
       else
