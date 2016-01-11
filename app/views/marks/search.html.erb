@@ -6,6 +6,11 @@
       </div>
     </form>
     <% if !@search_term.nil? %>
+    <% if @marks && @marks.empty? %>
+      <div class="alert alert-warning">
+        <strong>Warning!</strong> The requested user could not be found.
+      </div>
+    <% end %>
     <% if @marks %>
       <% @marks.each do |mark| %>
         <h5><%= mark.username %></h5>
@@ -28,14 +33,16 @@
     <% end %>
       <% if @mark %>
         <% if @mark.class == String %>
-          <%= @mark %>
+          <div class="alert alert-warning">
+            <strong>Warning!</strong> <%= @mark %>.
+          </div>
         <% else %>
           <h5><%= @mark.username %></h5>
           <h5><%= image_tag @mark.image_url %></h5>
           <h5>Location: <%=if  @mark.location.nil? then "N/A" else @mark.location end %></h5>
           <h5><%= link_to "Go to Profile", @mark.link %></h5>
 
-        <% end %>
+        
           <% if params[:provider] == "vimeo" %>
             <h5><%= link_to "Add to your Marks", vimeo_subscribe_path(
                 params: {
@@ -56,6 +63,7 @@
               ),
                 method: :post,
                 class: "btn btn-default" %></h5>
+          <% end %>
           <% end %>
         <% end %>
       <% end %>

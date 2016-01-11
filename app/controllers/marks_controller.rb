@@ -18,11 +18,11 @@ class MarksController < ApplicationController
         @mark = Mark.vimeo_lookup(@search_term)
       elsif search_params[:provider] == "twitter"
         @marks = twitter_lookup(@search_term)
+        if @marks.empty?
+          @flash = true
+        end
       end
     end
-  end
-
-  def show
   end
 
   def twitter_lookup(search_term)
