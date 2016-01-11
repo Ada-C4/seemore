@@ -52,7 +52,6 @@ class VimeoUsersController < ApplicationController
         vimeo_video_id: video["uri"].match(/[0-9]+$/)[0]
       }
       Video.create!(video_hash)
-    raise
     end
   end
 end
