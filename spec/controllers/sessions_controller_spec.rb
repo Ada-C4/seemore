@@ -26,6 +26,9 @@ RSpec.describe SessionsController, type: :controller  do
         end
       end
 
+        it "deletes id from session on destruction" do
+        end
+
       context "when the user has already signed up" do
         before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:prov] }
         let!(:user) { User.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:prov]) }

@@ -1,9 +1,18 @@
 <h1>This is the index page</h1>
 
-<%=raw @vid["html"] %>
-
-
-<% if !!current_user %>
+<% if current_user %>
   <%= image_tag current_user.image %>
   <h1><%= current_user.name %></h1>
 <% end %>
+
+<%=raw @vid["html"] %>
+
+<ul>
+  <% @current_user.twitter_users.each do |user| %>
+    <% user.tweets.each do |tweet| %>
+      <li><%= user.screen_name %>:</li>
+      <li><%= tweet.text %></li>
+      <br>
+    <% end %>
+  <% end %>
+</ul>
