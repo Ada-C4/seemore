@@ -28,7 +28,23 @@ describe "GET 'twitter_search_user'" do
     }
   end
 
+  let(:user) do
+    { User.new(
+    email:    "a@b.com",
+    username: "Ada",
+    uid:      "1234",
+    provider: "twitter")
+  }
+
+  let(:session) do
+    {
+      user_id: 1
+    }
+  end
+
   it "renders the twitter_search_user view" do
+    user
+    session
     get :twitter_search_user, params
     expect(subject).to render_template :twitter_search_user
   end

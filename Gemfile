@@ -37,6 +37,8 @@ gem 'vimeo'
 gem 'httparty'
 
 gem 'pg'
+
+gem 'whenever'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -69,10 +69,16 @@ class UsersController < ApplicationController
 
   def vimeo_subscribe
     @vimeo_user = params[:id]
+    vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
     provider = "vimeo"
-    username = search["name"]
-    avatar_url = search["pictures"]["sizes"][1]["link"]
-    @videos = search["metadata"]["connections"]["videos"]["options"]
+    video_results = HTTParty.get("https://api.vimeo.com/users/#{@vimeo_user}/videos", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
+    user_results = HTTParty.get("https://api.vimeo.com/users/#{@vimeo_user}", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
+    #binding.pry
+    uid = @vimeo_user
+    username = user_results["name"]
+    avatar_url = user_results["pictures"]["sizes"][1]["link"]
+    # @videos = search["metadata"]["connections"]["videos"]["options"]
+    @videos = video_results
     subscription = Subscription.find_or_create(uid, provider, username, avatar_url)
     user = User.find(session[:user_id])
     if !user.subscriptions.include? subscription
@@ -86,12 +92,22 @@ class UsersController < ApplicationController
   def vimeo_search
     vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
     search_term = params[:search]
-    results = HTTParty.get("https://api.vimeo.com/users?page=1&per_page=25&query=#{search_term}&fields=name,bio,pictures,metadata", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
+    results = HTTParty.get("https://api.vimeo.com/users?page=1&per_page=25&query=#{search_term}", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
       if results["total"] == 0
         flash.now[:error] = "No results matched your search."
       else
         @vimeo_results = results["data"]
       end
-
   end
+
+  def vimeo_search_user
+    @curr_user = User.find(session[:user_id])
+    subscriptions = @curr_user.subscriptions
+    @user_name = params[:id]
+    #@user_tweets = twitter.user_timeline(@user_name)
+    #uid = @user_tweets[0].user.id
+    #subscrip = Subscription.find(uid, "twitter")
+#
+  end
+
 end
