@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MarksController, type: :controller do
     let(:new_spy) { build(:spy) }
+    let(:new_mark) { build(:mark) }
 
   describe "GET #search" do
     context "logged in" do
@@ -73,6 +74,15 @@ RSpec.describe MarksController, type: :controller do
       session[:spy_id] = new_spy.id
       expect{ post :vimeo_subscribe, name: "hi" }.to change(Mark, :count).by(1)
     end
+
+    it "doesn't create a new mark if one already exists" do 
+      new_spy.save
+      session[:spy_id] = new_spy.id
+      post :vimeo_subscribe, name: "hi"
+
+      expect{ post :vimeo_subscribe, name: "hi" }.to change(Mark, :count).by(0)
+
+    end
   end
 
   describe "POST #twitter_subscribe" do
@@ -88,5 +98,37 @@ RSpec.describe MarksController, type: :controller do
       session[:spy_id] = new_spy.id
       expect{ post :twitter_subscribe, name: "hi" }.to change(Mark, :count).by(1)
     end
+
+    it "doesn't create a new mark if one already exists" do 
+      new_spy.save
+      session[:spy_id] = new_spy.id
+      post :twitter_subscribe, name: "hi"
+
+      expect{ post :twitter_subscribe, name: "hi" }.to change(Mark, :count).by(0)
+
+    end
   end
+
+  describe "DELETE #destroy" do 
+    it "deletes marks from the users marks" do
+      new_spy.save
+      new_mark.save
+      new_spy.marks << new_mark
+      session[:spy_id] = new_spy.id
+      delete :destroy, id: new_mark.id
+
+      expect(new_spy.marks.size).to eq 0
+    end
+
+    it "redirects to the marks_path" do 
+      new_spy.save
+      new_mark.save
+      new_spy.marks << new_mark
+      session[:spy_id] = new_spy.id
+      delete :destroy, id: new_mark.id
+
+      expect(response).to redirect_to marks_path
+    end
+  end
+
 end
