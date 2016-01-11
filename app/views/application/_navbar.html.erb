@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="navbar navbar-default">
+    <div class="navbar-left navbar-links">
+      <% if @current_user %>
+        <%= link_to "Creators I Follow", creators_path %> /
+        <%= link_to "Feed", root_path %> /
+        <%= link_to "Logout", logout_path, method: :delete %>
+      <% else %>
+      <div id="navbar-text-left">
+        Welcome to CurateTV
+      </div>
+      <% end %>
+    </div>
+    <div class="navbar-right">
+      <% if @current_user %>
+      <%= form_tag(search_path, :method => "get", id: "search-form") do %>
+          <div class="search-box">
+            <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+            <button class="btn btn-default search-button" type="submit" >Search </button>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-vimeo"></i>
+            <%= radio_button_tag(:provider, "twitter", checked: true) %>
+            <%= label_tag(:twitter, "twitter") %>
+            <%= radio_button_tag(:provider, "vimeo") %>
+            <%= label_tag(:vimeo, "vimeo") %>
+          </div>
+        <% end %>
+      <% else %>
+      <div id="navbar-text-right">
+        Login to Start Curating
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
