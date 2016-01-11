@@ -12,7 +12,6 @@ class VimeoUsersController < ApplicationController
     @vimeo_user = VimeoUser.find_by(uri: @vim_uri)
     #subscribe to vimeo_user
     @current_user.vimeo_users << @vimeo_user
-    raise
     redirect_to :root
   end
 
