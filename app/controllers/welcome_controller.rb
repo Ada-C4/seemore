@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   before_action :current_user
-  include VimeoHelper
+  include VimeoWrapper
 
   def index
     if @current_user.nil?
@@ -10,5 +10,4 @@ class WelcomeController < ApplicationController
       @vid = get_video(145516416)
     end
   end
-
 end

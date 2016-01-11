@@ -1,4 +1,4 @@
-module VimeoHelper
+module VimeoWrapper
 
   VIMEO_MAX_WIDTH = "500px"
   VIMEO_MAX_HEIGHT = "450px"

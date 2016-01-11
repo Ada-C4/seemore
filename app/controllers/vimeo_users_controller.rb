@@ -1,6 +1,6 @@
 class VimeoUsersController < ApplicationController
   before_action :current_user
-  include VimeoHelper
+  include VimeoWrapper
 
   def subscribe
     @vim_uri = params[:uri]

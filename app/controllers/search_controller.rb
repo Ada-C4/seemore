@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   include SearchHelper
-  include VimeoHelper
+  include VimeoWrapper
 
   def index
     #add logic for if there are no results returned
