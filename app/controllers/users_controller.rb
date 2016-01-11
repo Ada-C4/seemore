@@ -60,6 +60,22 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def vimeo_subscribe
+    @vimeo_user = params[:id]
+    provider = "vimeo"
+    username = search["name"]
+    avatar_url = search["pictures"]["sizes"][1]["link"]
+    @videos = search["metadata"]["connections"]["videos"]["options"]
+    subscription = Subscription.find_or_create(uid, provider, username, avatar_url)
+    user = User.find(session[:user_id])
+    if !user.subscriptions.include? subscription
+      user.subscriptions << subscription
+    end
+    @videos.each do |video|
+      uid = video["video_id"]
+    end
+  end
+
   def vimeo_search
     vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
     search_term = params[:search]

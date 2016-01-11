@@ -7,6 +7,7 @@ get '/vimeo_results' => 'users#vimeo_search', as: :vimeo_search
 get '/twitter_results' => 'users#twitter_search', as: :twitter_search
 get '/twitter_results/:id' => 'users#twitter_search_user', as: :twitter_search_user
 post '/twitter_results/:id' => 'users#twitter_subscribe', as: :twitter_subscribe
+post '/vimeo_results/:id' => 'users#vimeo_subscribe', as: :vimeo_subscribe
 
 get '/logout' => 'sessions#destroy'
 
