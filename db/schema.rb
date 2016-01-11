@@ -75,12 +75,4 @@ ActiveRecord::Schema.define(version: 20160110223715) do
     t.string   "profile_images_uri"
   end
 
-  create_table "vimeo_users_users", id: false, force: :cascade do |t|
-    t.integer "vimeo_user_id"
-    t.integer "user_id"
-  end
-
-  add_index "vimeo_users_users", ["user_id"], name: "index_vimeo_users_users_on_user_id"
-  add_index "vimeo_users_users", ["vimeo_user_id"], name: "index_vimeo_users_users_on_vimeo_user_id"
-
 end

@@ -12,6 +12,7 @@ class VimeoUsersController < ApplicationController
     @vimeo_user = VimeoUser.find_by(uri: @vim_uri)
     #subscribe to vimeo_user
     @current_user.vimeo_users << @vimeo_user
+    raise
     redirect_to :root
   end
 
@@ -34,7 +35,7 @@ class VimeoUsersController < ApplicationController
       description: new_vimeo_user["bio"],
       location: new_vimeo_user["location"],
       profile_images_uri: new_vimeo_user["pictures"]["uri"],
-      videos_uri: new_vimeo_user["videos"]["uri"]
+      videos_uri: new_vimeo_user["metadata"]["connections"]["videos"]["uri"]
     }
     @vimeo_user = VimeoUser.create(vimeo_user_hash)
   end
@@ -42,7 +43,7 @@ class VimeoUsersController < ApplicationController
   def create_videos(vimeo_user_uri)
     # grab videos from Vimeo API - allowing 5 per page.
     video_call = get_user_videos(vimeo_user_uri)
-    videos = video_call[:data]
+    videos = video_call["data"]
     # turn each video into a Video object
     videos.each do |video|
       video_hash = {

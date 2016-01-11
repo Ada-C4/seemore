@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :twitter_users
+  has_and_belongs_to_many :vimeo_users
 
   validates :name, presence: true
   validates :uid, presence:true, uniqueness: true

@@ -10,6 +10,5 @@ class SearchController < ApplicationController
     elsif vimeo_result?
       @results = search_vimeo(search_term)["data"]
     end
-    raise
   end
 end

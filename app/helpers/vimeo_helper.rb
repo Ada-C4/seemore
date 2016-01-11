@@ -20,7 +20,7 @@ module VimeoHelper
   end
 
   def get_user_videos(user_uri)
-    HTTParty.get(vim_base_uri + user_uri + /videos?per_page=5&filter=embeddable&filter_embeddable=true&sort=date&direction=desc,
+    HTTParty.get(vim_base_uri + user_uri + "/videos?per_page=5&filter=embeddable&filter_embeddable=true&sort=date&direction=desc",
     headers: {"Authorization" => vimeo_auth, 'Accept' => 'application/json' }, format: :json).parsed_response
   end
 
