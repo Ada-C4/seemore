@@ -2,48 +2,38 @@ require 'spec_helper'
 require 'rails_helper'
 
 RSpec.describe Spy, type: :model do
-  before(:each) do
-    Spy.create(
-    uid: "string thing",
-    username: "usery name",
-    image_url: "http://www.imageyimage.com",
-    provider: "twitter")
-  end
+  let(:new_spy) { build(:spy) }
+  let(:bad_id_spy) { build(:spy, username: "something new") }
+  let(:bad_username_spy) { build(:spy, uid: "something new") }
 
   describe "validations" do
     it "is valid" do
-      expect(spy).to be_valid
+      expect(new_spy).to be_valid
     end
 
     it "requires a username" do
-      spy.username = nil
-      expect(spy).to be_invalid
+      new_spy.username = nil
+      expect(new_spy).to be_invalid
     end
 
     it "requires a provider" do
-      spy.provider = nil
-      expect(spy).to be_invalid
+      new_spy.provider = nil
+      expect(new_spy).to be_invalid
     end
 
     it "requires a uid" do
-      spy.uid = nil
-      expect(spy).to be_invalid
+      new_spy.uid = nil
+      expect(new_spy).to be_invalid
     end
 
     it "has a unique uid" do
-      expect(Spy.new(
-        uid: "string thing",
-        username: "usery name",
-        image_url: "http://www.imageyimage.com",
-        provider: "twitter")).to_not be_valid
+      new_spy.save
+      expect(bad_id_spy).to_not be_valid
     end
 
     it "has a unique username" do
-      expect(Spy.new(
-        uid: "string thing",
-        username: "usery name",
-        image_url: "http://www.imageyimage.com",
-        provider: "twitter")).to_not be_valid
+      new_spy.save
+      expect(bad_username_spy).to_not be_valid
     end
   end
 end

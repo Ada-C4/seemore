@@ -12,12 +12,22 @@ FactoryGirl.define do
     name "Jeff Desom"
     image_url "mark.jpeg"
     provider "vimeo"
+
+    factory :mark_with_media do 
+      transient do
+        media_count 5
+      end
+
+      after(:create) do |mark, evaluator|
+        create_list(:medium, evaluator.media_count, mark: mark)
+      end
+    end
   end
 
   factory :medium do
+    mark
     text "hello"
     media_url "hello.jpeg"
-    mark_id 1
     date_posted "whenever"
     link "whatever"
     medium_type "twitter"
