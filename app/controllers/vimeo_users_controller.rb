@@ -12,6 +12,7 @@ class VimeoUsersController < ApplicationController
     @vimeo_user = VimeoUser.find_by(uri: @vim_uri)
     #subscribe to vimeo_user
     @current_user.vimeo_users << @vimeo_user
+    raise
     redirect_to :root
   end
 
@@ -52,7 +53,7 @@ class VimeoUsersController < ApplicationController
         vimeo_video_id: video["uri"].match(/[0-9]+$/)[0],
         vimeo_user_id: vimeo_user.id
       }
-      Video.create!(video_hash)
+      Video.create(video_hash)
     end
   end
 end
