@@ -3,7 +3,6 @@ require 'rails_helper'
 
 RSpec.describe Mark, type: :model do
   let(:new_mark) { build(:mark) }
-  let(:video_mark) { build(:good_mark) }
   let(:new_spy) { build(:spy) }
 
   describe "model associations" do
