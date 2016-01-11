@@ -54,3 +54,16 @@ img {
   position: relative;
   left: 20%;
 }
+
+.listed-users {
+  list-style-type: none;
+  border: solid #84694f 1px;
+  width: 200px;
+  padding: 15px;
+  margin: 10px;
+  float: left;
+}
+
+.search-results {
+  color: #645555;
+}

@@ -1,11 +1,13 @@
-<h1>These are your search results</h1>
+<div class="container">
+  <h1 class="search-results">These are your search results:</h1>
 
-<ul>
-  <% @results.each do |result| %>
-    <li>
-      <%= result.screen_name %>
-      <%= button_to "Subscribe", users_subscribe_path,  method: :patch, class: 'btn btn-primary' %>
-    <br />
-    </li>
-  <% end %>
-</ul>
+  <ul>
+    <% @results.each do |result| %>
+      <li class="listed-users">
+        <%= result.screen_name %>
+        <%= button_to "Subscribe", users_subscribe_path,  method: :patch, class: 'btn btn-primary' %>
+      <br />
+      </li>
+    <% end %>
+  </ul>
+</div>
