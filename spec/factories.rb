@@ -7,11 +7,11 @@ FactoryGirl.define do
   end
 
   factory :mark do 
-    uid "56789"
-    username "markisthebest"
-    name "mark"
+    uid "1291877"
+    username "jeffdesom"
+    name "Jeff Desom"
     image_url "mark.jpeg"
-    provider "developer"
+    provider "vimeo"
   end
 
   factory :medium do
