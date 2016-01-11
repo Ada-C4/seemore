@@ -39,14 +39,50 @@ class Mark < ActiveRecord::Base
 
   def self.vimeo_lookup(search_term)
     auth = "Bearer #{ENV['VIMEO_ACCESS_TOKEN']}"
+    marks = HTTParty.get("https://api.vimeo.com/users?query=#{search_term}/", headers: { "Authorization" => auth })
+    parsed_marks = JSON.parse(marks)
+      if !parsed_marks["error"].nil?
+        return parsed_marks["error"]
+      else
+        marks_data = parsed_marks["data"]
+        result = []
+        marks_data.each do |mark|
+          unless mark["pictures"].nil?
+            image = mark["pictures"]["sizes"].last
+          end
+
+          if image.nil?
+            profile_image = "blank.png"
+          else
+            profile_image = image["link"]
+          end
+
+          uid = mark["uri"].gsub(/[^\d]/, '')
+
+          result <<  Mark.new(
+            username: search_term,
+            name: mark["name"],
+            bio: mark["bio"],
+            location: mark["location"],
+            link: mark["link"],
+            image_url: profile_image,
+            uid: uid,
+            provider: "vimeo"
+            )
+        end
+      end
+    return result
+  end
+
+  def self.single_mark_vimeo_lookup(search_term)
+    auth = "Bearer #{ENV['VIMEO_ACCESS_TOKEN']}"
     mark = HTTParty.get("https://api.vimeo.com/users/#{search_term}/", headers: { "Authorization" => auth })
 
       mark_parsed = JSON.parse(mark)
 
-      if !mark_parsed["error"].nil?
-        return mark_parsed["error"]
+      if !marks_parsed["error"].nil?
+        return marks_parsed["error"]
       else
-
         unless mark_parsed["pictures"].nil?
           image = mark_parsed["pictures"]["sizes"].last
         end
@@ -59,7 +95,7 @@ class Mark < ActiveRecord::Base
 
         uid = mark_parsed["uri"].gsub(/[^\d]/, '')
 
-        result =  Mark.new(
+        result <<  Mark.new(
           username: search_term,
           name: mark_parsed["name"],
           bio: mark_parsed["bio"],

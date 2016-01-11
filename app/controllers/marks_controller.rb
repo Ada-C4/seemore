@@ -15,7 +15,7 @@ class MarksController < ApplicationController
       search_params = { username: params[:username], provider: params[:provider], id: params[:id] }
       @search_term = search_params[:username]
       if search_params[:provider] == "vimeo"
-        @mark = Mark.vimeo_lookup(@search_term)
+        @marks = Mark.vimeo_lookup(@search_term)
       elsif search_params[:provider] == "twitter"
         @marks = twitter_lookup(@search_term)
       end
