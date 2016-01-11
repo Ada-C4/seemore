@@ -7,7 +7,7 @@ class VimeoUsersController < ApplicationController
     if !vimeo_user_exists?
       # if vimeo_user doesn't exist, create vimeo_user and their videos
       create_vimeo_user(@vim_uri)
-      create_videos(@vimeo_user)
+      create_videos(@vim_uri)
     end
     @vimeo_user = VimeoUser.find_by(uri: @vim_uri)
     #subscribe to vimeo_user
@@ -25,32 +25,32 @@ class VimeoUsersController < ApplicationController
     end
   end
 
-  def create_vimeo_user(uri)
-    new_vimeo_user = get_vimeo_user(uri)
+  def create_vimeo_user(vimeo_user_uri)
+    new_vimeo_user = get_vimeo_user(vimeo_user_uri)
     # create hash using info from Vimeo API
     vimeo_user_hash = {
       uri: new_vimeo_user["uri"],
       name: new_vimeo_user["name"],
       description: new_vimeo_user["bio"],
-      location: new_vimeo_user.location,
-      uri: new_vimeo_user.uri,
-      profile_image_uri: new_vimeo_user.profile_image_uri
+      location: new_vimeo_user["location"],
+      profile_images_uri: new_vimeo_user["pictures"]["uri"],
+      videos_uri: new_vimeo_user["videos"]["uri"]
     }
     @vimeo_user = VimeoUser.create(vimeo_user_hash)
   end
 
-  def create_tweets(vimeo_user)
-    # grab tweets from Vimeo API - most recent 20 tweets by default
-    tweets_array = $client.user_timeline(vimeo_user.vimeo_id.to_i)
-    # turn each tweet into a Tweet object
-    tweets_array.each do |tweet|
-      tweet_hash = {
-        vimeo_id: tweet.id.to_s,
-        text: tweet.text,
-        uri: tweet.uri,
-        vimeo_user_id: vimeo_user.id
+  def create_videos(vimeo_user_uri)
+    # grab videos from Vimeo API - allowing 5 per page.
+    video_call = get_user_videos(vimeo_user_uri)
+    videos = video_call[:data]
+    # turn each video into a Video object
+    videos.each do |video|
+      video_hash = {
+        uri: video["uri"],
+        title: video["title"],
+        vimeo_video_id: video["uri"].u.match(/[0-9]+$/)[0]
       }
-      Tweet.create(tweet_hash)
+      Video.create(video_hash)
     end
   end
 end
