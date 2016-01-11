@@ -58,7 +58,7 @@ class MarksController < ApplicationController
     @mark = twitter_lookup(params[:name])
 
     if Mark.find_by(username: @mark.username).nil?
-      @mark = Mark.twitter_lookup(params[:name])
+      @mark = twitter_lookup(params[:name])
     else
       @mark = Mark.find_by(username: @mark.username)
     end
