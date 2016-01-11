@@ -22,4 +22,14 @@ class Subscription < ActiveRecord::Base
       end
     end
   end
+
+  def self.find(uid, provider)
+    subscription = self.find_by(uid: uid, provider: provider)
+    if !subscription.nil?
+      #subscription found continue on with your life
+      return subscription
+    else
+      return nil
+    end
+  end
 end
