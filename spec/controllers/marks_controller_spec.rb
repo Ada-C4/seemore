@@ -77,11 +77,15 @@ RSpec.describe MarksController, type: :controller do
 
   describe "POST #twitter_subscribe" do
     it "redirects to the marks index page" do
+      new_spy.save
+      session[:spy_id] = new_spy.id
       post :twitter_subscribe, name: "hi"
       expect(response).to redirect_to marks_path
     end
 
     it "creates a new mark" do
+      new_spy.save
+      session[:spy_id] = new_spy.id
       expect{ post :twitter_subscribe, name: "hi" }.to change(Mark, :count).by(1)
     end
   end
