@@ -6,6 +6,7 @@
     <h5><%= image_tag m.image_url %></h5>
     <h5>Location: <%=if  m.location.nil? then "N/A" else m.location end %></h5>
     <h5><%= link_to "Go to Profile", m.link %></h5>
+    <%= link_to "Delete Mark", mark_path(m), method: "delete", class: "btn btn-danger" %>
   <% end %>
 <% else %>
   <h2>No Marks yet!</h2>
