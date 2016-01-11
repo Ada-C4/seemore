@@ -50,6 +50,7 @@ class TwitterUsersController < ApplicationController
         text: tweet.text,
         uri: tweet.uri,
         twitter_user_id: twitter_user.id
+        twitter_created_at: tweet.created_at
       }
       Tweet.create(tweet_hash)
     end
