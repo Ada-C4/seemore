@@ -19,15 +19,19 @@ class Mark < ActiveRecord::Base
     array = []
 
     data.each do |d|
-      array << Medium.create(
-        mark_id: mark.id, 
-        media_url: d["link"], 
-        date_posted: d["created_time"], 
-        link: d["link"], 
-        text: d["description"], 
-        title: d["name"],
-        medium_type: "vimeo"
-        )
+      if Medium.find_by(link: d["link"]).nil?
+        array << Medium.create(
+          mark_id: mark.id,
+          media_url: d["link"],
+          date_posted: d["created_time"],
+          link: d["link"],
+          text: d["description"],
+          title: d["name"],
+          medium_type: "vimeo"
+          )
+      else
+        array << Medium.find_by(link: d["link"])
+      end
     end
 
     return array
