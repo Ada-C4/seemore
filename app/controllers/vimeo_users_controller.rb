@@ -6,8 +6,8 @@ class VimeoUsersController < ApplicationController
     @vim_uri = params[:uri]
     if !vimeo_user_exists?
       # if vimeo_user doesn't exist, create vimeo_user and their videos
-      create_vimeo_user(@vim_uri)
-      create_videos(@vim_uri)
+      new_user = create_vimeo_user(@vim_uri)
+      create_videos(@vim_uri, new_user)
     end
     @vimeo_user = VimeoUser.find_by(uri: @vim_uri)
     #subscribe to vimeo_user
@@ -40,7 +40,7 @@ class VimeoUsersController < ApplicationController
     @vimeo_user = VimeoUser.create(vimeo_user_hash)
   end
 
-  def create_videos(vimeo_user_uri)
+  def create_videos(vimeo_user_uri, vimeo_user)
     # grab videos from Vimeo API - allowing 5 per page.
     video_call = get_user_videos(vimeo_user_uri)
     videos = video_call["data"]
@@ -49,7 +49,8 @@ class VimeoUsersController < ApplicationController
       video_hash = {
         uri: video["uri"],
         title: video["title"],
-        vimeo_video_id: video["uri"].match(/[0-9]+$/)[0]
+        vimeo_video_id: video["uri"].match(/[0-9]+$/)[0],
+        vimeo_user_id: vimeo_user.id
       }
       Video.create!(video_hash)
     end
