@@ -7,13 +7,14 @@ TODO: Display user profile pics
 <h1> Search Results </h1>
 <div class="col-sm-6">
   <% @vimeo_results.each do |search| %>
+  <% photo = search["pictures"] %>
   <div class="well well-lg">
     <table width="100%">
       <tr>
         <td width="40%"><%= search["name"] %></td>
         <td width="40%">
-          <% if search["pictures"]!= nil %>
-            <%= image_tag(search["pictures"]["sizes"][1]["link"], height: '75', width: '75') %>
+          <% if photo!= nil %>
+            <%= image_tag(photo["sizes"][1]["link"], height: '75', width: '75') %>
           <% end %>
         </td>
         <td width="40%"><%= search["bio"]%></td>
