@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   post 'users' => 'users#create'
   resources :authors, except: [:show, :new]
-  post 'twitter_users' => 'twitter_users#create'
   patch 'subscribe_twitter' => 'twitter_users#subscribe'
   patch 'subscribe_vimeo' => 'vimeo_users#subscribe'
   get 'search_results' => 'search#index'
