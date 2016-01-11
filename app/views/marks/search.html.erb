@@ -28,7 +28,7 @@
          <% elsif params[:provider] == "vimeo" %>
             <h5><%= link_to "Add to your Marks", vimeo_subscribe_path(
               params: {
-                name: params[:username],
+                name: mark.username,
                 profile_picture: params["image_url"]
                 }
               ),

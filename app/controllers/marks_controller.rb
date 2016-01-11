@@ -60,10 +60,10 @@ class MarksController < ApplicationController
   end
 
   def vimeo_subscribe
-    @mark = Mark.vimeo_lookup(params[:name])
+    @mark = Mark.single_mark_vimeo_lookup(params[:name])
 
     if Mark.find_by(username: @mark.username).nil?
-      @mark = Mark.vimeo_lookup(params[:name])
+      @mark = Mark.single_mark_vimeo_lookup(params[:name])
     else
       @mark = Mark.find_by(username: @mark.username)
     end

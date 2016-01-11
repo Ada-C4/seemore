@@ -81,8 +81,8 @@ class Mark < ActiveRecord::Base
 
       mark_parsed = JSON.parse(mark)
 
-      if !marks_parsed["error"].nil?
-        return marks_parsed["error"]
+      if !mark_parsed["error"].nil?
+        return mark_parsed["error"]
       else
         unless mark_parsed["pictures"].nil?
           image = mark_parsed["pictures"]["sizes"].last
@@ -96,7 +96,7 @@ class Mark < ActiveRecord::Base
 
         uid = mark_parsed["uri"].gsub(/[^\d]/, '')
 
-        result <<  Mark.new(
+        result =  Mark.new(
           username: search_term,
           name: mark_parsed["name"],
           bio: mark_parsed["bio"],
