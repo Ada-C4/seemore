@@ -22,14 +22,7 @@ class UsersController < ApplicationController
         subscription.stories.each do |story|
           @stories.push(story)
         end
-        binding.pry
       end
-        # subscriptions = user.subscriptions
-        # subscriptions.each do |subscription|
-        #   subscription.stories.each do |story|
-        #     @stories.push(story)
-        #   end
-        #end
     end
     @stories.sort_by! { |story| story[:post_time] }.reverse!
   end
@@ -53,12 +46,16 @@ class UsersController < ApplicationController
     avatar_url = @tweets[0].user.profile_image_url
     subscription = Subscription.find_or_create(uid, provider, username, avatar_url)
     user = User.find(session[:user_id])
-    user.subscriptions << subscription
-
-    ##user.subscriptions << Subscription.find(1)
+    if !user.subscriptions.include? subscription
+      user.subscriptions << subscription
+    end
     @tweets.each do |tweet|
-      binding.pry
-      Story.create(uid: tweet.id, text: tweet.text, subscription_id: subscription.id, post_time: DateTime.parse(tweet.created_at.to_s))
+      uid = tweet.id
+      text = tweet.text
+      subscription_id = subscription.id
+      post_time = DateTime.parse(tweet.created_at.to_s)
+      Story.find_or_create(uid, text, subscription_id, post_time)
+      #Story.create(uid: tweet.id, text: tweet.text, subscription_id: subscription.id, post_time: DateTime.parse(tweet.created_at.to_s))
     end
     redirect_to root_path
   end
