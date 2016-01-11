@@ -15,9 +15,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 .form-inline {
   padding: 15px;
-  background-color: #333;
+  border: solid #84694f 3px;
+  margin-top: 20px;
 }
 
 .title {
@@ -28,11 +33,24 @@
 
 .title-link {
   font-size: 3em;
+  color: #84694f;
 }
 
 a:hover {
   text-decoration: none;
+  color: #d5bb54;
 }
 
+.login-out {
+  color: #645555;
+  font-size: 1.7em;
+
+}
 img {
+  margin-top: 28px;
+}
+
+.search-button {
+  position: relative;
+  left: 20%;
 }

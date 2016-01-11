@@ -6,13 +6,13 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=Oxygen:700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <div class="container">
-    <div class="header-container">
-      <h1 class="title"><%= link_to "lynx", "/", class: "title-link" %></h1>
-      <%= image_tag("lynx.png") %>
-    </div>
+    <%= image_tag("lynx2.png") %>
+    <%= image_tag("paws.gif") %>
+    <h1 class="title"><%= link_to "lynx", "/", class: "title-link" %></h1>
     <% if !flash.empty? %>
       <div>
         <% flash.each do |key, value| %><%= value %>
@@ -20,27 +20,30 @@
       </div>
     <% end %>
 
-    <div class="container-fluid">
-      <% if !current_user.nil? %>
-      <div class="row">
-        <%= link_to "LOGOUT", logout_path, method: :delete %>
-      </div>
-      <% else %>
+    <div class="row">
       <div class="form-inline">
-        <div class="col-lg-1 col-xs-3 nav-link-container">
-          <%= link_to "LOGIN", "/auth/developer" %>
-        </div>
-
+        <% if !current_user.nil? %>
+          <div class="col-md-4 col-xs-6 col-lg-2">
+            <%= link_to "LOGOUT", logout_path, method: :delete, class: "login-out" %>
+          </div>
+        <% else %>
+          <div class="col-md-4 col-xs-6 col-lg-2">
+            <%= link_to "LOGIN", "/auth/developer", class: "login-out" %>
+          </div>
           <%= form_tag(search_results_path, :method => "get", class: "form-group") do %>
-            <%= select_tag("provider", options_for_select([["Twitter", 1], ["Instagram", 2]]), class: "form-control") %>
+            <div class="col-md-4 col-xs-offset-3 col-lg-offset-0">
+              <%= select_tag("provider", options_for_select([["Twitter", 1], ["Instagram", 2]]), class: "form-control") %>
+            </div>
+            <div class="col-md-4 col-xs-offset-3 col-lg-offset-0">
               <%= text_field_tag :search_term, params[:search_term], placeholder: "Search", class: "form-control" %>
-                <button class="btn btn-default search-button" type="submit">Search</button>
-          <% end %>
+            </div>
+              <button class="btn btn-default search-button" type="submit">Search</button>
+          </div>
         </div>
       <% end %>
-    </div>
-    <%= yield %>
+    <% end %>
   </div>
+  <%= yield %>
 
 </body>
 </html>
