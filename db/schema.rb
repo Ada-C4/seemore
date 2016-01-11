@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108003344) do
+ActiveRecord::Schema.define(version: 20160111004836) do
 
   create_table "instagram_users", force: :cascade do |t|
     t.string   "instagram_id"
@@ -62,6 +62,36 @@ ActiveRecord::Schema.define(version: 20160108003344) do
     t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users_vimeo_users", id: false, force: :cascade do |t|
+    t.integer "vimeo_user_id"
+    t.integer "user_id"
+  end
+
+  add_index "users_vimeo_users", ["user_id"], name: "index_users_vimeo_users_on_user_id"
+  add_index "users_vimeo_users", ["vimeo_user_id"], name: "index_users_vimeo_users_on_vimeo_user_id"
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "uri"
+    t.string   "title"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "vimeo_user_id"
+    t.string   "vimeo_video_id"
+  end
+
+  add_index "videos", ["vimeo_user_id"], name: "index_videos_on_vimeo_user_id"
+
+  create_table "vimeo_users", force: :cascade do |t|
+    t.string   "description"
+    t.string   "location"
+    t.string   "uri"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "videos_uri"
+    t.string   "name"
+    t.string   "profile_images_uri"
   end
 
 end

@@ -6,6 +6,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       :uid_field => :uid
   else
     provider :twitter, ENV["TWITTER_CONSUMER_KEY"], ENV["TWITTER_CONSUMER_SECRET"]
-    provider :instagram, ENV["INSTAGRAM_CONSUMER_KEY"], ENV["INSTAGRAM_CONSUMER_SECRET"], ENV["INSTAGRAM_ACCESS_TOKEN"]
+    provider :vimeo, ENV["VIMEO_CLIENT_ID"], ENV["VIMEO_CLIENT_SECRETS"], ENV["VIMEO_ACCESS_TOKEN"]
   end
 end

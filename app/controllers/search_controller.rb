@@ -1,12 +1,14 @@
 class SearchController < ApplicationController
+  include SearchHelper
+  include VimeoHelper
+
   def index
-    # will need to add conditional logic for Twitter or Instagram
-    if params[:provider] == "1"
-      search_term = params[:search_term]
+    #add logic for if there are no results returned
+    search_term = params[:search_term]
+    if twitter_result?
       @results = $client.user_search(search_term)
-    else
-      ## fill this in later!
-      @results = []
+    elsif vimeo_result?
+      @results = search_vimeo(search_term)["data"]
     end
   end
 end

@@ -1,10 +1,10 @@
 class WelcomeController < ApplicationController
+  before_action :current_user
+  include VimeoHelper
 
   def index
     @twitter_user = TwitterUser.new()
-    @instagram = Instagram.user_recent_media("1496836825", {:count => 3})
-    @instagram_search = Instagram.user_search('dreedles')
-    @instagram_user = Instagram.user("1496836825")
-    render :index
+    @vid = get_video(145516416)
   end
+
 end

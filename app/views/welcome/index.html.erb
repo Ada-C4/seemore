@@ -1,31 +1,9 @@
 <h1>This is the index page</h1>
 
+<%=raw @vid["html"] %>
 
 
 <% if !!current_user %>
   <%= image_tag current_user.image %>
   <h1><%= current_user.name %></h1>
-<% end %>
-
-<%= form_for @twitter_user do |f| %>
-  <%= f.label "Screen name:" %>
-  <%= f.text_field :screen_name %>
-  <%= f.submit %>
-<% end %>
-<br />
-<br />
-
-<div>
-<% @instagram.each do |instagram| %>
-
-  <%= image_tag instagram.images.standard_resolution.url %>
-
-<% end %>
-</div>
-<br />
-<div>
-  <p> Here is an example of using a user search result</p>
-</div>
-<% @instagram_search.each do |result| %>
-  <h1><%= result.full_name %></h1>
 <% end %>
