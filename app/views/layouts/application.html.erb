@@ -9,7 +9,10 @@
 </head>
 <body>
   <div class="container">
-    <h1 class="title"><%= link_to "lynx", "/", class: "title-link" %></h1>
+    <div class="header-container">
+      <h1 class="title"><%= link_to "lynx", "/", class: "title-link" %></h1>
+      <%= image_tag("lynx.png") %>
+    </div>
     <% if !flash.empty? %>
       <div>
         <% flash.each do |key, value| %><%= value %>
@@ -18,7 +21,6 @@
     <% end %>
 
     <div class="container-fluid">
-      <%= image_tag("lynx.png") %>
       <% if !current_user.nil? %>
       <div class="row">
         <%= link_to "LOGOUT", logout_path, method: :delete %>
