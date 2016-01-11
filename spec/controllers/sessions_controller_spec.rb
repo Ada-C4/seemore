@@ -11,6 +11,11 @@ RSpec.describe SessionsController, type: :controller do
           expect(response).to redirect_to root_path
         end
 
+        it "goes to login page" do
+          get :new, provider: :developer
+          expect(response).to redirect_to "http://test.host/auth/"
+        end
+
         it "creates a spy" do
           expect { get :create, provider: :developer }.to change(Spy, :count).by(1)
         end
@@ -24,6 +29,11 @@ RSpec.describe SessionsController, type: :controller do
           get :create, provider: :developer
           expect(session[:spy_id]).to eq assigns(:spy).id
         end
+
+        it "logs out" do 
+          delete :destroy
+          expect(session[:spy_id]).to eq nil
+        end
       end
 
       context "when using twitter authentication" do
@@ -33,6 +43,11 @@ RSpec.describe SessionsController, type: :controller do
           it "redirects to the home page" do
             get :create, provider: :twitter
             expect(response).to redirect_to root_path
+          end
+
+          it "goes to login page" do
+            get :new, provider: :developer
+            expect(response).to redirect_to "http://test.host/auth/"
           end
 
           it "creates a spy" do
@@ -47,6 +62,11 @@ RSpec.describe SessionsController, type: :controller do
           it "assigns the session[:spy_id]" do
             get :create, provider: :twitter
             expect(session[:spy_id]).to eq assigns(:spy).id
+          end
+
+          it "logs out" do 
+            delete :destroy
+            expect(session[:spy_id]).to eq nil
           end
         end
       end

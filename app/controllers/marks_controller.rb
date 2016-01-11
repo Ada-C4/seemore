@@ -17,7 +17,7 @@ class MarksController < ApplicationController
       if search_params[:provider] == "vimeo"
         @mark = Mark.vimeo_lookup(@search_term)
       elsif search_params[:provider] == "twitter"
-        @mark = twitter_lookup(@search_term)
+        @marks = twitter_lookup(@search_term)
       end
     end
   end
@@ -26,6 +26,25 @@ class MarksController < ApplicationController
   end
 
   def twitter_lookup(search_term)
+    marks = []
+    users = twitter.user_search(search_term)
+    users.each do |user|
+      mark = Mark.new(
+        username: user.screen_name,
+        name: user.name,
+        bio: user.description,
+        link: user.url,
+        image_url: user.profile_image_url,
+        uid: user.id,
+        location: user.location,
+        provider: "twitter"
+      )
+      marks.push(mark)
+    end
+    return marks
+  end
+
+  def single_mark_twitter_lookup(search_term)
     user = twitter.user(search_term)
     mark = Mark.new(
       username: user.screen_name,
@@ -55,16 +74,23 @@ class MarksController < ApplicationController
   end
 
   def twitter_subscribe
-    @mark = twitter_lookup(params[:name])
+    @mark = single_mark_twitter_lookup(params[:name])
 
     if Mark.find_by(username: @mark.username).nil?
-      @mark = twitter_lookup(params[:name])
+      @mark = single_mark_twitter_lookup(params[:name])
     else
       @mark = Mark.find_by(username: @mark.username)
     end
 
     @mark.save
     current_spy.marks << @mark
+    redirect_to marks_path
+  end
+
+  def destroy
+    @mark = current_spy.marks.find(params[:id])
+    @mark.save
+    @mark.destroy
     redirect_to marks_path
   end
 end

@@ -22,7 +22,7 @@ RSpec.describe Mark, type: :model do
 
       new_mark.spies << new_spy
 
-      expect(new_spy.marks.first.uid).to eq "56789"
+      expect(new_spy.marks.first.uid).to eq "1291877"
       expect(new_mark.spies.first.uid).to eq "12345"
     end
 
@@ -41,7 +41,7 @@ RSpec.describe Mark, type: :model do
 
     it "must have a unique username" do
       new_mark.save
-      bad_mark = Mark.new(username: "markisthebest", provider: "stuff", uid: "9394")
+      bad_mark = Mark.new(username: "jeffdesom", provider: "stuff", uid: "9394")
       expect(bad_mark.save).to eq false
     end
 
@@ -59,7 +59,7 @@ RSpec.describe Mark, type: :model do
 
     it "must have a unique uid" do
       new_mark.save
-      bad_mark = Mark.new(username: "stuff", provider: "stuff", uid: "56789")
+      bad_mark = Mark.new(username: "stuff", provider: "stuff", uid: "1291877")
       expect(bad_mark.save).to eq false
     end
   end
@@ -79,6 +79,28 @@ RSpec.describe Mark, type: :model do
       it "returns an error if the user doesn't exist" do
         expect(Mark.vimeo_lookup("fadjslfajdslfkjasdlkfj")).to eq "The requested user could not be found"
       end
+    end
+  end
+
+  describe "#self.video_lookup" do
+    context "users videos become Media instances" do
+      it "returns an array of videos" do
+        create(:mark)
+        expect(Mark.video_lookup("jeffdesom")).to be_an Array
+      end
+
+      it "returns instances of Media" do 
+        create(:mark)
+        array = Mark.video_lookup("jeffdesom")
+        expect(array[0]).to be_an_instance_of Medium
+      end
+
+      it "returns videos with all information" do 
+        create(:mark)
+        array = Mark.video_lookup("jeffdesom")
+        expect(array[0].link).to eq "https://vimeo.com/150264292"
+      end
+
     end
   end
 end
