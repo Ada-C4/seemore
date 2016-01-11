@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
       user.avatar_url = auth_hash["info"]["profile_image_url"]
       #user.subscriptions << Subscription.find(2)
       if user.save
-        user.subscriptions << Subscription.find(1)
+        #user.subscriptions << Subscription.find(1)
         user.save
         return user
       else

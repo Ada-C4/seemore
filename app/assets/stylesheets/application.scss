@@ -20,6 +20,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  font-family: 'VT323', ;
+}
 .timeline {
   list-style: none;
   padding: 20px 0 20px;
@@ -118,6 +121,7 @@
 
 .timeline > li.timeline-inverted > .timeline-panel {
   float: right;
+
 }
 
 .timeline > li.timeline-inverted > .timeline-panel:before {
@@ -151,6 +155,14 @@
 }
 
 .timeline-badge.info {
+  background-color: #5bc0de !important;
+}
+
+.timeline-badge-twitter {
+  background-color: #5bc0de !important;
+}
+
+.timeline-badge-vimeo {
   background-color: #5bc0de !important;
 }
 

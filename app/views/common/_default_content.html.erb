@@ -3,7 +3,7 @@
   <% @stories.each do |story| %>
     <% if story.subscription_id == 1 %>
       <li>
-        <div class="timeline-badge"><i class="fa fa-twitter"></i></div>
+        <div class="timeline-badge timeline-badge-twitter"><i class="fa fa-twitter"></i></div>
         <div class="timeline-panel">
           <div class="timeline-heading">
             <h4 class="timeline-title"><%= story.subscription.username %></h4>
@@ -16,7 +16,7 @@
       </li>
     <% elsif story.subscription_id == 2 %>
       <li class="timeline-inverted">
-        <div class="timeline-badge"><i class="fa fa-vimeo"></i></div>
+        <div class="timeline-badge timeline-badge-vimeo"><i class="fa fa-vimeo"></i></div>
         <div class="timeline-panel">
           <div class="timeline-heading">
             <h4 class="timeline-title"><%= story.subscription.username %></h4>
