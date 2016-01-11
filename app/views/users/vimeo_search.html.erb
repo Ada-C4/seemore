@@ -11,6 +11,11 @@ TODO: Display user profile pics
     <table width="100%">
       <tr>
         <td width="40%"><%= search["name"] %></td>
+        <td width="40%">
+          <% if search["pictures"]!= nil %>
+            <%= image_tag(search["pictures"]["sizes"][1]["link"], height: '75', width: '75') %>
+          <% end %>
+        </td>
         <td width="40%"><%= search["bio"]%></td>
       </tr>
     </table>
