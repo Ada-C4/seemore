@@ -13,17 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160111004836) do
 
-  create_table "instagram_users", force: :cascade do |t|
-    t.string   "instagram_id"
-    t.string   "screen_name"
-    t.string   "name"
-    t.string   "description"
-    t.string   "uri"
-    t.string   "profile_image_uri"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
   create_table "tweets", force: :cascade do |t|
     t.string   "twitter_id"
     t.string   "text"

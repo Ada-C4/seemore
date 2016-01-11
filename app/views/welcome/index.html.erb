@@ -7,12 +7,6 @@
 
 <%=raw @vid["html"] %>
 
-<ul>
-  <% @current_user.twitter_users.each do |user| %>
-    <% user.tweets.each do |tweet| %>
-      <li><%= user.screen_name %>:</li>
-      <li><%= tweet.text %></li>
-      <br>
-    <% end %>
-  <% end %>
-</ul>
+<% @feed.each do |feed_item| %>
+  <%= feed_item %>
+<% end %>
