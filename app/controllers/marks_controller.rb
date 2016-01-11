@@ -42,6 +42,13 @@ class MarksController < ApplicationController
 
   def vimeo_subscribe
     @mark = Mark.vimeo_lookup(params[:name])
+    
+    if Mark.find_by(username: @mark.username).nil?
+      @mark = Mark.vimeo_lookup(params[:name])
+    else
+      @mark = Mark.find_by(username: @mark.username)
+    end
+
     @mark.save
     current_spy.marks << @mark
     redirect_to marks_path
