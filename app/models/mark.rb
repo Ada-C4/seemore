@@ -11,7 +11,7 @@ class Mark < ActiveRecord::Base
     mark = Mark.find_by(username: username)
     auth = "Bearer #{ENV['VIMEO_ACCESS_TOKEN']}"
 
-    media = HTTParty.get("https://api.vimeo.com/users/#{username}/videos", headers: { "Authorization" => auth })
+    media = HTTParty.get("https://api.vimeo.com/users/#{username}/videos", query: {"page" => 1, "per_page" => 10}, headers: { "Authorization" => auth })
 
     parsed_media = JSON.parse(media)
     data = parsed_media["data"]
@@ -20,11 +20,11 @@ class Mark < ActiveRecord::Base
 
     data.each do |d|
       array << Medium.create(
-        mark_id: mark.id, 
-        media_url: d["link"], 
-        date_posted: d["created_time"], 
-        link: d["link"], 
-        text: d["description"], 
+        mark_id: mark.id,
+        media_url: d["link"],
+        date_posted: d["created_time"],
+        link: d["link"],
+        text: d["description"],
         title: d["name"],
         medium_type: "vimeo"
         )
