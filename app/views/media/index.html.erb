@@ -5,7 +5,7 @@
 </div>
 
 <% if !current_spy.nil? %>
-  <% if @marks.empty? %> 
+  <% if @marks.empty? %>
     <h1>Add Some Marks!</h1>
     <h3><%= link_to "Search Vimeo", search_path("vimeo"), class: "btn btn-default btn-lg" %></h3>
     <h3><%= link_to "Search Twitter", search_path("twitter"), class: "btn btn-default btn-lg" %></h3>
@@ -21,7 +21,7 @@
             <% array = Mark.video_lookup(m.username) %>
             <% array = array.sort_by { |k| k["date_posted"] } %>
             <% marks_count = array.length %>
-            
+
             <% array.each do |a| %>
               <% if marks_count % 2 == 0 %>
                 <li>
@@ -42,7 +42,7 @@
             <% marks_count -= 1 %>
             </li>
             <% end %>
-          <% else %> 
+          <% else %>
             TWEETS GO HERE!
           <% end %>
         <% end %>

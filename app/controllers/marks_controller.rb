@@ -51,6 +51,7 @@ class MarksController < ApplicationController
 
     @mark.save
     current_spy.marks << @mark
+    #only take 10 media
     redirect_to marks_path
   end
 
@@ -65,6 +66,7 @@ class MarksController < ApplicationController
 
     @mark.save
     current_spy.marks << @mark
+    #only take 10 media
     redirect_to marks_path
   end
 
