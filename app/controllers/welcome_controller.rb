@@ -14,16 +14,16 @@ class WelcomeController < ApplicationController
 end
 
 def feed
-   @feed = []
+   feed = []
    @current_user.twitter_users.each do |user|
      user.tweets.each do |tweet|
-         @feed.push(tweet)
+         feed.push(tweet)
      end
    end
    @current_user.vimeo_users.each do |user|
      user.videos.each do |video|
-       @feed.push(video)
+       feed.push(video)
      end
    end
-   return @feed
+   return feed
  end
