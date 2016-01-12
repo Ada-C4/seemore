@@ -33,7 +33,7 @@ body {
 
 .narrower-holder {
   margin: 0 auto;
-  width: 50%;
+  width: 60%;
 }
 
 .title {
@@ -45,6 +45,12 @@ body {
 .title-link {
   font-size: 3em;
   color: #84694f;
+}
+
+.twitter-tweet {
+  margin: 0 auto;
+  min-width: 220px !important;
+  max-width: 700px !important;
 }
 
 a:hover {
