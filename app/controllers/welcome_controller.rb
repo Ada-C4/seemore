@@ -25,5 +25,8 @@ def feed
        feed.push(video)
      end
    end
-   return feed
+   sorted = feed.sort_by(&:provider_created_at)
+   trimmed = sorted[0...50]
+   raise
+   return trimmed
  end
