@@ -1,10 +1,11 @@
 <div class="container">
-  <h1 class="search-results">These are your search results:</h1>
+  <% if !@results.empty? %>
+    <h1 class="search-results">These are your search results:</h1>
     <ul>
       <% @results.each do |result| %>
         <li class="listed-users">
           <% if twitter_result? %>
-          <%= result.screen_name %>
+            <%= result.screen_name %>
             <% if result.protected? %>
               <p>This Twitter user is protected; you cannot subscribe to their tweets.</p>
             <% else %>
@@ -14,7 +15,10 @@
             <%= result["name"] %>
             <%= button_to "Subscribe", subscribe_vimeo_path, method: :patch, class: 'btn btn-primary', params: { uri: result["uri"] } %>
           <% end %>
-        <br />
+          <br />
         </li>
       <% end %>
     </ul>
+    <% else %>
+     <h1 class="search-results">No results match your search!</h1>
+    <% end %>
