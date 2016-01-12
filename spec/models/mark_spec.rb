@@ -100,7 +100,6 @@ RSpec.describe Mark, type: :model do
         array = Mark.video_lookup("jeffdesom")
         expect(array[0].link).to eq "https://vimeo.com/150264292"
       end
-
     end
   end
 end

@@ -1,12 +1,12 @@
 FactoryGirl.define do
-  factory :spy do 
+  factory :spy do
     username "spy"
     image_url "spy.jpeg"
     uid "12345"
     provider "developer"
   end
 
-  factory :mark do 
+  factory :mark do
     uid "1291877"
     username "jeffdesom"
     name "Jeff Desom"
