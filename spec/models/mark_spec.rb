@@ -84,13 +84,19 @@ RSpec.describe Mark, type: :model do
         expect(Mark.video_lookup("jeffdesom")).to be_an Array
       end
 
-      it "returns instances of Media" do 
+      it "returns an array of videos less than or equal to 10" do
+        create(:mark)
+        array = Mark.video_lookup("johnmervin")
+        expect(array.count).to be > 11
+      end
+
+      it "returns instances of Media" do
         create(:mark)
         array = Mark.video_lookup("jeffdesom")
         expect(array[0]).to be_an_instance_of Medium
       end
 
-      it "returns videos with all information" do 
+      it "returns videos with all information" do
         create(:mark)
         array = Mark.video_lookup("jeffdesom")
         expect(array[0].link).to eq "https://vimeo.com/150264292"
