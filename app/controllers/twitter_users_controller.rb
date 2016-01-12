@@ -24,6 +24,9 @@ class TwitterUsersController < ApplicationController
     redirect_to :root
   end
 
+  def unsubscribe
+  end
+
   private
 
   def twitter_user_exists?
