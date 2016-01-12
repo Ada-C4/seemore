@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111004836) do
+ActiveRecord::Schema.define(version: 20160111234435) do
 
   create_table "tweets", force: :cascade do |t|
     t.string   "twitter_id"
     t.string   "text"
     t.string   "uri"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "twitter_user_id"
+    t.datetime "twitter_created_at"
+    t.string   "embed"
   end
 
   add_index "tweets", ["twitter_user_id"], name: "index_tweets_on_twitter_user_id"
@@ -64,10 +66,12 @@ ActiveRecord::Schema.define(version: 20160111004836) do
   create_table "videos", force: :cascade do |t|
     t.string   "uri"
     t.string   "title"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "vimeo_user_id"
     t.string   "vimeo_video_id"
+    t.datetime "vimeo_created_at"
+    t.string   "embed"
   end
 
   add_index "videos", ["vimeo_user_id"], name: "index_videos_on_vimeo_user_id"
