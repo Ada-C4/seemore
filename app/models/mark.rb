@@ -17,6 +17,7 @@ class Mark < ActiveRecord::Base
     data = parsed_media["data"]
 
     array = []
+    @media = Medium.all
 
     data.each do |d|
       Medium.create(
