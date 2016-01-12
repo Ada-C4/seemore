@@ -5,8 +5,13 @@ match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post]
 
 get '/vimeo_results' => 'users#vimeo_search', as: :vimeo_search
 get '/twitter_results' => 'users#twitter_search', as: :twitter_search
+
+get '/vimeo_results/users/:id' => 'users#vimeo_search_user', as: :vimeo_search_user
 get '/twitter_results/:id' => 'users#twitter_search_user', as: :twitter_search_user
+
+post '/vimeo_results/users/:id' => 'users#vimeo_subscribe', as: :vimeo_subscribe
 post '/twitter_results/:id' => 'users#twitter_subscribe', as: :twitter_subscribe
+
 
 get '/logout' => 'sessions#destroy'
 
