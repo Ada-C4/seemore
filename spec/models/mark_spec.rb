@@ -77,6 +77,21 @@ RSpec.describe Mark, type: :model do
     end
   end
 
+  describe "#self.vimeo_lookup" do
+    context "search results exist" do
+      it "returns an array of marks" do
+        expect(Mark.vimeo_lookup("hi")).to be_an_instance_of Array
+        expect(Mark.vimeo_lookup("hi")[0]).to be_an_instance_of Mark
+      end
+    end
+
+    context "search results do not exist" do
+      it "returns an empty array if no results exist" do
+        expect(Mark.vimeo_lookup("fadjslfajdslfkjasdlkfj")).to eq []
+      end
+    end
+  end
+
   describe "#self.video_lookup" do
     context "users videos become Media instances" do
       it "returns an array of videos" do
