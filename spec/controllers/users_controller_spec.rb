@@ -8,55 +8,47 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-describe "GET 'twitter_search'" do
+  describe "GET 'twitter_search'" do
     let(:params) do
     {
       search: "justinbieber"
     }
+    end
+
+    it "renders the twitter_search view" do
+      get :twitter_search, params
+      expect(subject).to render_template :twitter_search
+    end
   end
 
-  it "renders the twitter_search view" do
-    get :twitter_search, params
-    expect(subject).to render_template :twitter_search
-  end
-end
+  describe "GET 'twitter_search_user'" do
+    let(:params) do
+      {
+        id: "justinbieber"
+      }
+    end
 
-describe "GET 'twitter_search_user'" do
-  let(:params) do
-    {
-      id: "justinbieber"
-    }
-  end
+    let!(:user) do
+      User.create(
+      email:    "a@b.com",
+      username: "Ada",
+      uid:      "1234",
+      provider: "twitter")
+    end
 
-  let(:user) do
-    { User.new(
-    email:    "a@b.com",
-    username: "Ada",
-    uid:      "1234",
-    provider: "twitter")
-  }
-
-  let(:session) do
-    {
-      user_id: 1
-    }
+    it "renders the twitter_search_user view" do
+      session[:user_id] = user.id
+      get :twitter_search_user, params
+      expect(subject).to render_template :twitter_search_user
+    end
   end
 
-  it "renders the twitter_search_user view" do
-    user
-    session
-    get :twitter_search_user, params
-    expect(subject).to render_template :twitter_search_user
-  end
-
-end
-
-describe "POST 'twitter_subscribe'" do
-  let(:params) do
-    {
-      id: "justinbieber"
-    }
-  end
+  describe "POST 'twitter_subscribe'" do
+    let(:params) do
+      {
+        id: "justinbieber"
+      }
+    end
 
     it "subscribes to a new subscription" do
       expect { post :twitter_subscribe, params }.to change(Subscription, :count).by(1)
@@ -67,5 +59,5 @@ describe "POST 'twitter_subscribe'" do
       expect { post :twitter_subscribe, params }.to change(Story, :count).by(20)
       expect(subject).to redirect_to root_path
     end
-end
+  end
 end
