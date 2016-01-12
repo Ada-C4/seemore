@@ -38,6 +38,10 @@ RSpec.describe TwitterUsersController, type: :controller do
     User.create(uid:"1234",provider:"developer",name:"Test")
   end
 
+  let(:existing_TwitterUser) do
+    TwitterUser.create(twitter_id: "3320848554", screen_name: "kdefliese", name: "Katherine Defliese", uri: "https://twitter.com/kdefliese")
+  end
+
 
   describe "PATCH 'subscribe'" do
     before(:each) do
@@ -48,7 +52,16 @@ RSpec.describe TwitterUsersController, type: :controller do
       end
     end
 
-    it "successfully creates a new TwitterUser if the TwitterUser does not exist" do
+    # it "successfully creates a new TwitterUser if the TwitterUser does not exist" do
+    #   patch :subscribe, params
+    #   expect(TwitterUser.all.length).to eq 1
+    #   expect(response.status).to eq 302
+    #   expect(subject).to redirect_to :root
+    # end
+
+    it "does not create a new TwitterUser if the TwitterUser already exists" do
+      existing_TwitterUser
+      patch :subscribe, params
       expect(TwitterUser.all.length).to eq 1
       expect(response.status).to eq 302
       expect(subject).to redirect_to :root
@@ -62,6 +75,13 @@ RSpec.describe TwitterUsersController, type: :controller do
 
     it "creates Tweets for new TwitterUsers" do
       expect(TwitterUser.first.tweets).not_to be_empty
+      expect(response.status).to eq 302
+      expect(subject).to redirect_to :root
+    end
+
+    it "does not create Tweets if the TwitterUser already exists" do
+      existing_TwitterUser
+      expect(TwitterUser.first.tweets).to be_empty
       expect(response.status).to eq 302
       expect(subject).to redirect_to :root
     end
@@ -83,6 +103,27 @@ RSpec.describe TwitterUsersController, type: :controller do
       expect(subject).to redirect_to :root
     end
 
+    it "will not associate a User with a TwitterUser if they are already associated" do
+      existing_TwitterUser
+      user.twitter_users << existing_TwitterUser
+      patch :subscribe, params
+      expect(user.twitter_users.length).to eq 1
+      expect(flash[:error]).to eq "You are already subscribed to this user."
+      expect(subject).to redirect_to :root
+    end
+
+  end
+
+  describe "PATCH 'unsubscribe'" do
+    before(:each) do
+      session[:user_id] = user.id
+    end
+
+    it "removes the association between the User and the TwitterUser" do
+      user.twitter_users << existing_TwitterUser
+      patch :unsubscribe, params
+      expect(subject).to redirect_to :subscriptions
+    end
   end
 
 end

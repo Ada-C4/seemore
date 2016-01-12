@@ -3,6 +3,6 @@ class Tweet < ActiveRecord::Base
   validates :twitter_id, presence: true
   validates :text, presence: true
   validates :uri, presence: true
-  validates :twitter_created_at, presence: true
+  validates :provider_created_at, presence: true
   validates :embed, presence: true
 end

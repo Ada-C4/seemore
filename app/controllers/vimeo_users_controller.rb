@@ -10,9 +10,21 @@ class VimeoUsersController < ApplicationController
       create_videos(@vim_uri, new_user)
     end
     @vimeo_user = VimeoUser.find_by(uri: @vim_uri)
-    #subscribe to vimeo_user
-    @current_user.vimeo_users << @vimeo_user
+    if @current_user.vimeo_users.include?(@vimeo_user)
+      #if current_user is already subscribed to this vimeo_user, show error
+      flash[:error] = "You are already subscribed to this user."
+    else
+      # subscribe current_user to vimeo_user
+      @current_user.vimeo_users << @vimeo_user
+    end
     redirect_to :root
+  end
+
+  def unsubscribe
+    @uri = params[:uri]
+    @vimeo_user = VimeoUser.find_by(uri: @uri)
+    @current_user.vimeo_users.delete(@vimeo_user)
+    redirect_to :subscriptions
   end
 
   private
@@ -51,7 +63,7 @@ class VimeoUsersController < ApplicationController
         title: video["title"],
         vimeo_video_id: video["uri"].match(/[0-9]+$/)[0],
         vimeo_user_id: vimeo_user.id,
-        vimeo_created_at: video["created_time"],
+        provider_created_at: video["created_time"],
         embed: video["embed"]["html"]
       }
       Video.create(video_hash)
