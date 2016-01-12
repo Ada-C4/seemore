@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post 'users' => 'users#create'
   patch 'subscribe_twitter' => 'twitter_users#subscribe'
   patch 'subscribe_vimeo' => 'vimeo_users#subscribe'
+  patch 'unsubscribe_twitter' => 'twitter_users#unsubscribe'
+  patch 'unsubscribe_vimeo' => 'vimeo_users#unsubscribe'
   get 'search_results' => 'search#index'
   get 'subscriptions' => 'users#subscriptions'
 
