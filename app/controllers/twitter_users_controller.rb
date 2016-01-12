@@ -4,14 +4,18 @@ class TwitterUsersController < ApplicationController
 
   def subscribe
     @screen_name = params[:screen_name]
-    if !twitter_user_exists?
+    if !twitter_user_exists? && !twitter_user_protected?
       # if twitter_user doesn't exist, create twitter_user and their tweets
       create_twitter_user(@screen_name)
       create_tweets(@twitter_user)
     end
-    @twitter_user = TwitterUser.find_by(screen_name: @screen_name)
-    #subscribe to twitter_user
-    @current_user.twitter_users << @twitter_user
+    if !twitter_user_protected?
+      @twitter_user = TwitterUser.find_by(screen_name: @screen_name)
+      #subscribe to twitter_user
+      @current_user.twitter_users << @twitter_user
+    else
+      flash[:error] = "That user is protected; you cannot subscribe to their tweets."
+    end
     redirect_to :root
   end
 
@@ -23,6 +27,10 @@ class TwitterUsersController < ApplicationController
     else
       return false
     end
+  end
+
+  def twitter_user_protected?
+    $client.user(@screen_name).protected?
   end
 
   def create_twitter_user(screen_name)
