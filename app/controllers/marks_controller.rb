@@ -70,6 +70,9 @@ class MarksController < ApplicationController
 
     @mark.save
     current_spy.marks << @mark
+
+    Mark.video_lookup(@mark.username)
+
     redirect_to marks_path
   end
 
@@ -84,6 +87,18 @@ class MarksController < ApplicationController
 
     @mark.save
     current_spy.marks << @mark
+
+    @tweets = twitter.user_timeline[0..9]
+    @tweets.each do |tweet|
+      Medium.create(
+        mark_id: @mark.id, 
+        date_posted: tweet.created_at, 
+        link: tweet.source, 
+        text: tweet.text, 
+        medium_type: "twitter"
+        )
+    end
+
     redirect_to marks_path
   end
 

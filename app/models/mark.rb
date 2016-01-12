@@ -19,7 +19,7 @@ class Mark < ActiveRecord::Base
     array = []
 
     data.each do |d|
-      array << Medium.create(
+      Medium.create(
         mark_id: mark.id, 
         media_url: d["link"], 
         date_posted: d["created_time"], 
@@ -29,8 +29,6 @@ class Mark < ActiveRecord::Base
         medium_type: "vimeo"
         )
     end
-
-    return array
   end
 
   def self.vimeo_lookup(search_term)
