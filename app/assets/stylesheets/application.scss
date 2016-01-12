@@ -19,7 +19,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-.form-inline {
+.form {
   padding: 15px;
   border: solid #84694f 3px;
   margin-top: 20px;
@@ -50,9 +50,17 @@ img {
   margin-top: 28px;
 }
 
-.search-button {
-  position: relative;
-  left: 20%;
+// .search-button {
+//   position: relative;
+//   left: 20%;
+// }
+
+@media (max-width: 1200px) {
+
+    .paws {
+        display: none;
+    }
+
 }
 
 .listed-users {
@@ -66,4 +74,8 @@ img {
 
 .search-results {
   color: #645555;
+}
+
+.paws {
+  margin-left: 40px;
 }
