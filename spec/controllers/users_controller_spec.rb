@@ -70,4 +70,45 @@ RSpec.describe UsersController, type: :controller do
       expect(subject).to redirect_to root_path
     end
   end
+
+  describe "GET 'vimeo_search'" do
+    let(:params) do
+    {
+      search: "justinbieber"
+    }
+    end
+
+    it "renders the vimeo_search view" do
+      get :vimeo_search, params
+      expect(subject).to render_template :vimeo_search
+    end
+  end
+
+  describe "POST 'vimeo_subscribe'" do
+    let (:params) do
+      {
+        id: "4943031"
+      }
+    end
+
+    let!(:user) do
+      User.create(
+      email:    "a@b.com",
+      username: "Ada",
+      uid:      "1234",
+      provider: "vimeo")
+    end
+
+    it "subscribes to a new subscription" do
+      session[:user_id] = user.id
+      expect { post :vimeo_subscribe, params }.to change(Subscription, :count).by(1)
+      expect(subject).to redirect_to root_path
+    end
+
+    it "creates new stories" do
+      session[:user_id] = user.id
+      expect { post :vimeo_subscribe, params }.to change(Story, :count).by(25)
+      expect(subject).to redirect_to root_path
+    end
+  end
 end
