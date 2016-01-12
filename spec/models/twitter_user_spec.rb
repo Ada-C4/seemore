@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TwitterUser, type: :model do
-  let(:twitter_user) { TwitterUser.new(
+  let(:twitter_user) { TwitterUser.create(
     twitter_id:      "12345678",
     screen_name: "kdefliese",
     name: "Katherine Defliese",
