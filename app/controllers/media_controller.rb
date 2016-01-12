@@ -11,28 +11,27 @@ class MediaController < ApplicationController
       @marks.each do |mark|
         if mark.provider == "twitter"
           @tweets = twitter.user_timeline(mark.username, count: 20)
-            # raise
           @tweets.each do |tweet|
-            if Medium.find_by(link: tweet.source).nil?
+            # binding.pry
+            if Medium.find_by(uid: tweet.id).nil?
               Medium.create(
                 mark_id: mark.id, 
                 date_posted: tweet.created_at, 
                 link: tweet.source, 
                 text: tweet.text, 
-                medium_type: "twitter"
+                medium_type: "twitter",
+                uid: tweet.id
                 )
+              # binding.pry
             end
-            # binding.pry
           end
-        elsif mark.provider == "vimeo"
-          Mark.video_lookup(mark.username)
-        end
-        # binding.pry
-      end
 
-      @media = current_spy.media.sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+        elsif mark.provider == "vimeo"
+          Medium.video_lookup(mark.username)
+        end
+      end
       # raise
-      # binding.pry
+      @media = current_spy.media.sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
     end
   end
 end
