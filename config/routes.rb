@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   patch 'subscribe_twitter' => 'twitter_users#subscribe'
   patch 'subscribe_vimeo' => 'vimeo_users#subscribe'
   get 'search_results' => 'search#index'
+  get 'subscriptions' => 'users#subscriptions'
 
 
 
