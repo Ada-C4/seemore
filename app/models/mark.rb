@@ -7,32 +7,6 @@ class Mark < ActiveRecord::Base
   validates :username, :provider, :uid, presence: true
   validates :username, :uid, uniqueness: true
 
-  def self.video_lookup(username)
-    mark = Mark.find_by(username: username)
-    auth = "Bearer #{ENV['VIMEO_ACCESS_TOKEN']}"
-
-    media = HTTParty.get("https://api.vimeo.com/users/#{username}/videos", query: {"page" => 1, "per_page" => 10}, headers: { "Authorization" => auth })
-
-    parsed_media = JSON.parse(media)
-    data = parsed_media["data"]
-
-    @media = Medium.all
-
-    data.each do |d|
-      if Medium.find_by(link: d["link"]).nil?
-        Medium.create(
-          mark_id: mark.id,
-          media_url: d["link"],
-          date_posted: d["created_time"],
-          link: d["link"],
-          text: d["description"],
-          title: d["name"],
-          medium_type: "vimeo"
-          )
-      end
-    end
-  end
-
   def self.vimeo_lookup(search_term)
     auth = "Bearer #{ENV['VIMEO_ACCESS_TOKEN']}"
     marks = HTTParty.get("https://api.vimeo.com/users?query=#{search_term}/", headers: { "Authorization" => auth })

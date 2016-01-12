@@ -14,3 +14,23 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+window.onload = (function(){
+
+  var tweetList = $(".tweet");
+
+  for (var i = 0; i < tweetList.length; i++) {
+    var id = tweetList[i].getAttribute("tweetID");
+
+    twttr.widgets.createTweet(
+      id, tweetList[i],
+      {
+        conversation : 'none',    // or all
+        cards        : 'visible',
+        linkColor    : 'black', // default is blue
+        theme        : 'light',    // or dark
+        width        : '550', // amount in pixels, between 250 and 550
+        align        : 'center' // float the Tweet left, right, or center
+      });
+  }
+});

@@ -1,11 +1,21 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|News+Gothic|Inconsolata|Droid+Sans|Roboto|Cabin|Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|News+Gothic|Inconsolata|Droid+Sans|Roboto|Cabin|Open+Sans|Raleway|Poiret+One');
 @import url(https://fonts.googleapis.com/css?family=Ubuntu);
+
+body {
+  background-color: #e6e6e6;
+}
 
 .logo {
   font-size: 250px;
+}
+
+
+.navbar-header {
+  font-family: Raleway, monospace;
+  color: white;
 }
 
 .company {
@@ -15,10 +25,11 @@
 }
 
 h2 {
-  font-size: 50px;
-  font-family: Inconsolata;
-  font-weight: bold;
+  padding-top: 60px;
+  font-size: 30px;
+  font-family: Raleway, monospace;
   text-align: center;
+  color: black;
 }
 
 h2:hover {
@@ -26,9 +37,12 @@ h2:hover {
 }
 
 h1 {
-  font-family: Inconsolata;
-  font-weight: bold;
+  padding-top: 60px;
+  font-family: Poiret One, monospace;
   text-align: center;
+  font-size: 70px;
+  color: black;
+  margin: auto;
   font-size: 55px;
 }
 
@@ -48,7 +62,7 @@ h1 {
         position: absolute;
         content: " ";
         width: 3px;
-        background-color: #eeeeee;
+        background-color: white;
         left: 50%;
         margin-left: -1.5px;
     }
@@ -111,10 +125,10 @@ h1 {
                 top: 27px;
                 right: -14px;
                 display: inline-block;
-                border-top: 14px solid transparent;
+                border-top: 14px white;
                 border-left: 14px solid #fff;
                 border-right: 0 solid #fff;
-                border-bottom: 14px solid transparent;
+                border-bottom: 14px white;
                 content: " ";
             }
 
@@ -177,7 +191,7 @@ h1 {
         margin-top: 5px;
     }
 
-@media (max-width: 767px) {
+@media (max-width: 1200px) {
     ul.timeline:before {
         left: 40px;
     }
@@ -212,6 +226,8 @@ h1 {
             right: auto;
         }
 }
+<<<<<<< HEAD
+=======
 
 .profile-image {
   border-radius: 50%;
