@@ -6,8 +6,6 @@ class WelcomeController < ApplicationController
     if @current_user.nil?
       redirect_to login_path
     else
-      @twitter_user = TwitterUser.new()
-      @vid = get_video(145516416)
       @feed = make_feed(@current_user)
     end
   end
