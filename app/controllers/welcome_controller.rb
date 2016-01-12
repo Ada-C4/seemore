@@ -9,6 +9,5 @@ class WelcomeController < ApplicationController
       @twitter_user = TwitterUser.new()
       @vid = get_video(145516416)
     end
-    raise
   end
 end
