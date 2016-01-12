@@ -26,7 +26,7 @@ class MarksController < ApplicationController
     marks = []
     users = twitter.user_search(search_term)
     users.each do |user|
-      mark = Mark.new(
+      mark = Mark.create(
         username: user.screen_name,
         name: user.name,
         bio: user.description,
@@ -37,6 +37,7 @@ class MarksController < ApplicationController
         provider: "twitter"
       )
       marks.push(mark)
+      # raise
     end
     return marks
   end
@@ -67,7 +68,7 @@ class MarksController < ApplicationController
 
     @mark.save
     current_spy.marks << @mark
-    #only take 10 media
+
     redirect_to marks_path
   end
 
@@ -82,7 +83,7 @@ class MarksController < ApplicationController
 
     @mark.save
     current_spy.marks << @mark
-    #only take 10 media
+    
     redirect_to marks_path
   end
 

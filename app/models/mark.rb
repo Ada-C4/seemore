@@ -16,11 +16,11 @@ class Mark < ActiveRecord::Base
     parsed_media = JSON.parse(media)
     data = parsed_media["data"]
 
-    array = []
+    @media = Medium.all
 
     data.each do |d|
       if Medium.find_by(link: d["link"]).nil?
-        array << Medium.create(
+        Medium.create(
           mark_id: mark.id,
           media_url: d["link"],
           date_posted: d["created_time"],
@@ -29,11 +29,8 @@ class Mark < ActiveRecord::Base
           title: d["name"],
           medium_type: "vimeo"
           )
-      else
-        array << Medium.find_by(link: d["link"])
       end
     end
-    return array
   end
 
   def self.vimeo_lookup(search_term)

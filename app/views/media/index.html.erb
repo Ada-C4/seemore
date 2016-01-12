@@ -1,3 +1,5 @@
+<!-- Flash notifications -->
+
 <div class="col-md-12 text-center">
 <% if !flash[:error].nil? %>
   <div class="alert alert-danger">
@@ -13,46 +15,48 @@
     <h3><%= link_to "Search Twitter", search_path("twitter"), class: "btn btn-default btn-lg" %></h3>
   <% else %>
     <div class="container">
+      <!-- Header -->
       <div class="page-header">
         <h1 id="timeline">Track Your Marks</h1>
       </div>
 
       <ul class="timeline">
-        <% @marks.each do |m| %>
-          <% if m.provider == "vimeo" %>
-            <% array = Mark.video_lookup(m.username) %>
-            <% array = array.sort_by { |k| k["date_posted"] } %>
-            <% marks_count = array.length %>
+        <% media_count = @media.length %>
 
-            <% array.each do |a| %>
-              <% if marks_count % 2 == 0 %>
-                <li>
-              <% else %>
-                <li class="timeline-inverted">
-              <% end %>
+        <% @media.each do |m| %>
 
-                <div class="timeline-badge <%= m.provider %>"><i class="fa fa-<%= m.provider %>"></i></div>
-                  <div class="timeline-panel">
-                    <div class="timeline-heading">
-                      <h4 class="timeline-title"><%= a.title %> by <%= a.mark.name %></h4>
-                      <p><small class="text-muted"><i class="fa fa-clock-o"></i> <%= distance_of_time_in_words(DateTime.strptime(a.date_posted), Time.now) %> ago</small></p>
-                      <iframe src="https://player.vimeo.com/video/<%= a.link.gsub(/[^\d]/, '') %>?badge=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    </div>
-                  <div class="timeline-body">
-                </div>
-              </div>
-            <% marks_count -= 1 %>
-            </li>
-            <% end %>
+          <% if media_count % 2 == 0 %>
+            <li>
           <% else %>
-            TWEETS GO HERE!
+            <li class="timeline-inverted">
           <% end %>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-<% else %>
 
+            <div class="timeline-badge <%= m.medium_type %>"><i class="fa fa-<%= m.medium_type %>"></i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+
+                <% if m.medium_type == "vimeo" %>
+                  <h4 class="timeline-title"><%= m.title %> by <%= m.mark.name %></h4>
+                  <p><small class="text-muted"><i class="fa fa-clock-o"></i> <%= distance_of_time_in_words(DateTime.strptime(m.date_posted), Time.now) %> ago</small></p>
+                  <iframe src="https://player.vimeo.com/video/<%= m.link.gsub(/[^\d]/, '') %>?badge=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+                <% elsif m.medium_type == "twitter" %>
+                  <h4 class="timeline-title">Tweet by <%= m.mark.name %></h4>
+                  <p><small class="text-muted"><i class="fa fa-clock-o"></i> <%= distance_of_time_in_words(DateTime.parse(m.date_posted), Time.now) %> ago</small></p>
+                  <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr"><%= m.text %></p>&mdash; <%= m.mark.name %> (@<%= m.mark.username %>) <a href="<%= m.link %>"></a></blockquote>
+                  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <% end %>
+
+                </div>
+              <div class="timeline-body">
+            </div>
+          </li>
+          <% media_count -= 1 %>
+        <% end %> 
+      <% end %>
+    </ul>
+  </div>
+<% else %>
   <h1><div class="logo">AP<%= fa_icon "eye" %> SPY</div></h1>
   <h1><a class="company" href="/auth/twitter"><%= fa_icon "twitter" %></a>
   <a class="company" href="/auth/vimeo"><%= fa_icon "vimeo" %></a></h1>
