@@ -111,10 +111,5 @@ class UsersController < ApplicationController
     @curr_user = User.find(session[:user_id])
     subscriptions = @curr_user.subscriptions
     @user_name = params[:id]
-    #@user_tweets = twitter.user_timeline(@user_name)
-    #uid = @user_tweets[0].user.id
-    #subscrip = Subscription.find(uid, "twitter")
-#
   end
-
 end

@@ -84,6 +84,28 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe "GET 'vimeo_search_user'" do
+    let(:params) do
+      {
+        id: "4943031"
+      }
+    end
+
+    let!(:user) do
+      User.create(
+      email:    "a@b.com",
+      username: "Ada",
+      uid:      "1234",
+      provider: "twitter")
+    end
+
+    it "renders the vimeo_search_user view" do
+      session[:user_id] = user.id
+      get :vimeo_search_user, params
+      expect(subject).to render_template :vimeo_search_user
+    end
+  end
+
   describe "POST 'vimeo_subscribe'" do
     let (:params) do
       {
