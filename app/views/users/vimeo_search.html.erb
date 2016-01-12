@@ -11,9 +11,9 @@ TODO: Add "No results found message when no results (does not happen when there 
   <% @vimeo_results.each do |search| %>
   <% photo = search["pictures"] %>
   <% videos = search["metadata"]["connections"]["videos"]["total"] %>
-  <% uid = search["uri"].byteslice(7..-1) %>
-  <% embed = HTTParty.get("https://api.vimeo.com/users/#{uid}/videos",  headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response %>
     <% if videos != 0 %>
+      <% uid = search["uri"].byteslice(7..-1) %>
+      <% embed = HTTParty.get("https://api.vimeo.com/users/#{uid}/videos",  headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response %>
       <% public_embed = embed["data"][0]["privacy"]["embed"] %>
       <%  if public_embed == "public" %>
       <div class="well well-lg">
