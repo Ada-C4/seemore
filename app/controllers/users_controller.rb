@@ -60,6 +60,7 @@ class UsersController < ApplicationController
     @tweets.each do |tweet|
       uid = tweet.id
       text = tweet.text
+      #media_content = tweet.media[0].media_url.host + tweet.media[0].media_url.path
       subscription_id = subscription.id
       post_time = DateTime.parse(tweet.created_at.to_s)
       Story.find_or_create(uid, text, subscription_id, post_time)

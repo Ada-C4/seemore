@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20160108003824) do
     t.string   "uid"
     t.string   "text"
     t.string   "url"
+    t.string   "media_content"
     t.integer  "subscription_id"
     t.datetime "post_time"
     t.datetime "created_at",      null: false
