@@ -71,5 +71,15 @@ RSpec.describe VimeoUsersController, type: :controller do
       expect(User.first.vimeo_users).to include(VimeoUser.first)
       expect(subject).to redirect_to :root
     end
+
+    it "will not associate a User with a VimeoUser if they are already associated" do
+      existing_VimeoUser = VimeoUser.create(uri: "/users/1111111", name: "audrey",description: "I love licorice", location: "Seattle, WA", videos_uri: "/users/1111111/videos", profile_images_uri: "/users/1111111/pictures")
+      user.vimeo_users << existing_VimeoUser
+      patch :subscribe, params
+      expect(user.vimeo_users.length).to eq 1
+      expect(flash[:error]).to eq "You are already subscribed to this user."
+      expect(subject).to redirect_to :root
+    end
+
   end
 end
