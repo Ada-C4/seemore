@@ -60,12 +60,11 @@ RSpec.describe TwitterUsersController, type: :controller do
         expect(subject).to redirect_to :root
     end
 
-    # it "creates Tweets for new TwitterUsers" do
-    #   patch :subscribe, params
-    #   expect(TwitterUser.first.tweets).not_to be_empty
-    #   expect(response.status).to eq 302
-    #   expect(subject).to redirect_to :root
-    # end
+    it "creates Tweets for new TwitterUsers" do
+      expect(TwitterUser.first.tweets).not_to be_empty
+      expect(response.status).to eq 302
+      expect(subject).to redirect_to :root
+    end
 
 # I think this spec doesn't have the code written to make it pass:
     # it "does not create Tweets if the TwitterUser already exists" do
@@ -74,11 +73,10 @@ RSpec.describe TwitterUsersController, type: :controller do
     #   expect(subject).to redirect_to :root
     # end
 
-    # it "associates a TwitterUser with a User" do
-    #   patch :subscribe, params
-    #   expect(User.first.twitter_users).to include(TwitterUser.first)
-    #   expect(subject).to redirect_to :root
-    # end
+    it "associates a TwitterUser with a User" do
+      expect(User.first.twitter_users).to include(TwitterUser.first)
+      expect(subject).to redirect_to :root
+    end
 
     it "will not create a TwitterUser if the Twitter account is protected" do
       expect(flash[:error]).to eq "That user is protected; you cannot subscribe to their tweets."
