@@ -9,62 +9,49 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @sample_stories = twitter.user_timeline("Schwarzenegger")
-    # @vimeo_stories = Vimeo::Simple::User.videos("15397797")
+    # Updates existing subscriptions with new content
     Subscription.update_stories
+
     @stories = []
     if !@current_user
-      @stories.push(Story.where(subscription_id: 1))
-      @stories.push(Story.where(subscription_id: 2))
-      @stories.flatten!
+      @stories = UsersHelper.default_content
     else
-      user = User.find(session[:user_id])
-      user.subscriptions.each do |subscription|
-        subscription.stories.each do |story|
-          @stories.push(story)
-        end
-      end
+      @stories = UsersHelper.user_content(@current_user)
     end
     @stories.sort_by! { |story| story[:post_time] }.reverse!
   end
 
   def twitter_search
     search_term = params[:search]
-    @search_results = twitter.user_search(search_term).take(20)
+    @search_results = twitter.user_search(search_term).take(10)
   end
 
   def twitter_search_user
-    @curr_user = User.find(session[:user_id])
-    subscriptions = @curr_user.subscriptions
+    subscriptions = @current_user.subscriptions
     @user_name = params[:id]
     @user_tweets = twitter.user_timeline(@user_name)
     uid = @user_tweets[0].user.id
-    subscrip = Subscription.find(uid, "twitter")
-    if !subscriptions.include? subscrip
+    subscription = Subscription.find(uid, "twitter")
+    if !subscriptions.include? subscription
       @button = true
     end
   end
 
   def twitter_subscribe
-    @user_name = params[:id]
-    @tweets = twitter.user_timeline(@user_name)
-    uid = @tweets[0].user.id
-    provider = "twitter"
-    username = @tweets[0].user.screen_name
-    avatar_url = @tweets[0].user.profile_image_url
+    twitter_user = params[:id]
+    tweets, uid, provider, username, avatar_url = UsersHelper.twitter_subscription_info(twitter_user)
     subscription = Subscription.find_or_create(uid, provider, username, avatar_url)
-    user = User.find(session[:user_id])
-    if !user.subscriptions.include? subscription
-      user.subscriptions << subscription
+
+    if !@current_user.subscriptions.include? subscription
+      @current_user.subscriptions << subscription
     end
-    @tweets.each do |tweet|
+
+    tweets.each do |tweet|
       uid = tweet.id
       text = tweet.text
-      #media_content = tweet.media[0].media_url.host + tweet.media[0].media_url.path
       subscription_id = subscription.id
       post_time = DateTime.parse(tweet.created_at.to_s)
       Story.find_or_create(uid, text, subscription_id, post_time)
-      #Story.create(uid: tweet.id, text: tweet.text, subscription_id: subscription.id, post_time: DateTime.parse(tweet.created_at.to_s))
     end
     redirect_to root_path
   end
@@ -109,13 +96,8 @@ class UsersController < ApplicationController
   end
 
   def vimeo_search_user
-    @curr_user = User.find(session[:user_id])
-    subscriptions = @curr_user.subscriptions
+    subscriptions = @current_user.subscriptions
     @user_name = params[:id]
-    #@user_tweets = twitter.user_timeline(@user_name)
-    #uid = @user_tweets[0].user.id
-    #subscrip = Subscription.find(uid, "twitter")
-#
   end
 
 end
