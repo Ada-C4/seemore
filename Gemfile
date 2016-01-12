@@ -34,6 +34,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'font-awesome-rails'
 
+gem 'typhoeus'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -48,6 +50,7 @@ group :development, :test do
   gem 'hirb'
   gem 'dotenv-rails'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'vcr'
 end
 
 group :production do
