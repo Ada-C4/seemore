@@ -19,6 +19,15 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+.feed_holder {
+  overflow: auto;
+  margin: 0 auto;
+}
+
+.feed_table {
+  margin: 0 auto;
+}
+
 .form {
   padding: 15px;
   border: solid #84694f 3px;

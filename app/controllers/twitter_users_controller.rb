@@ -63,7 +63,7 @@ class TwitterUsersController < ApplicationController
         text: tweet.text,
         uri: tweet.uri,
         twitter_user_id: twitter_user.id,
-        twitter_created_at: tweet.created_at.to_datetime,
+        provider_created_at: tweet.created_at.to_datetime,
         embed: $client.oembed(tweet.id.to_s).html
       }
       Tweet.create(tweet_hash)

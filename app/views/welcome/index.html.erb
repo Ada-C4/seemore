@@ -1,17 +1,21 @@
-<h1>This is the index page</h1>
-
-<% if current_user %>
-  <%= image_tag current_user.image %>
-  <h1><%= current_user.name %></h1>
-<% end %>
-
-<%=raw @vid["html"] %>
-
-
-<% if @feed.nil? %>
-  <h1> @feed is nil right now.</h1>
-<% else %>
-  <% @feed.each do |feed_item| %>
-    <%= feed_item %>
-  <% end %>
-<% end %>
+<div class="col-lg-1">
+  <div class="feed_holder">
+    <table class="feed_table">
+      <% if current_user %>
+        <tr>
+          <%= image_tag current_user.image %>
+          <h4><%= current_user.name %></h4>
+        </tr>
+      <% end %>
+      <% if @feed.nil? %>
+        <tr>
+          <h3>Start searching and following to create a feed.</h3>
+        </tr>
+      <% else %>
+        <% @feed.each do |feed_item| %>
+            <tr><%=raw feed_item.embed %></tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>
