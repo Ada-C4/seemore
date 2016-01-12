@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/vcr_setup'
 
 RSpec.describe TwitterUsersController, type: :controller do
   let(:twitter_user_hash) do {
@@ -56,6 +57,12 @@ RSpec.describe TwitterUsersController, type: :controller do
       expect(TwitterUser.all.length).to eq 1
       expect(response.status).to eq 302
       expect(subject).to redirect_to :root
+    end
+
+    it "uses VCR: and hits the Twitter API" do
+      VCR.use_cassette 'model/api_response' do
+        response =
+      end
     end
 
     # it "creates Tweets for new TwitterUsers" do

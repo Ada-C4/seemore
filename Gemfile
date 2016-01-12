@@ -34,7 +34,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'font-awesome-rails'
 
-gem 'typhoeus'
+gem 'webmock'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
