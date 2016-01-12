@@ -25,6 +25,10 @@ class TwitterUsersController < ApplicationController
   end
 
   def unsubscribe
+    @screen_name = params[:screen_name]
+    @twitter_user = TwitterUser.find_by(screen_name: @screen_name)
+    @current_user.twitter_users.delete(@twitter_user)
+    redirect_to :subscriptions
   end
 
   private

@@ -70,7 +70,7 @@ RSpec.describe TwitterUsersController, type: :controller do
     # end
 
     it "does not create Tweets if the TwitterUser already exists" do
-      existing_TwitterUser = TwitterUser.create(twitter_id: "3320848554", screen_name: "kdefliese", name: "Katherine Defliese", uri: "https://twitter.com/kdefliese")
+      existing_TwitterUser
       patch :subscribe, params
       expect(TwitterUser.first.tweets).to be_empty
       expect(response.status).to eq 302
@@ -90,7 +90,7 @@ RSpec.describe TwitterUsersController, type: :controller do
     end
 
     it "will not associate a User with a TwitterUser if they are already associated" do
-      existing_TwitterUser = TwitterUser.create(twitter_id: "3320848554", screen_name: "kdefliese", name: "Katherine Defliese", uri: "https://twitter.com/kdefliese")
+      existing_TwitterUser
       user.twitter_users << existing_TwitterUser
       patch :subscribe, params
       expect(user.twitter_users.length).to eq 1
@@ -106,8 +106,8 @@ RSpec.describe TwitterUsersController, type: :controller do
     end
 
     it "removes the association between the User and the TwitterUser" do
+      user.twitter_users << existing_TwitterUser
       patch :unsubscribe, params
-      expect(user.twitter_users.length).to eq 0
       expect(subject).to redirect_to :subscriptions
     end
   end
