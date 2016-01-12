@@ -34,3 +34,7 @@ window.onload = (function(){
       });
   }
 });
+
+$(document).ready(resize_thumbs);
+$(window).resize(resize_thumbs);
+$(document).on('page:change', resize_thumbs);

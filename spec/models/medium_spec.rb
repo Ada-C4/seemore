@@ -29,27 +29,22 @@ RSpec.describe Medium, type: :model do
 
     describe "#self.video_lookup" do
       context "users videos become Media instances" do
-        it "returns an array of videos" do
+        it "creates Medium instances" do
           create(:mark)
-          expect(Medium.video_lookup("jeffdesom")).to be_an Array
+          Medium.video_lookup("jeffdesom")
+          expect(Medium.all.length).to be > 1
         end
         
-        it "returns an array of videos less than or equal to 10" do
+        it "returns an array of videos less than or equal to 20" do
           create(:mark)
-          array = Medium.video_lookup("johnmervin")
-          expect(array.count).to be > 11
-        end
-
-        it "returns instances of Media" do
-          create(:mark)
-          array = Medium.video_lookup("jeffdesom")
-          expect(array[0]).to be_an_instance_of Medium
+          Medium.video_lookup("jeffdesom")
+          expect(Medium.all.count).to be < 20
         end
 
         it "returns videos with all information" do
           create(:mark)
-          array = Medium.video_lookup("jeffdesom")
-          expect(array[0].link).to eq "https://vimeo.com/150264292"
+          Medium.video_lookup("jeffdesom")
+          expect(Medium.all.first.link).to eq "https://vimeo.com/150264292"
         end
 
         it "finds the video in the database rather than creating a new medium" do
