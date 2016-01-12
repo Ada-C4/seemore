@@ -47,38 +47,23 @@ class UsersController < ApplicationController
     end
 
     tweets.each do |tweet|
-      uid = tweet.id
-      text = tweet.text
-      subscription_id = subscription.id
-      post_time = DateTime.parse(tweet.created_at.to_s)
-      Story.find_or_create(uid, text, subscription_id, post_time)
+      uid, provider, username, avatar_url = UsersHelper.tweet_to_story(tweet, subscription)
+      Story.find_or_create(uid, provider, username, avatar_url)
     end
     redirect_to root_path
   end
 
+
   def vimeo_subscribe
-    @vimeo_user = params[:id]
-    vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
-    provider = "vimeo"
-    video_results = HTTParty.get("https://api.vimeo.com/users/#{@vimeo_user}/videos", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
-    user_results = HTTParty.get("https://api.vimeo.com/users/#{@vimeo_user}", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
-    #binding.pry
-    uid = @vimeo_user
-    username = user_results["name"]
-    avatar_url = user_results["pictures"]["sizes"][1]["link"]
-    # @videos = search["metadata"]["connections"]["videos"]["options"]
-    @videos = video_results["data"]
+    vimeo_user = params[:id]
+    videos, uid, provider, username, avatar_url = UsersHelper.vimeo_subscription_info(vimeo_user)
     subscription = Subscription.find_or_create(uid, provider, username, avatar_url)
-    user = User.find(session[:user_id])
-    if !user.subscriptions.include? subscription
-      user.subscriptions << subscription
+
+    if !@current_user.subscriptions.include? subscription
+      @current_user.subscriptions << subscription
     end
-    @videos.each do |video|
-      video_uid = video["uri"].byteslice(8..-1)
-      text = video["name"]
-      url = video["link"]
-      subscription_id = subscription.id
-      post_time = DateTime.parse(video["created_time"].to_s)
+    videos.each do |video|
+      video_uid, text, url, subscription_id, post_time = UsersHelper.video_to_story(video, subscription)
       Story.find_or_create(video_uid, text, url, subscription_id, post_time)
     end
     redirect_to root_path

@@ -28,5 +28,34 @@ module UsersHelper
     return tweets, uid, provider, username, avatar_url
   end
 
+  def self.vimeo_subscription_info(vimeo_user)
+    vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
+    video_results = HTTParty.get("https://api.vimeo.com/users/#{vimeo_user}/videos", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
+    user_results = HTTParty.get("https://api.vimeo.com/users/#{vimeo_user}", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
+    provider = "vimeo"
+    uid = vimeo_user
+    username = user_results["name"]
+    avatar_url = user_results["pictures"]["sizes"][1]["link"]
+    videos = video_results["data"]
+    return videos, uid, provider, username, avatar_url
+  end
+
+  def self.tweet_to_story(tweet, subscription)
+    uid = tweet.id
+    text = tweet.text
+    subscription_id = subscription.id
+    post_time = DateTime.parse(tweet.created_at.to_s)
+    return uid, text, subscription_id, post_time
+  end
+
+  def self.video_to_story(video, subscription)
+    video_uid = video["uri"].byteslice(8..-1)
+    text = video["name"]
+    url = video["link"]
+    subscription_id = subscription.id
+    post_time = DateTime.parse(video["created_time"].to_s)
+    return video_uid, text, url, subscription_id, post_time
+  end
+
 
 end
