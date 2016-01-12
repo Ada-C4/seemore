@@ -1,0 +1,19 @@
+<h3>Your Twitter subscriptions:</h3>
+<ul>
+  <% @twitter_subscriptions.each do |subscription| %>
+    <li>
+      <%= subscription.screen_name %>
+      <%= subscription.name %>
+      <%= button_to "Unsubscribe", unsubscribe_twitter_path, method: :patch, class: 'btn btn-primary', params: { screen_name: subscription.screen_name } %>
+    </li>
+  <% end %>
+</ul>
+<h3>Your Vimeo subscriptions:</h3>
+<ul>
+  <% @vimeo_subscriptions.each do |subscription| %>
+    <li>
+      <%= subscription.name %>
+      <%= button_to "Unsubscribe", unsubscribe_vimeo_path, method: :patch, class: 'btn btn-primary', params: { uri: subscription.uri } %>
+    </li>
+  <% end %>
+</ul>

@@ -20,6 +20,13 @@ class VimeoUsersController < ApplicationController
     redirect_to :root
   end
 
+  def unsubscribe
+    @uri = params[:uri]
+    @vimeo_user = VimeoUser.find_by(uri: @uri)
+    @current_user.vimeo_users.delete(@vimeo_user)
+    redirect_to :subscriptions
+  end
+
   private
 
   def vimeo_user_exists?
