@@ -22,6 +22,10 @@ sample_stories.each do |story|
   new_story = Story.new
   new_story.uid = story.id
   new_story.text = story.text
+  binding.pry
+  if !story.media.empty?
+    new_story.media_content = story.media[0].media_url.host + story.media[0].media_url.path
+  end
   new_story.subscription_id = 1
   new_story.post_time = story.created_at
   new_story.save

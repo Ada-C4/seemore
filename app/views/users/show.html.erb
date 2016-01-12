@@ -52,7 +52,13 @@
               <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.post_time %> via Twitter</small></p>
             </div>
             <div class="timeline-body">
-              <p><%= story.text %></p>
+
+              <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <blockquote class="twitter-tweet" lang="en">
+                <a href="https://twitter.com/<%= story.subscription.username %>/status/<%= story.uid %>">
+                </a>
+              </blockquote>
+
             </div>
           </div>
         </li>
