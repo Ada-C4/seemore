@@ -17,6 +17,11 @@ RSpec.describe TwitterUsersController, type: :controller do
   }
   end
 
+  let (:protected_params) do {
+    screen_name: "kerrydefliese"
+  }
+  end
+
   let(:bad_twitter_user_hash) do {
     twitter_id:      "",
     screen_name: "",
@@ -71,6 +76,12 @@ RSpec.describe TwitterUsersController, type: :controller do
     it "associates a TwitterUser with a User" do
       patch :subscribe, params
       expect(User.first.twitter_users).to include(TwitterUser.first)
+      expect(subject).to redirect_to :root
+    end
+
+    it "will not create a TwitterUser if the Twitter account is protected" do
+      patch :subscribe, protected_params
+      expect(flash[:error]).to eq "That user is protected; you cannot subscribe to their tweets."
       expect(subject).to redirect_to :root
     end
 

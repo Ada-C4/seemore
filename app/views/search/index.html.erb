@@ -4,8 +4,12 @@
       <% @results.each do |result| %>
         <li class="listed-users">
           <% if twitter_result? %>
-            <%= result.screen_name %>
-            <%= button_to "Subscribe", subscribe_twitter_path, method: :patch, class: 'btn btn-primary', params: { screen_name: result.screen_name } %>
+          <%= result.screen_name %>
+            <% if result.protected? %>
+              <p>This Twitter user is protected; you cannot subscribe to their tweets.</p>
+            <% else %>
+              <%= button_to "Subscribe", subscribe_twitter_path, method: :patch, class: 'btn btn-primary', params: { screen_name: result.screen_name } %>
+            <% end %>
           <% elsif vimeo_result? %>
             <%= result["name"] %>
             <%= button_to "Subscribe", subscribe_vimeo_path, method: :patch, class: 'btn btn-primary', params: { uri: result["uri"] } %>
