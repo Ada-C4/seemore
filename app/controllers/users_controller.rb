@@ -78,15 +78,21 @@ class UsersController < ApplicationController
     username = user_results["name"]
     avatar_url = user_results["pictures"]["sizes"][1]["link"]
     # @videos = search["metadata"]["connections"]["videos"]["options"]
-    @videos = video_results
+    @videos = video_results["data"]
     subscription = Subscription.find_or_create(uid, provider, username, avatar_url)
     user = User.find(session[:user_id])
     if !user.subscriptions.include? subscription
       user.subscriptions << subscription
     end
     @videos.each do |video|
-      uid = video["video_id"]
+      video_uid = video["uri"].byteslice(8..-1)
+      text = video["name"]
+      url = video["link"]
+      subscription_id = subscription.id
+      post_time = DateTime.parse(video["created_time"].to_s)
+      Story.find_or_create(video_uid, text, url, subscription_id, post_time)
     end
+    redirect_to root_path
   end
 
   def vimeo_search
