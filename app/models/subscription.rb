@@ -32,4 +32,18 @@ class Subscription < ActiveRecord::Base
       return nil
     end
   end
+
+  def self.update_stories
+    twitter = Seemore::Application.config.twitter
+    subscriptions = Subscription.all
+    subscriptions.each do |subscription|
+      if subscription.provider == "twitter"
+        @tweets = twitter.user_timeline(subscription.username)
+        @tweets.each do |tweet|
+          post_time = DateTime.parse(tweet.created_at.to_s)
+          Story.find_or_create(tweet.id, tweet.text, subscription.id, post_time)
+        end
+      end
+    end
+  end
 end
