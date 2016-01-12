@@ -1,21 +1,21 @@
 <div class="col-lg-1">
   <div class="feed_holder">
-    <table class="feed_table">
       <% if current_user %>
-        <tr>
+        <div>
           <%= image_tag current_user.image %>
           <h4><%= current_user.name %></h4>
-        </tr>
+        </div>
       <% end %>
       <% if @feed.nil? %>
-        <tr>
+        <div>
           <h3>Start searching and following to create a feed.</h3>
-        </tr>
+        </div>
       <% else %>
         <% @feed.each do |feed_item| %>
-            <tr><%=raw feed_item.embed %></tr>
+            <div class="narrower-holder">
+              <%=raw feed_item.embed %>
+            </div>
         <% end %>
       <% end %>
-    </table>
   </div>
 </div>
