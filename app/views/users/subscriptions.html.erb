@@ -1,1 +1,17 @@
-<h1>This is the page that will show all your subscriptions</h1>
+<h3>Twitter subscriptions:</h3>
+<ul>
+  <% @twitter_subscriptions.each do |subscription| %>
+    <li>
+      <%= subscription.screen_name %>
+      <%= subscription.name %>
+    </li>
+  <% end %>
+</ul>
+<h3>Vimeo subscriptions:</h3>
+<ul>
+  <% @vimeo_subscriptions.each do |subscription| %>
+    <li>
+      <%= subscription.name %>
+    </li>
+  <% end %>
+</ul>
