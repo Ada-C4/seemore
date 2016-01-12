@@ -13,13 +13,15 @@ class MediaController < ApplicationController
           @tweets = twitter.user_timeline(mark.username, count: 20)
             # raise
           @tweets.each do |tweet|
-            Medium.create(
-              mark_id: mark.id, 
-              date_posted: tweet.created_at, 
-              link: tweet.source, 
-              text: tweet.text, 
-              medium_type: "twitter"
-              )
+            if Medium.find_by(link: tweet.source).nil?
+              Medium.create(
+                mark_id: mark.id, 
+                date_posted: tweet.created_at, 
+                link: tweet.source, 
+                text: tweet.text, 
+                medium_type: "twitter"
+                )
+            end
             # binding.pry
           end
         elsif mark.provider == "vimeo"

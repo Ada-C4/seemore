@@ -42,6 +42,7 @@
 
                 <% elsif m.medium_type == "twitter" %>
                   <h4 class="timeline-title">Tweet by <%= m.mark.name %></h4>
+                  <p><small class="text-muted"><i class="fa fa-clock-o"></i> <%= distance_of_time_in_words(DateTime.parse(m.date_posted), Time.now) %> ago</small></p>
                   <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr"><%= m.text %></p>&mdash; <%= m.mark.name %> (@<%= m.mark.username %>) <a href="<%= m.link %>"></a></blockquote>
                   <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                 <% end %>
