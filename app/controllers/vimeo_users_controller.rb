@@ -50,7 +50,9 @@ class VimeoUsersController < ApplicationController
         uri: video["uri"],
         title: video["title"],
         vimeo_video_id: video["uri"].match(/[0-9]+$/)[0],
-        vimeo_user_id: vimeo_user.id
+        vimeo_user_id: vimeo_user.id,
+        vimeo_created_at: video["created_time"],
+        embed: video["embed"]["html"]
       }
       Video.create(video_hash)
     end
