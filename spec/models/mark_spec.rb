@@ -59,20 +59,35 @@ RSpec.describe Mark, type: :model do
     end
   end
 
-  describe "#self.vimeo_lookup" do
+  describe "#self.single_mark_vimeo_lookup" do
     context "user exists" do
       it "creates a new mark" do
-        expect(Mark.vimeo_lookup("hi")).to be_an_instance_of Mark
+        expect(Mark.single_mark_vimeo_lookup("hi")).to be_an_instance_of Mark
       end
 
       it "sets the profile image to 'blank.png' if the image is nil" do
-        expect((Mark.vimeo_lookup("user47660891")).image_url).to eq "blank.png"
+        expect((Mark.single_mark_vimeo_lookup("user47660891")).image_url).to eq "blank.png"
       end
     end
 
     context "user does not exist" do
       it "returns an error if the user doesn't exist" do
-        expect(Mark.vimeo_lookup("fadjslfajdslfkjasdlkfj")).to eq "The requested user could not be found"
+        expect(Mark.single_mark_vimeo_lookup("fadjslfajdslfkjasdlkfj")).to eq "The requested user could not be found"
+      end
+    end
+  end
+
+  describe "#self.vimeo_lookup" do
+    context "search results exist" do
+      it "returns an array of marks" do
+        expect(Mark.vimeo_lookup("hi")).to be_an_instance_of Array
+        expect(Mark.vimeo_lookup("hi")[0]).to be_an_instance_of Mark
+      end
+    end
+
+    context "search results do not exist" do
+      it "returns an empty array if no results exist" do
+        expect(Mark.vimeo_lookup("fadjslfajdslfkjasdlkfj")).to eq []
       end
     end
   end
@@ -84,18 +99,23 @@ RSpec.describe Mark, type: :model do
         expect(Mark.video_lookup("jeffdesom")).to be_an Array
       end
 
-      it "returns instances of Media" do 
+      it "returns instances of Media" do
         create(:mark)
         array = Mark.video_lookup("jeffdesom")
         expect(array[0]).to be_an_instance_of Medium
       end
 
-      it "returns videos with all information" do 
+      it "returns videos with all information" do
         create(:mark)
         array = Mark.video_lookup("jeffdesom")
         expect(array[0].link).to eq "https://vimeo.com/150264292"
       end
 
+      it "finds the video in the database rather than creating a new medium" do
+        create(:mark)
+        Mark.video_lookup("jeffdesom")
+        expect{Mark.video_lookup("jeffdesom")}.to change(Medium, :count).by(0)
+      end
     end
   end
 end

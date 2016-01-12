@@ -15,12 +15,9 @@ class MarksController < ApplicationController
       search_params = { username: params[:username], provider: params[:provider], id: params[:id] }
       @search_term = search_params[:username]
       if search_params[:provider] == "vimeo"
-        @mark = Mark.vimeo_lookup(@search_term)
+        @marks = Mark.vimeo_lookup(@search_term)
       elsif search_params[:provider] == "twitter"
         @marks = twitter_lookup(@search_term)
-        if @marks.empty?
-          @flash = true
-        end
       end
     end
   end
@@ -60,10 +57,10 @@ class MarksController < ApplicationController
   end
 
   def vimeo_subscribe
-    @mark = Mark.vimeo_lookup(params[:name])
+    @mark = Mark.single_mark_vimeo_lookup(params[:name])
 
     if Mark.find_by(username: @mark.username).nil?
-      @mark = Mark.vimeo_lookup(params[:name])
+      @mark = Mark.single_mark_vimeo_lookup(params[:name])
     else
       @mark = Mark.find_by(username: @mark.username)
     end

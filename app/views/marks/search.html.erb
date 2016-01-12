@@ -6,67 +6,40 @@
       </div>
     </form>
     <% if !@search_term.nil? %>
-    <% if @marks && @marks.empty? %>
-      <div class="alert alert-warning">
-        <strong>Warning!</strong> The requested user could not be found.
-      </div>
-    <% end %>
-    <% if @marks %>
-      <% @marks.each do |mark| %>
-        <h5><%= mark.username %></h5>
-        <h5><%= image_tag mark.image_url %></h5>
-        <h5>Location: <%=if  mark.location.nil? then "N/A" else mark.location end %></h5>
-        <h5><%= link_to "Go to Profile", mark.link, :target => "_blank" %></h5>
-        <% if mark.provider == "twitter" %>
-          <a class="twitter-timeline" href="https://twitter.com/<%= mark.username %>" data-widget-id="365889744950931457" data-screen-name="<%= mark.username %>">Tweets by @<%= mark.username %></a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>    
-        <% end %>
-        <h5><%= link_to "Add to your Marks", twitter_subscribe_path(
-            params: {
-              name: mark.username,
-              profile_picture: mark.image_url
-            }
-          ),
-            method: :post,
-            class: "btn btn-default" %></h5>
-      <% end %>
-    <% end %>
-      <% if @mark %>
-        <% if @mark.class == String %>
-          <div class="alert alert-warning">
-            <strong>Warning!</strong> <%= @mark %>.
-          </div>
-        <% else %>
-          <h5><%= @mark.username %></h5>
-          <h5><%= image_tag @mark.image_url %></h5>
-          <h5>Location: <%=if  @mark.location.nil? then "N/A" else @mark.location end %></h5>
-          <h5><%= link_to "Go to Profile", @mark.link, :target => "_blank" %></h5>
-
-        
-          <% if params[:provider] == "vimeo" %>
-            <h5><%= link_to "Add to your Marks", vimeo_subscribe_path(
-                params: {
-                  name: params[:username],
-                  profile_picture: params["image_url"]
-                }
-              ),
-                method: :post,
-                class: "btn btn-default" %></h5>
-          <% elsif params[:provider] == "twitter" %>
-
-
+      <% if @marks && @marks.empty? %>
+        <div class="alert alert-warning">
+          <strong>Warning!</strong> The requested user could not be found.
+        </div>
+      <% else %>
+        <% @marks.each do |mark| %>
+          <h5><%= mark.username %></h5>
+          <h5><%= image_tag mark.image_url %></h5>
+          <h5>Location: <%=if  mark.location.nil? then "N/A" else mark.location end %></h5>
+          <h5><%= link_to "Go to Profile", mark.link %></h5>
+          <% if params[:provider] == "twitter" %>
+            <a class="twitter-timeline" href="https://twitter.com/<%= mark.username %>" data-widget-id="686367747584831488">Tweets by @<%= mark.username %></a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
             <h5><%= link_to "Add to your Marks", twitter_subscribe_path(
                 params: {
-                  name: params[:username],
-                  profile_picture: params["image_url"]
+                  name: mark.username,
+                  profile_picture: mark.image_url
                 }
               ),
                 method: :post,
                 class: "btn btn-default" %></h5>
+          <% elsif params[:provider] == "vimeo" %>
+            <h5><%= link_to "Add to your Marks", vimeo_subscribe_path(
+              params: {
+                name: mark.username,
+                profile_picture: params["image_url"]
+                }
+              ),
+              method: :post,
+              class: "btn btn-default" %></h5>
           <% end %>
-          <% end %>
-        <% end %>
+        <% end %>  
       <% end %>
+    <% end %>
   <% else %>
     You are lost.
   <% end %>
