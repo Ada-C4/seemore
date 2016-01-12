@@ -8,6 +8,7 @@ class WelcomeController < ApplicationController
     else
       @twitter_user = TwitterUser.new()
       @vid = get_video(145516416)
+      @feed = feed
     end
   end
 end
