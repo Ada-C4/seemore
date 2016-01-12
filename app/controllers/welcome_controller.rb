@@ -8,25 +8,24 @@ class WelcomeController < ApplicationController
     else
       @twitter_user = TwitterUser.new()
       @vid = get_video(145516416)
-      @feed = feed
+      @feed = make_feed(@current_user)
     end
   end
 end
 
-def feed
+def make_feed(current_user)
    feed = []
-   @current_user.twitter_users.each do |user|
+   current_user.twitter_users.each do |user|
      user.tweets.each do |tweet|
          feed.push(tweet)
      end
    end
-   @current_user.vimeo_users.each do |user|
+   current_user.vimeo_users.each do |user|
      user.videos.each do |video|
        feed.push(video)
      end
    end
-   sorted = feed.sort_by(&:provider_created_at)
-   trimmed = sorted[0...50]
-   raise
+   sorted = feed.sort_by(&:provider_created_at).reverse!
+   trimmed = sorted[0...74]
    return trimmed
  end
