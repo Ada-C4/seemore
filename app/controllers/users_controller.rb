@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def show
     # @sample_stories = twitter.user_timeline("Schwarzenegger")
     # @vimeo_stories = Vimeo::Simple::User.videos("15397797")
+    Subscription.update_stories
     @stories = []
     if !@current_user
       @stories.push(Story.where(subscription_id: 1))
