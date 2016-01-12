@@ -50,12 +50,22 @@ RSpec.describe UsersController, type: :controller do
       }
     end
 
+    let!(:user) do
+      User.create(
+      email:    "a@b.com",
+      username: "Ada",
+      uid:      "1234",
+      provider: "twitter")
+    end
+
     it "subscribes to a new subscription" do
+      session[:user_id] = user.id
       expect { post :twitter_subscribe, params }.to change(Subscription, :count).by(1)
       expect(subject).to redirect_to root_path
     end
 
     it "creates new stories" do
+      session[:user_id] = user.id
       expect { post :twitter_subscribe, params }.to change(Story, :count).by(20)
       expect(subject).to redirect_to root_path
     end
