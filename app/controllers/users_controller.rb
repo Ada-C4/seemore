@@ -99,5 +99,4 @@ class UsersController < ApplicationController
     subscriptions = @current_user.subscriptions
     @user_name = params[:id]
   end
-
 end

@@ -1,10 +1,5 @@
 <%= link_to "Home", root_path, class:"btn btn-default" %>
-TODO: Add back button
-TODO: Allow subscriptions
 TODO: Add "No results found message when no results (does not happen when there are users we have excluded because they have no videos)"
-
-
-<% vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]%>
 
 <h1> Search Results </h1>
 <div class="col-sm-6">
@@ -12,10 +7,6 @@ TODO: Add "No results found message when no results (does not happen when there 
   <% photo = search["pictures"] %>
   <% videos = search["metadata"]["connections"]["videos"]["total"] %>
     <% if videos != 0 %>
-      <% uid = search["uri"].byteslice(7..-1) %>
-      <% embed = HTTParty.get("https://api.vimeo.com/users/#{uid}/videos",  headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response %>
-      <% public_embed = embed["data"][0]["privacy"]["embed"] %>
-      <%  if public_embed == "public" %>
       <div class="well well-lg">
         <table width="100%">
           <tr>
@@ -29,7 +20,6 @@ TODO: Add "No results found message when no results (does not happen when there 
             </tr>
           </table>
         </div>
-      <% end %>
     <% end %>
   <% end %>
   </div>
