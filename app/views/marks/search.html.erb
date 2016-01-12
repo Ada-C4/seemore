@@ -32,7 +32,7 @@
               <h5><%= m.username%></h5>
               <%= image_tag m.image_url, class: "profile-image"%>
               <h5>Location: <%=if  m.location.nil? then "N/A" else m.location end %></h5>
-              <h5><%= link_to "Add to your Marks", twitter_subscribe_path(
+              <h5><%= link_to "Add to your Marks", vimeo_subscribe_path(
                   params: {
                     name: m.username,
                     profile_picture: m.image_url
