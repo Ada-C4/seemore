@@ -13,6 +13,7 @@
   <% @vimeo_subscriptions.each do |subscription| %>
     <li>
       <%= subscription.name %>
+      <%= button_to "Unsubscribe", unsubscribe_vimeo_path, method: :patch, class: 'btn btn-primary', params: { uri: subscription.uri } %>
     </li>
   <% end %>
 </ul>

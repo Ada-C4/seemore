@@ -20,6 +20,9 @@ class VimeoUsersController < ApplicationController
     redirect_to :root
   end
 
+  def unsubscribe
+  end
+
   private
 
   def vimeo_user_exists?
