@@ -1,0 +1,44 @@
+<div class="row">
+  <h1>
+    Search Results
+  </h1>
+</div>
+<% if !@results.nil? %>
+  <% @results.in_groups_of(3, false) do |group| %>
+    <div class="row">
+      <% group.each do |result| %>
+        <div class="col-sm-4 col-md-4 creator-col">
+          <% if @provider == "twitter" %>
+            <% picture = result.profile_image_uri if !result.profile_image_uri.nil? %>
+            <% picture = image_tag("twitter_default_image.png", size: "80x80", alt: "Vimeo Default Image") if result.profile_image_uri.nil? %>
+          <% elsif @provider == "vimeo" %>
+            <% picture = result["pictures"]["sizes"][2]["link"] if !result["pictures"].nil? %>
+            <% picture = image_tag("vimeo_default_image.png", size: "80x80", alt: "Vimeo Default Image") if result["pictures"].nil? %>
+          <% end %>
+          <%= image_tag(picture, class: "creator-image") %>
+          <h4 class="creator-name">
+            <%= result.name if @provider == "twitter" %>
+            <%= result["name"] if @provider == "vimeo" %>
+          </h4>
+          <% if @provider == "twitter" %>
+            <%= button_to "Follow", {controller: "creators",
+                                     name: result.screen_name,
+                                     provider: @provider,
+                                     bio: result.description,
+                                     profile_pic: result.profile_image_uri,
+                                     uid: result.id},
+            class: "btn btn-default follow-btn" %>
+          <% elsif @provider == "vimeo" %>
+            <%= button_to "Follow", {controller: "creators",
+                                     uri: result["uri"],
+                                     name: result["name"],
+                                     profile_pic: result["picture"],
+                                     bio: result["bio"],
+                                     provider: @provider},
+             class: "btn btn-default follow-btn" %>
+        </div>
+         <% end %>
+    <% end %>
+    </div>
+  <% end %>
+<% end %>

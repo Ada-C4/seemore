@@ -1,0 +1,8 @@
+<div class="row">
+  <% @videos.each do |video| %>
+  <div class="col-md-12 embedded-video">
+      <h3><%= video.name %></h3>
+      <iframe src= <%= video.embed %> width="500" height = "300"frameborder="0" title= <%= video.name %> " webkitallowfullscreen mozallowfullscreen allowfullscreen"></iframe>
+    </div>
+    <% end %>
+</div>
