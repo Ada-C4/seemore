@@ -95,6 +95,12 @@ RSpec.describe Mark, type: :model do
         array = Mark.video_lookup("jeffdesom")
         expect(array[0].link).to eq "https://vimeo.com/150264292"
       end
+
+      it "finds the video in the database rather than creating a new medium" do
+        create(:mark)
+        Mark.video_lookup("jeffdesom")
+        expect{Mark.video_lookup("jeffdesom")}.to change(Medium, :count).by(0)
+      end
     end
   end
 end
