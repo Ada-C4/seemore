@@ -10,8 +10,13 @@ class VimeoUsersController < ApplicationController
       create_videos(@vim_uri, new_user)
     end
     @vimeo_user = VimeoUser.find_by(uri: @vim_uri)
-    #subscribe to vimeo_user
-    @current_user.vimeo_users << @vimeo_user
+    if @current_user.vimeo_users.include?(@vimeo_user)
+      #if current_user is already subscribed to this vimeo_user, show error
+      flash[:error] = "You are already subscribed to this user."
+    else
+      # subscribe current_user to vimeo_user
+      @current_user.vimeo_users << @vimeo_user
+    end
     redirect_to :root
   end
 
