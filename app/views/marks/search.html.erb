@@ -6,8 +6,10 @@
       </div>
     </form>
     <% if !@search_term.nil? %>
-      <% if @marks.class == String %>
-        <%= @marks %>
+      <% if @marks && @marks.empty? %>
+        <div class="alert alert-warning">
+          <strong>Warning!</strong> The requested user could not be found.
+        </div>
       <% else %>
         <% @marks.each do |mark| %>
           <h5><%= mark.username %></h5>
@@ -25,7 +27,7 @@
               ),
                 method: :post,
                 class: "btn btn-default" %></h5>
-         <% elsif params[:provider] == "vimeo" %>
+          <% elsif params[:provider] == "vimeo" %>
             <h5><%= link_to "Add to your Marks", vimeo_subscribe_path(
               params: {
                 name: mark.username,
@@ -34,8 +36,8 @@
               ),
               method: :post,
               class: "btn btn-default" %></h5>
-        <% end %>
-        <% end %>
+          <% end %>
+        <% end %>  
       <% end %>
     <% end %>
   <% else %>

@@ -3,17 +3,12 @@ require 'rails_helper'
 
 RSpec.describe Mark, type: :model do
   let(:new_mark) { build(:mark) }
+  let(:mark_media) { create(:mark_with_media) }
   let(:new_spy) { build(:spy) }
 
   describe "model associations" do
     it "has many media" do
-      new_mark.save
-      5.times do
-        create(:medium)
-      end
-
-      expect(new_mark.media.count).to eq 5
-
+      expect(mark_media.media.count).to eq 5
     end
 
     it "has and belongs to many spies" do
