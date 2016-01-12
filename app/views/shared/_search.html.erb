@@ -1,5 +1,9 @@
 <%= form_tag results_path, method: "get" do %>
-  <h2><%= label_tag :username, "Search for #{params[:provider].titlecase} Marks" %> </h2>
-  <h1><%= text_field_tag :username, nil, placeholder: "Search Marks", class: "form-control form-group" %></h1>
-  <%= submit_tag "Search", class: 'btn btn-default' %>
+  <h1><%= label_tag :username, "Search for #{params[:provider].titlecase} Marks" %> </h1>
+  <div class="col-md-6 col-md-offset-3">
+    <%= text_field_tag :username, nil, placeholder: "Search Marks", class: "search-box" %>
+    <button type="submit" class='btn gray-btn' style='width:40px;'>
+      <%= fa_icon "search" %>
+    </button>
+  </div>
 <% end %>
