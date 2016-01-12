@@ -40,9 +40,13 @@ h1 {
   padding-top: 60px;
   font-family: Poiret One, monospace;
   text-align: center;
+<<<<<<< HEAD
   font-size: 70px;
   color: black;
   margin: auto;
+=======
+  font-size: 55px;
+>>>>>>> c626da48c94f4a3998b984c78ff5c8f34bdad152
 }
 
 .btn .btn-default {
@@ -225,3 +229,27 @@ h1 {
             right: auto;
         }
 }
+<<<<<<< HEAD
+=======
+
+.profile-image {
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+}
+
+.bottom-margin {
+  margin-bottom: 25px;
+}
+
+.gray-btn {
+  background-color: #a6a6a6;
+  color: #FFFFFF;
+  font-size: 12px;
+}
+
+.profile-link {
+  font-size: 24px;
+  color: #000000;
+}
+>>>>>>> c626da48c94f4a3998b984c78ff5c8f34bdad152

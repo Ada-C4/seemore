@@ -75,7 +75,7 @@ RSpec.describe MarksController, type: :controller do
       expect{ post :vimeo_subscribe, name: "hi" }.to change(Mark, :count).by(1)
     end
 
-    it "doesn't create a new mark if one already exists" do 
+    it "doesn't create a new mark if one already exists" do
       new_spy.save
       session[:spy_id] = new_spy.id
       post :vimeo_subscribe, name: "hi"
@@ -99,7 +99,7 @@ RSpec.describe MarksController, type: :controller do
       expect{ post :twitter_subscribe, name: "hi" }.to change(Mark, :count).by(1)
     end
 
-    it "doesn't create a new mark if one already exists" do 
+    it "doesn't create a new mark if one already exists" do
       new_spy.save
       session[:spy_id] = new_spy.id
       post :twitter_subscribe, name: "hi"
@@ -109,7 +109,7 @@ RSpec.describe MarksController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy" do 
+  describe "DELETE #destroy" do
     it "deletes marks from the users marks" do
       new_spy.save
       new_mark.save
@@ -120,7 +120,7 @@ RSpec.describe MarksController, type: :controller do
       expect(new_spy.marks.size).to eq 0
     end
 
-    it "redirects to the marks_path" do 
+    it "redirects to the marks_path" do
       new_spy.save
       new_mark.save
       new_spy.marks << new_mark
