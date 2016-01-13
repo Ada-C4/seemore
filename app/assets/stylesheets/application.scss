@@ -19,6 +19,11 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+.even-narrower {
+  max-width: 520px;
+  margin: 0 auto;  
+}
+
 iframe {
   max-width: 520px;
   max-height: 420px;
