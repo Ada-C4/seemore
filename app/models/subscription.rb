@@ -40,8 +40,13 @@ class Subscription < ActiveRecord::Base
       if subscription.provider == "twitter"
         @tweets = twitter.user_timeline(subscription.username)
         @tweets.each do |tweet|
-          post_time = DateTime.parse(tweet.created_at.to_s)
-          Story.find_or_create(tweet.id, tweet.text, subscription.id, post_time)
+          response = Story.find_story?(tweet.id, subscription.id)
+          if response == true
+            break
+          else
+            post_time = DateTime.parse(tweet.created_at.to_s)
+            Story.create_new_story(tweet.id, tweet.text, subscription.id, post_time)
+          end
         end
       end
     end
