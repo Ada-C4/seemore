@@ -15,6 +15,7 @@
 
 <% @results.each do |result| %>
   <div class="well">
-      <%= result["uri"] %>
+    <% url = result["uri"].byteslice(8..-1) %>
+      <iframe src="https://player.vimeo.com/video/<%= url %>?badge=0&autopause=0&player_id=0" width="WIDTH" height="HEIGHT" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
   </div>
 <% end %>
