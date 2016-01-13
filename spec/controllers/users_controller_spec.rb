@@ -6,6 +6,25 @@ RSpec.describe UsersController, type: :controller do
       get :show
       expect(subject).to render_template :show
     end
+
+    let!(:user) { User.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:twitter]) }
+    let(:subscription) {Subscription.create(
+            username: "Schwarzenegger", uid: "12044602" , provider: "twitter", avatar_url: "https://pbs.twimg.com/profile_images/665340796510466048/-nsoU1Q5.jpg"
+            )}
+    let(:subscription_2) {Subscription.create(
+            username: "Poodle", uid: "4943031" , provider: "vimeo", avatar_url: "https://pbs.twimg.com/profile_images/665340796510466048/-nsoU1Q5.jpg"
+            )}
+    let(:story) {Story.create(uid: 1, text: "blah", subscription_id: 1, post_time: Time.now)}
+    let(:story) {Story.create(uid: 2, text: "blah", subscription_id: 2, post_time: Time.now)}
+
+    it "pulls content for a logged in user" do
+      session[:user_id] = user.id
+      user.subscriptions << subscription
+      user.subscriptions << subscription_2
+
+      get :show
+      expect(subject).to render_template :show
+    end
   end
 
   describe "GET 'twitter_search'" do
