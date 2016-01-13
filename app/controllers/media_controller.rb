@@ -1,4 +1,3 @@
-require 'pry'
 class MediaController < ApplicationController
   def twitter
     Seemore::Application.config.twitter
@@ -19,7 +18,7 @@ class MediaController < ApplicationController
                 link: tweet.source,
                 text: tweet.text,
                 medium_type: "twitter",
-                uid: tweet.id, 
+                uid: tweet.id,
                 retweeted_from: tweet.retweeted_status.user.username,
                 retweeted_from_link: tweet.retweeted_status.user.url
                 )
