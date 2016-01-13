@@ -18,7 +18,7 @@
 
 # keep secrets
 /.env
-/.yml
+/spec/vcr/*.yml
 
 # From https://github.com/github/gitignore/blob/master/Ruby.gitignore
 *.gem
