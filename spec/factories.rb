@@ -26,8 +26,6 @@ FactoryGirl.define do
     trait :prez do
       uid "813286"
       username "BarackObama"
-      name "Barack Obama"
-      image_url "barack.jpeg"
       provider "twitter"
     end
   end
