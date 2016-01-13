@@ -35,13 +35,45 @@ class Subscription < ActiveRecord::Base
 
   def self.update_stories
     twitter = Seemore::Application.config.twitter
+#not sure if I can config vimeo this way
+    vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
+    vimeo = Seemore::Application.config.vimeo
+
     subscriptions = Subscription.all
     subscriptions.each do |subscription|
       if subscription.provider == "twitter"
-        @tweets = twitter.user_timeline(subscription.username)
-        @tweets.each do |tweet|
-          post_time = DateTime.parse(tweet.created_at.to_s)
-          Story.find_or_create(tweet.id, tweet.text, subscription.id, post_time)
+        tweets = twitter.user_timeline(subscription.username)
+        tweets.each do |tweet|
+          response = Story.find_story?(tweet.id, subscription.id)
+          if response == true
+            break
+          else
+            post_time = DateTime.parse(tweet.created_at.to_s)
+            Story.create_new_story(tweet.id, tweet.text, subscription.id, post_time)
+          end
+        end
+
+      elsif subscription.provider == "vimeo"
+        video_results = HTTParty.get("https://api.vimeo.com/users/#{subscription.uid}/videos", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
+
+        videos = video_results["data"]
+        videos.each do |video|
+          response = Story.find_story?(video["uri"].byteslice(8..-1), subscription.id)
+          if response == true
+            break
+          else
+            post_time = DateTime.parse(video["created_time"].to_s)
+            video_uid = video["uri"].byteslice(8..-1)
+            text = video["name"]
+            url = video["link"]
+            Story.create_new_story(video_uid, text, url, subscription.id, post_time)
+          end
+          # video_uid = video["uri"].byteslice(8..-1)
+          # text = video["name"]
+          # url = video["link"]
+          # subscription_id = subscription.id
+          # post_time = DateTime.parse(video["created_time"].to_s)
+          # Story.find_or_create(video_uid, text, url, subscription_id, post_time)
         end
       end
     end

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :require_login, only: [:twitter_search, :twitter_search_user, :vimeo_search, :vimeo_search_user, :twitter_subscribe, :vimeo_subscribe]
+
   def twitter
     Seemore::Application.config.twitter
   end
@@ -9,89 +11,61 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @sample_stories = twitter.user_timeline("Schwarzenegger")
-    # @vimeo_stories = Vimeo::Simple::User.videos("15397797")
+    # Updates existing subscriptions with new content
     Subscription.update_stories
+
     @stories = []
     if !@current_user
-      @stories.push(Story.where(subscription_id: 1))
-      @stories.push(Story.where(subscription_id: 2))
-      @stories.flatten!
+      @stories = UsersHelper.default_content
     else
-      user = User.find(session[:user_id])
-      user.subscriptions.each do |subscription|
-        subscription.stories.each do |story|
-          @stories.push(story)
-        end
-      end
+      @stories = UsersHelper.user_content(@current_user)
     end
     @stories.sort_by! { |story| story[:post_time] }.reverse!
   end
 
   def twitter_search
     search_term = params[:search]
-    @search_results = twitter.user_search(search_term).take(20)
+    @search_results = twitter.user_search(search_term).take(10)
   end
 
   def twitter_search_user
-    @curr_user = User.find(session[:user_id])
-    subscriptions = @curr_user.subscriptions
+    subscriptions = @current_user.subscriptions
     @user_name = params[:id]
     @user_tweets = twitter.user_timeline(@user_name)
     uid = @user_tweets[0].user.id
-    subscrip = Subscription.find(uid, "twitter")
-    if !subscriptions.include? subscrip
+    subscription = Subscription.find(uid, "twitter")
+    if !subscriptions.include? subscription
       @button = true
     end
   end
 
   def twitter_subscribe
-    @user_name = params[:id]
-    @tweets = twitter.user_timeline(@user_name)
-    uid = @tweets[0].user.id
-    provider = "twitter"
-    username = @tweets[0].user.screen_name
-    avatar_url = @tweets[0].user.profile_image_url
+    twitter_user = params[:id]
+    tweets, uid, provider, username, avatar_url = UsersHelper.twitter_subscription_info(twitter_user)
     subscription = Subscription.find_or_create(uid, provider, username, avatar_url)
-    user = User.find(session[:user_id])
-    if !user.subscriptions.include? subscription
-      user.subscriptions << subscription
+
+    if !@current_user.subscriptions.include? subscription
+      @current_user.subscriptions << subscription
     end
-    @tweets.each do |tweet|
-      uid = tweet.id
-      text = tweet.text
-      #media_content = tweet.media[0].media_url.host + tweet.media[0].media_url.path
-      subscription_id = subscription.id
-      post_time = DateTime.parse(tweet.created_at.to_s)
-      Story.find_or_create(uid, text, subscription_id, post_time)
-      #Story.create(uid: tweet.id, text: tweet.text, subscription_id: subscription.id, post_time: DateTime.parse(tweet.created_at.to_s))
+
+    tweets.each do |tweet|
+      uid, provider, username, avatar_url = UsersHelper.tweet_to_story(tweet, subscription)
+      Story.find_or_create(uid, provider, username, avatar_url)
     end
     redirect_to root_path
   end
 
+
   def vimeo_subscribe
-    @vimeo_user = params[:id]
-    vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
-    provider = "vimeo"
-    video_results = HTTParty.get("https://api.vimeo.com/users/#{@vimeo_user}/videos", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
-    user_results = HTTParty.get("https://api.vimeo.com/users/#{@vimeo_user}", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
-    #binding.pry
-    uid = @vimeo_user
-    username = user_results["name"]
-    avatar_url = user_results["pictures"]["sizes"][1]["link"]
-    # @videos = search["metadata"]["connections"]["videos"]["options"]
-    @videos = video_results["data"]
+    vimeo_user = params[:id]
+    videos, uid, provider, username, avatar_url = UsersHelper.vimeo_subscription_info(vimeo_user)
     subscription = Subscription.find_or_create(uid, provider, username, avatar_url)
-    user = User.find(session[:user_id])
-    if !user.subscriptions.include? subscription
-      user.subscriptions << subscription
+
+    if !@current_user.subscriptions.include? subscription
+      @current_user.subscriptions << subscription
     end
-    @videos.each do |video|
-      video_uid = video["uri"].byteslice(8..-1)
-      text = video["name"]
-      url = video["link"]
-      subscription_id = subscription.id
-      post_time = DateTime.parse(video["created_time"].to_s)
+    videos.each do |video|
+      video_uid, text, url, subscription_id, post_time = UsersHelper.video_to_story(video, subscription)
       Story.find_or_create(video_uid, text, url, subscription_id, post_time)
     end
     redirect_to root_path
@@ -111,6 +85,7 @@ class UsersController < ApplicationController
 
   def vimeo_search_user
     subscriptions = @current_user.subscriptions
+<<<<<<< HEAD
     @vimeo_user = params[:id]
     vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
     @results = HTTParty.get("https://api.vimeo.com/users/#{@vimeo_user}/videos?filter=embeddable&filter_embeddable=true", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
@@ -122,5 +97,8 @@ class UsersController < ApplicationController
           @button = true
         end
       end
+=======
+    @user_name = params[:id]
+>>>>>>> 610b2f59ed97e6569ecb737a57f7d787bb06cf87
   end
 end
