@@ -19,8 +19,21 @@
               </div>
             <% end %>
           <% elsif vimeo_result? %>
-            <%= result["name"] %>
-            <%= button_to "Subscribe", subscribe_vimeo_path, method: :patch, class: 'btn btn-primary', params: { uri: result["uri"] } %>
+            <div class= "centered padded-top" >
+              <%= result["name"] %>
+            </div>
+            <div class= "centered padded-bottom padded-top">
+              <% if result["pictures"].nil? %>
+                <div>
+                no photo
+                </div>
+              <% else %>
+                <%= image_tag(result["pictures"]["sizes"][1]["link"], class:"centered resized") %>
+              <% end %>
+            </div>
+            <div class= "centered">
+              <%= button_to "Subscribe", subscribe_vimeo_path, method: :patch, class: 'btn btn-primary', params: { uri: result["uri"] } %>
+            </div>
           <% end %>
           <br />
         </li>
