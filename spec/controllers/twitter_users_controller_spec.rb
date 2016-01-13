@@ -61,13 +61,6 @@ RSpec.describe TwitterUsersController, type: :controller do
       end
     end
 
-    # it "successfully creates a new TwitterUser if the TwitterUser does not exist" do
-    #   patch :subscribe, params
-    #   expect(TwitterUser.all.length).to eq 1
-    #   expect(response.status).to eq 302
-    #   expect(subject).to redirect_to :root
-    # end
-
     it "does not create a new TwitterUser if the TwitterUser already exists" do
       existing_TwitterUser
       expect(TwitterUser.all.length).to eq 1
@@ -110,13 +103,15 @@ RSpec.describe TwitterUsersController, type: :controller do
       expect(subject).to redirect_to :root
     end
 
-    # it "will not associate a User with a TwitterUser if they are already associated" do
-    #   second_existing_TwitterUser
-    #   user.twitter_users << second_existing_TwitterUser
-    #   expect(user.twitter_users.length).to eq 2
-    #   expect(flash[:error]).to eq "You are already subscribed to this user."
-    #   expect(subject).to redirect_to :root
-    # end
+    it "will not associate a User with a TwitterUser if they are already associated" do
+      # second_existing_TwitterUser
+      # binding.pry
+      user.twitter_users << TwitterUser.first
+      binding.pry
+      expect(user.twitter_users.length).to eq 1
+      expect(flash[:error]).to eq "You are already subscribed to this user."
+      expect(subject).to redirect_to :root
+    end
 
   end
 
