@@ -10,7 +10,8 @@ class Medium < ActiveRecord::Base
     media = HTTParty.get("https://api.vimeo.com/users/#{username}/videos", query: {"page" => 1, "per_page" => 10}, headers: { "Authorization" => auth })
 
     parsed_media = JSON.parse(media)
-    data = parsed_media["data"]
+    data = parsed_media["data"][0..20]
+    # binding.pry
 
     data.each do |d|
       if Medium.find_by(link: d["link"]).nil?
