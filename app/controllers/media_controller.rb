@@ -15,10 +15,10 @@ class MediaController < ApplicationController
             # binding.pry
             if Medium.find_by(uid: tweet.id).nil?
               Medium.create(
-                mark_id: mark.id, 
-                date_posted: tweet.created_at, 
-                link: tweet.source, 
-                text: tweet.text, 
+                mark_id: mark.id,
+                date_posted: tweet.created_at,
+                link: tweet.source,
+                text: tweet.text,
                 medium_type: "twitter",
                 uid: tweet.id
                 )
@@ -30,8 +30,13 @@ class MediaController < ApplicationController
           Medium.video_lookup(mark.username)
         end
       end
-      # raise
-      @media = current_spy.media.sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+      if params[:filter] == "vimeo"
+        @media = current_spy.media.where(medium_type: "vimeo").sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+      elsif params[:filter] == "twitter"
+        @media = current_spy.media.where(medium_type: "twitter").sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+      else
+        @media = current_spy.media.sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+      end
     end
   end
 end

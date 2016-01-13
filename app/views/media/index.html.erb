@@ -23,6 +23,27 @@
         <h1 id="timeline">TRACK YOUR MARKS</h1>
       </div>
 
+      <div>
+        <h3>Filter</h3>
+        <%= link_to root_path(
+            params: {
+              filter: "vimeo"
+            }
+          ) do %>
+            <%= fa_icon "vimeo" %>
+        <% end %>
+
+        <%= link_to root_path(
+            params: {
+              filter: "twitter"
+            }
+          ) do %>
+            <%= fa_icon "twitter" %>
+        <% end %>
+
+        <%= link_to "reset", root_path %>
+
+      </div>
       <ul class="timeline">
         <% media_count = @media.length %>
 
