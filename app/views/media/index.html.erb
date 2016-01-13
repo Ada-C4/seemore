@@ -13,7 +13,7 @@
 
 <% if !current_spy.nil? %>
   <% if @marks.empty? %>
-    <h1 class="page-header">ADD SOME MARKS</h1>
+    <h1 class="page-header">ADD MARKS <%= fa_icon "crosshairs" %> </h1>
     <h3><%= link_to "Search Vimeo", search_path("vimeo"), class: "btn btn-default btn-lg" %></h3>
     <h3><%= link_to "Search Twitter", search_path("twitter"), class: "btn btn-default btn-lg" %></h3>
   <% else %>
@@ -66,10 +66,10 @@
                   <iframe src="https://player.vimeo.com/video/<%= m.link.gsub(/[^\d]/, '') %>?badge=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
                 <% elsif m.medium_type == "twitter" %>
-                  <% if m.retweeted_from.nil? %> 
+                  <% if m.retweeted_from.nil? %>
                     <h5 class="timeline-title">Tweet by @<%= link_to m.mark.username, m.mark.link %></h5>
 
-                  <% else %> 
+                  <% else %>
                     <h5 class="timeline-title">Your mark @<%= link_to m.mark.username, m.mark.link %> retweeted from @<%= link_to m.retweeted_from, m.retweeted_from_link %></h5>
                   <% end %>
                   <div class="tweet" tweetID="<%= m.uid %>"></div>
