@@ -34,7 +34,6 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'font-awesome-rails'
 
-gem 'webmock'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -51,6 +50,10 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'vcr'
+end
+
+group :test do
+  gem 'webmock'
 end
 
 group :production do
