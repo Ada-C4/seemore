@@ -1,5 +1,9 @@
 <%= link_to "Home", root_path, class:"btn btn-default" %>
 
+<% photo = image_tag(@results["user"]["pictures"]["uri"], height: '75', width: '75') %>
+<br>
+<br>
+
 Test
 
 <%= button_to "Subscribe", vimeo_subscribe_path(params[:id]), class:"btn btn-default" %>

@@ -3,20 +3,20 @@ TODO: Add "No results found message when no results (does not happen when there 
 
 <h1> Search Results </h1>
 <div class="col-sm-6">
-  <% @vimeo_results.each do |search| %>
-  <% photo = search["pictures"] %>
-  <% videos = search["metadata"]["connections"]["videos"]["total"] %>
+  <% @vimeo_results.each do |video| %>
+  <% photo = video["pictures"] %>
+  <% videos = video["metadata"]["connections"]["videos"]["total"] %>
     <% if videos != 0 %>
       <div class="well well-lg">
         <table width="100%">
           <tr>
-            <td width="40%"><a href="/vimeo_results/<%= search["uri"] %>" ><%= search["name"] %></a></td>
+            <td width="40%"><a href="/vimeo_results/<%= video["uri"] %>" ><%= video["name"] %></a></td>
             <td width="40%">
-              <% if photo!= nil %>
-                <%= image_tag(photo["sizes"][1]["link"], height: '75', width: '75') %>
-                <% end %>
+              <% if photo != nil %>
+                <%= image_tag(video["pictures"]["sizes"][1]["link"], height: '75', width: '75') %>
+              <% end %>
               </td>
-              <td width="40%"><%= search["bio"]%></td>
+              <td width="40%"><%= video["bio"] %></td>
             </tr>
           </table>
         </div>
