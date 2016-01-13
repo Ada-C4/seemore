@@ -58,13 +58,15 @@ RSpec.describe Medium, type: :model do
 
     describe "#self.vimeo_filter" do
       it "returns only vimeo media" do
-        mark = create(:mark_with_media)
+        mark = create(:mark_with_media) #this mark only has tweets
         expect(Medium.vimeo_filter(mark.media).count).to eq 0
       end
+    end
 
+    describe "#self.twitter_filter" do
       it "returns only twitter media" do
-        mark = create(:mark_with_media)
-        expect(Medium.twitter_filter(mark.media).count).to eq 5
+        mark = create(:mark_with_media2) #this mark only has videos
+        expect(Medium.twitter_filter(mark.media).count).to eq 0
       end
     end
   end

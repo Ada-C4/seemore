@@ -23,6 +23,17 @@ FactoryGirl.define do
       end
     end
 
+    factory :mark_with_media2 do
+      transient do
+        media_count 5
+      end
+
+      after(:create) do |mark, evaluator|
+        create_list(:medium2, evaluator.media_count, mark: mark)
+      end
+    end
+
+
     trait :prez do
       uid "813286"
       username "BarackObama"
@@ -37,5 +48,14 @@ FactoryGirl.define do
     date_posted Time.now
     link "whatever"
     medium_type "twitter"
+  end
+
+  factory :medium2, class: Medium do
+    mark
+    text "hello"
+    media_url "hello.jpeg"
+    date_posted Time.now
+    link "whatever"
+    medium_type "vimeo"
   end
 end
