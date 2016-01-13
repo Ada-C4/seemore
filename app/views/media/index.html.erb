@@ -23,14 +23,13 @@
         <h1 id="timeline">TRACK YOUR MARKS</h1>
       </div>
 
-      <div>
-        <h3>Filter</h3>
+      <div class="filter">
         <%= link_to root_path(
             params: {
               filter: "vimeo"
             }
           ) do %>
-            <%= fa_icon "vimeo" %>
+            <%= fa_icon "vimeo", class: "filter-button", alt: "sort by vimeo" %>
         <% end %>
 
         <%= link_to root_path(
@@ -38,10 +37,12 @@
               filter: "twitter"
             }
           ) do %>
-            <%= fa_icon "twitter" %>
+            <%= fa_icon "twitter", class: "filter-button", alt: "sort by twitter" %>
         <% end %>
 
-        <%= link_to "reset", root_path %>
+        <%= link_to root_path do %>
+          <%= fa_icon "refresh", class: "filter-button", alt: "refresh" %>
+        <% end %>
 
       </div>
       <ul class="timeline">
