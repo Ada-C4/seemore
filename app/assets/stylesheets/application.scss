@@ -110,10 +110,20 @@ img {
 .listed-users {
   list-style-type: none;
   border: solid #84694f 1px;
-  width: 200px;
-  padding: 15px;
-  margin: 10px;
+  border-radius: 5px;
+  width: 165px;
+  height: 177px;
+  padding: 8px;
+  margin: 25px;
   float: left;
+}
+
+.padded-bottom {
+  padding-bottom: 5px;
+}
+
+.padded-top {
+  padding-top: 10px;
 }
 
 .search-results {

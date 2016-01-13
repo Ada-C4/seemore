@@ -5,10 +5,10 @@
       <% @results.each do |result| %>
         <li class="listed-users">
           <% if twitter_result? %>
-            <div class= "centered" >
+            <div class= "centered padded-top" >
               <%= result.screen_name %>
             </div>
-            <div class="centered">
+            <div class="centered padded-bottom padded-top">
             <%= image_tag(result.profile_image_uri, class:"centered") %>
             </div>
             <% if result.protected? %>
