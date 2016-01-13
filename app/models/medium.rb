@@ -22,11 +22,22 @@ class Medium < ActiveRecord::Base
           link: d["link"],
           text: d["description"],
           title: d["name"],
-          medium_type: "vimeo", 
+          medium_type: "vimeo",
           uid: d["link"].split('/')[-1],
           )
       end
     end
   end
 
+  def self.vimeo_filter(media)
+    return media.where(medium_type: "vimeo").sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+  end
+
+  def self.twitter_filter(media)
+    return media.where(medium_type: "twitter").sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+  end
+
+  def self.no_filter(media)
+    return media.sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+  end
 end

@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 
 window.onload = (function(){
@@ -25,16 +24,10 @@ window.onload = (function(){
     twttr.widgets.createTweet(
       id, tweetList[i],
       {
-        conversation : 'none',    // or all
-        cards        : 'visible',
-        linkColor    : 'black', // default is blue
-        theme        : 'light',    // or dark
-        width        : '550', // amount in pixels, between 250 and 550
-        align        : 'center' // float the Tweet left, right, or center
+        align: 'center'
       });
   }
 });
 
-$(document).ready(resize_thumbs);
-$(window).resize(resize_thumbs);
-$(document).on('page:change', resize_thumbs);
+
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112222325) do
+ActiveRecord::Schema.define(version: 20160113192912) do
 
   create_table "marks", force: :cascade do |t|
     t.string   "username"
@@ -42,10 +42,12 @@ ActiveRecord::Schema.define(version: 20160112222325) do
     t.string   "location"
     t.string   "link"
     t.string   "medium_type"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "title"
     t.string   "uid"
+    t.string   "retweeted_from"
+    t.string   "retweeted_from_link"
   end
 
   create_table "spies", force: :cascade do |t|

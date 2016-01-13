@@ -12,7 +12,6 @@ class MediaController < ApplicationController
         if mark.provider == "twitter"
           @tweets = twitter.user_timeline(mark.username, count: 20)
           @tweets.each do |tweet|
-            # binding.pry
             if Medium.find_by(uid: tweet.id).nil?
               Medium.create(
                 mark_id: mark.id,
@@ -20,9 +19,10 @@ class MediaController < ApplicationController
                 link: tweet.source,
                 text: tweet.text,
                 medium_type: "twitter",
-                uid: tweet.id
+                uid: tweet.id, 
+                retweeted_from: tweet.retweeted_status.user.username,
+                retweeted_from_link: tweet.retweeted_status.user.url
                 )
-              # binding.pry
             end
           end
 
@@ -31,11 +31,11 @@ class MediaController < ApplicationController
         end
       end
       if params[:filter] == "vimeo"
-        @media = current_spy.media.where(medium_type: "vimeo").sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+        @media = Medium.vimeo_filter(current_spy.media)
       elsif params[:filter] == "twitter"
-        @media = current_spy.media.where(medium_type: "twitter").sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+        @media = Medium.twitter_filter(current_spy.media)
       else
-        @media = current_spy.media.sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+        @media = Medium.no_filter(current_spy.media)
       end
     end
   end
