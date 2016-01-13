@@ -14,9 +14,16 @@
 <br>
 <br>
 
+<div class="col-sm-4">
   <% @user_tweets.each do |tweet| %>
   <div class="well">
-      <%= tweet.text %>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <blockquote class="twitter-tweet" lang="en">
+      <a href="https://twitter.com/<%= tweet.user.username %>/status/<%= tweet.id %>">
+      </a>
+    </blockquote>
   </div>
   <% end %>
 </ul>
+</div>
+<div class="col-sm-8"></div>
