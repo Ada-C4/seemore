@@ -1,10 +1,20 @@
 <%= link_to "Home", root_path, class:"btn btn-default" %>
-
-<%= image_tag(["user"]["pictures"]["uri"], height: '75', width: '75') %>
+<br>
+<h1><%= @results[0]["user"]["name"] %></h1>
+<%= image_tag(@results[0]["user"]["pictures"]["sizes"][1]["link"], height: '75', width: '75') %>
 
 <br>
 <br>
 
-Test
+<% if @button == true %>
+  <%= button_to "Subscribe", vimeo_subscribe_path(@vimeo_user), class:"btn btn-default" %>
+<% else %>
+  <p>You are already subscribed to this feed</p>
+<% end %>
 
-<%= button_to "Subscribe", vimeo_subscribe_path(params[:id]), class:"btn btn-default" %>
+
+<% @results.each do |result| %>
+  <div class="well">
+      <%= result["uri"] %>
+  </div>
+<% end %>
