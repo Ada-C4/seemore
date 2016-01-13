@@ -25,7 +25,7 @@
             <div class= "centered padded-bottom padded-top">
               <% if result["pictures"].nil? %>
                 <div>
-                no photo
+                <%= image_tag("default_photo.png", class:"centered resized") %>
                 </div>
               <% else %>
                 <%= image_tag(result["pictures"]["sizes"][1]["link"], class:"centered resized") %>
