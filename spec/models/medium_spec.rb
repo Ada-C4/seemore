@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe Medium, type: :model do
   let(:new_medium) { build(:medium) }
@@ -34,7 +35,7 @@ RSpec.describe Medium, type: :model do
           Medium.video_lookup("jeffdesom")
           expect(Medium.all.length).to be > 1
         end
-        
+
         it "returns an array of videos less than or equal to 20" do
           create(:mark)
           Medium.video_lookup("jeffdesom")
@@ -52,6 +53,18 @@ RSpec.describe Medium, type: :model do
           Medium.video_lookup("jeffdesom")
           expect{Medium.video_lookup("jeffdesom")}.to change(Medium, :count).by(0)
         end
+      end
+    end
+
+    describe "#self.vimeo_filter" do
+      it "returns only vimeo media" do
+        mark = create(:mark_with_media)
+        expect(Medium.vimeo_filter(mark.media).count).to eq 0
+      end
+
+      it "returns only twitter media" do
+        mark = create(:mark_with_media)
+        expect(Medium.twitter_filter(mark.media).count).to eq 5
       end
     end
   end

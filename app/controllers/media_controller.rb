@@ -22,7 +22,6 @@ class MediaController < ApplicationController
                 medium_type: "twitter",
                 uid: tweet.id
                 )
-              # binding.pry
             end
           end
 
@@ -31,11 +30,11 @@ class MediaController < ApplicationController
         end
       end
       if params[:filter] == "vimeo"
-        @media = current_spy.media.where(medium_type: "vimeo").sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+        @media = Medium.vimeo_filter(current_spy.media)
       elsif params[:filter] == "twitter"
-        @media = current_spy.media.where(medium_type: "twitter").sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+        @media = Medium.twitter_filter(current_spy.media)
       else
-        @media = current_spy.media.sort_by { |m| DateTime.parse(m.date_posted) }.reverse.take(20)
+        @media = Medium.no_filter(current_spy.media)
       end
     end
   end

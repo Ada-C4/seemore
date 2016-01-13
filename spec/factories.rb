@@ -13,7 +13,7 @@ FactoryGirl.define do
     image_url "mark.jpeg"
     provider "vimeo"
 
-    factory :mark_with_media do 
+    factory :mark_with_media do
       transient do
         media_count 5
       end
@@ -23,7 +23,7 @@ FactoryGirl.define do
       end
     end
 
-    trait :prez do 
+    trait :prez do
       uid "813286"
       username "BarackObama"
       name "Barack Obama"
@@ -36,7 +36,7 @@ FactoryGirl.define do
     mark
     text "hello"
     media_url "hello.jpeg"
-    date_posted "whenever"
+    date_posted Time.now
     link "whatever"
     medium_type "twitter"
   end

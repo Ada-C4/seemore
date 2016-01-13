@@ -10,10 +10,36 @@ RSpec.describe MediaController, type: :controller do
       get :index
       expect(response).to render_template :index
     end
+
+    let(:vimeo_params) do
+      {
+        filter: "vimeo"
+      }
+    end
+
+    let(:twitter_params) do
+      {
+        filter: "twitter"
+      }
+    end
+
+    it "renders the index page when the vimeo filter is selected" do
+      new_spy.save
+      session[:spy_id] = new_spy.id
+      get :index, vimeo_params
+      expect(response).to render_template :index
+    end
+
+    it "renders the index page when the twitter filter is selected" do
+      new_spy.save
+      session[:spy_id] = new_spy.id
+      get :index, twitter_params
+      expect(response).to render_template :index
+    end
   end
 
-  describe "index gets all marks" do 
-    it "returns all current spies marks" do 
+  describe "index gets all marks" do
+    it "returns all current spies marks" do
       new_spy.save
       session[:spy_id] = new_spy.id
       get :index
@@ -22,8 +48,8 @@ RSpec.describe MediaController, type: :controller do
     end
   end
 
-  context "showing the feed" do 
-    describe "shows all media" do 
+  context "showing the feed" do
+    describe "shows all media" do
       it "creates new media with vimeo" do
         new_spy.save
         new_mark.save
