@@ -19,9 +19,17 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+.centered {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 .even-narrower {
   max-width: 520px;
-  margin: 0 auto;  
+  margin: 0 auto;
 }
 
 iframe {
