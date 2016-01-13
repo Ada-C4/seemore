@@ -8,7 +8,7 @@ class Mark < ActiveRecord::Base
 
   def self.vimeo_lookup(search_term)
     auth = "Bearer #{ENV['VIMEO_ACCESS_TOKEN']}"
-    marks = HTTParty.get("https://api.vimeo.com/users?query=#{search_term}/", headers: { "Authorization" => auth })
+    marks = HTTParty.get("https://api.vimeo.com/users", query: {:query => search_term}, headers: { "Authorization" => auth })
     parsed_marks = JSON.parse(marks)
     marks_data = parsed_marks["data"]
     result = []
