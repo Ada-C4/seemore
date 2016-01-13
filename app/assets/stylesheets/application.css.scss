@@ -1,7 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|News+Gothic|Inconsolata|Droid+Sans|Roboto|Cabin|Open+Sans|Raleway|Poiret+One');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|News+Gothic|Inconsolata|Droid+Sans|Roboto|Cabin|Open+Sans|Raleway|Poiret+One|Lato');
 @import url(https://fonts.googleapis.com/css?family=Ubuntu);
 
 .twt-actions { display: none; }
@@ -14,12 +14,37 @@ body {
   font-size: 250px;
 }
 
+.filter {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.filter-button {
+  font-size: 40px;
+  color: rgba(0, 0, 0, .5);
+  margin: 0 auto;
+  text-align: center;
+  padding: 0px 20px 10px 20px
+}
+
+.filter:hover {
+  text-decoration: none;
+}
 
 .navbar-header {
   font-family: Poiret One, monospace;
   color: white;
+  font-size: 20px;
 }
 
+.navbar-nav {
+  font-family: Lato, monospace;
+  font-size: 15px;
+}
+
+.navbar-brand {
+  font-size: 30px;
+}
 .company {
   font-size: 200px;
   color: #55ACEE;
@@ -44,6 +69,13 @@ h2 {
   color: black;
 }
 
+h3 {
+  font-family: Lato, monospace;
+  font-size: 30px;
+  text-align: center;
+  color: black;
+}
+
 h2:hover {
   text-decoration: none;
 }
@@ -53,7 +85,7 @@ h2:hover {
 }
 
 .btn-lg {
-  font-family: Poiret One, monospace;
+  font-family: Lato, monospace;
   display: inline;
   margin: 0 auto;
   width:200px;
@@ -267,6 +299,7 @@ h2:hover {
   background-color: #a6a6a6;
   color: #FFFFFF;
   font-size: 12px;
+  font-family: Lato, monospace;
 }
 
 .profile-link {

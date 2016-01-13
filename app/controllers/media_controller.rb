@@ -19,7 +19,7 @@ class MediaController < ApplicationController
                 text: tweet.text,
                 medium_type: "twitter",
                 uid: tweet.id,
-                retweeted_from: tweet.retweeted_status.user.username,
+                retweeted_from: tweet.retweeted_status.user.screen_name,
                 retweeted_from_link: tweet.retweeted_status.user.url
                 )
             end
