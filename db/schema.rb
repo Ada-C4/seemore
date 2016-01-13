@@ -42,11 +42,12 @@ ActiveRecord::Schema.define(version: 20160113192912) do
     t.string   "location"
     t.string   "link"
     t.string   "medium_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "title"
     t.string   "uid"
-    t.string   "retweet_status"
+    t.string   "retweeted_from"
+    t.string   "retweeted_from_link"
   end
 
   create_table "spies", force: :cascade do |t|
