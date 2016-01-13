@@ -12,7 +12,6 @@ class MediaController < ApplicationController
         if mark.provider == "twitter"
           @tweets = twitter.user_timeline(mark.username, count: 20)
           @tweets.each do |tweet|
-            # binding.pry
             if Medium.find_by(uid: tweet.id).nil?
               Medium.create(
                 mark_id: mark.id,
@@ -20,7 +19,8 @@ class MediaController < ApplicationController
                 link: tweet.source,
                 text: tweet.text,
                 medium_type: "twitter",
-                uid: tweet.id
+                uid: tweet.id, 
+                retweet_status: tweet.retweeted_status.user.username
                 )
             end
           end

@@ -65,6 +65,12 @@
                   <iframe src="https://player.vimeo.com/video/<%= m.link.gsub(/[^\d]/, '') %>?badge=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
                 <% elsif m.medium_type == "twitter" %>
+                  <% if m.retweet_status.nil? %> 
+                    <h5 class="timeline-title">Tweet by @<%= m.mark.username %></h5>
+
+                  <% else %> 
+                    <h5 class="timeline-title">@<%= m.mark.username %> retweeted from @<%= m.retweet_status %></h5>
+                  <% end %>
                   <div class="tweet" tweetID="<%= m.uid %>"></div>
                 <% end %>
 
