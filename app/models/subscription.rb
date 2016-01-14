@@ -67,6 +67,23 @@ class Subscription < ActiveRecord::Base
             Story.create_new_story(video_uid, text, url, subscription.id, post_time)
           end
         end
+      elsif subscription.provider == "instagram"
+        results = HTTParty.get("https://www.instagram.com/#{subscription.username}/media/")
+        results = results["items"]
+        results.each do |result|
+          response = Story.find_story?(result["id"], subscription.id)
+          if response == true
+            break
+          else
+            post_time = result["created_time"]
+            post_time = DateTime.strptime(post_time,'%s')
+            uid = result["id"]
+            url = result["images"]["standard_resolution"]["url"]
+            subscription_id = subscription.id
+            text = nil
+            Story.create_new_story(uid, text, url, subscription_id, post_time)
+          end
+        end
       end
     end
   end
