@@ -3,7 +3,9 @@
   <div class="col-md-6 col-md-offset-3">
     <%= text_field_tag :username, nil, placeholder: "Search Marks", class: "search-box", required: "required", type: "text" %>
     <button type="submit" class='btn gray-btn' style='width:40px;'>
-      <%= fa_icon "search" %>
+      <div class ="crosshairs">
+      <%= fa_icon "crosshairs" %>
+      </div>
     </button>
   </div>
 <% end %>

@@ -11,7 +11,6 @@ class Medium < ActiveRecord::Base
 
     parsed_media = JSON.parse(media)
     data = parsed_media["data"][0..20]
-    # binding.pry
 
     data.each do |d|
       if Medium.find_by(link: d["link"]).nil?

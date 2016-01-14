@@ -31,8 +31,14 @@ body {
   padding: 0px 20px 10px 20px
 }
 
-.filter:hover {
+.filter-button:hover {
   text-decoration: none;
+  color: #000000;
+}
+
+.retweet {
+  font-size: 18px;
+  color: #000000;
 }
 
 .navbar-header {
@@ -84,6 +90,9 @@ h2:hover {
   text-decoration: none;
 }
 
+.crosshairs {
+  font-size: 17px;
+}
 .btn .btn-default {
   text-align: center;
 }

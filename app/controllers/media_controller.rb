@@ -1,4 +1,3 @@
-require 'pry'
 class MediaController < ApplicationController
   def twitter
     Seemore::Application.config.twitter

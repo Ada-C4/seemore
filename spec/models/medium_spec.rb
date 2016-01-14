@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'rails_helper'
-require 'pry'
 
 RSpec.describe Medium, type: :model do
   let(:new_medium) { build(:medium) }
