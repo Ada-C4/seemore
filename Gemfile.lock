@@ -283,6 +283,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.1.0)
+  domain_name (~> 0.5.24)
   dotenv-rails
   factory_girl_rails (~> 4.0)
   font-awesome-rails
