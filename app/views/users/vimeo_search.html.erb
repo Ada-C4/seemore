@@ -1,28 +1,29 @@
 <%= link_to "Home", root_path, class:"btn btn-default" %>
-TODO: Add "No results found message when no results (does not happen when there are users we have excluded because they have no videos)"
 
-<h1> Search Results </h1>
 <div class="col-sm-6">
-  <% @vimeo_results.each do |video| %>
-  <% photo = video["pictures"] %>
-  <% videos = video["metadata"]["connections"]["videos"]["total"] %>
-    <% if videos != 0 %>
-    <a href="/vimeo_results/<%= video["uri"] %>" >
-      <div class="well well-lg">
-        <table width="100%">
-          <tr>
-          <td width="40%"><%= video["name"] %></td>
-            <td width="40%">
-              <% if photo != nil %>
-                <%= image_tag(video["pictures"]["sizes"][1]["link"], height: '75', width: '75') %>
-              <% end %>
-              </td>
-              <td width="40%"><%= video["bio"] %></td>
-            </tr>
-          </table>
+  <% if @vimeo_results == nil %>
+  <% else %>
+  <h1> Search Results </h1>
+    <% @vimeo_results.each do |video| %>
+    <% photo = video["pictures"] %>
+    <% videos = video["metadata"]["connections"]["videos"]["total"] %>
+      <% if videos != 0 %>
+      <a href="/vimeo_results/<%= video["uri"] %>" >
+        <div class="well well-lg">
+          <table width="100%">
+            <tr>
+            <td width="40%"><%= video["name"] %></td>
+              <td width="40%">
+                <% if photo != nil %>
+                  <%= image_tag(video["pictures"]["sizes"][1]["link"], height: '75', width: '75') %>
+                <% end %>
+                </td>
+                <td width="40%"><%= video["bio"] %></td>
+              </tr>
+            </table>
+          </div>
         </a>
-        </div>
+      <% end %>
     <% end %>
   <% end %>
   </div>
-  <div class="col-sm-8"></div>
