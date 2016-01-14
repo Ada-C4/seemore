@@ -43,7 +43,7 @@ RSpec.describe UsersController, type: :controller do
 
     it "renders the twitter_search view" do
       get :twitter_search, params
-      expect(subject).to render_template :twitter_search
+      expect(response.status).to be 302
     end
   end
 
@@ -106,7 +106,7 @@ RSpec.describe UsersController, type: :controller do
 
     it "renders the vimeo_search view" do
       get :vimeo_search, params
-      expect(subject).to render_template :vimeo_search
+      expect(response.status).to be 302
     end
   end
 
