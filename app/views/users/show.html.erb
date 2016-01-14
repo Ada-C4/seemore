@@ -22,14 +22,14 @@
 
   <% if @current_user %>
     <div class="row">
-      <%= form_tag "/twitter_results", :method => 'get' do %>
+      <%= form_tag :twitter_search, :method => 'get' do %>
         <p>
           <%= text_field_tag :search, params[:search] %>
           <%= submit_tag "Search Twitter", class:"btn btn-default" %>
         </p>
       <% end %>
       <br>
-      <%= form_tag "/vimeo_results", :method => 'get' do %>
+      <%= form_tag :vimeo_search, :method => 'get' do %>
         <p>
           <%= text_field_tag :search, params[:search] %>
           <%= submit_tag "Search Vimeo", class:"btn btn-default" %>
