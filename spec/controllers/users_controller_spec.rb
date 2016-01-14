@@ -152,4 +152,67 @@ RSpec.describe UsersController, type: :controller do
       expect(subject).to redirect_to root_path
     end
   end
+
+  describe "GET 'instagram_search'" do
+    let(:params) do
+    {
+      search: "justinbieber"
+    }
+    end
+
+    it "renders the instagram_search view" do
+      get :instagram_search, params
+      expect(subject).to render_template :instagram_search
+    end
+  end
+
+  describe "GET 'instagram_search_user'" do
+    let(:params) do
+      {
+        id: "justinbieber"
+      }
+    end
+
+    let!(:user) do
+      User.create(
+      email:    "a@b.com",
+      username: "Ada",
+      uid:      "1234",
+      provider: "twitter")
+    end
+
+    it "renders the instagram_search_user view" do
+      session[:user_id] = user.id
+      get :instagram_search_user, params
+      expect(subject).to render_template :instagram_search_user
+    end
+  end
+
+  describe "POST 'twitter_subscribe'" do
+    let(:params) do
+      {
+        id: "justinbieber"
+      }
+    end
+
+    let!(:user) do
+      User.create(
+      email:    "a@b.com",
+      username: "Ada",
+      uid:      "1234",
+      provider: "twitter")
+    end
+
+    it "subscribes to a new subscription" do
+      session[:user_id] = user.id
+      expect { post :instagram_subscribe, params }.to change(Subscription, :count).by(1)
+      expect(subject).to redirect_to root_path
+    end
+
+    it "creates new stories" do
+      session[:user_id] = user.id
+      expect { post :instagram_subscribe, params }.to change(Story, :count).by(20)
+      expect(subject).to redirect_to root_path
+    end
+  end
 end

@@ -1,0 +1,17 @@
+<h1> Search Results </h1>
+<div class="col-sm-6">
+  <% @search_results.each do |search| %>
+  <a href="/instagram_results/<%= search.username %>" >
+  <div class="well well-lg">
+    <table width="100%">
+      <tr>
+        <td width="40%"><%= search.username %></td>
+        <td width="40%"><%= search.full_name %></td>
+        <td width="20%"><%= image_tag(search.profile_picture, height: '50', width: '50') %></td>
+      </tr>
+    </table>
+  </div>
+  </a>
+  <% end %>
+  </div>
+  <div class="col-sm-8"></div>

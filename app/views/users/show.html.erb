@@ -6,64 +6,98 @@
         <h1 id="timeline">Skynet</h1>
       <% end %>
   </div>
-
-<% if @current_user %>
   <div class="row">
-    <%= form_tag "/twitter_results", :method => 'get' do %>
-      <p>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search Twitter", class:"btn btn-default" %>
-      </p>
-    <% end %>
-    <br>
-    <%= form_tag "/vimeo_results", :method => 'get' do %>
-      <p>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search Vimeo", class:"btn btn-default" %>
-      </p>
+    <% if @current_user %>
+      <%= link_to "Logout", "/logout", class: "btn btn-default" %>
+    <% else %>
+      <%= link_to "Sign in with Twitter", "/auth/twitter", class:"btn btn-default" %>
+      <%= link_to "Sign in with Github", "/auth/github", class:"btn btn-default" %>
+      <% if !Rails.env.production? %>
+        <%= link_to "Sign in as OmniAuth Dev", "/auth/developer", class:"btn btn-default" %>
+      <% end %>
     <% end %>
     <hr>
   </div>
-<% end %>
-
-<ul class="timeline">
-  <% if @stories != [] %>
-  <% @stories.each do |story| %>
-    <% if story.subscription.provider == "twitter" %>
-      <li>
-        <div class="timeline-badge timeline-badge-twitter"><i class="fa fa-twitter"></i></div>
-        <div class="timeline-panel">
-          <div class="timeline-heading">
-            <h4 class="timeline-title"><%= story.subscription.username %></h4>
-            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.post_time %> via Twitter</small></p>
-          </div>
-          <div class="timeline-body">
-
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            <blockquote class="twitter-tweet" lang="en">
-              <a href="https://twitter.com/<%= story.subscription.username %>/status/<%= story.uid %>">
-              </a>
-            </blockquote>
-
-          </div>
-        </div>
-      </li>
-    <% elsif story.subscription.provider == "vimeo" %>
-      <li class="timeline-inverted">
-        <div class="timeline-badge timeline-badge-vimeo"><i class="fa fa-vimeo"></i></div>
-        <div class="timeline-panel">
-          <div class="timeline-heading">
-            <h4 class="timeline-title"><%= story.subscription.username %></h4>
-            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.post_time %> via Vimeo</small></p>
-          </div>
-          <div class="timeline-body">
-            <iframe src="//player.vimeo.com/video/<%= story.uid %>" width="WIDTH" height="HEIGHT" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-          </div>
-        </div>
-      </li>
+​
+​
+  <% if @current_user %>
+    <div class="row">
+      <%= form_tag :twitter_search, :method => 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search Twitter", class:"btn btn-default" %>
+        </p>
       <% end %>
-    <% end %>
-    <% else %>
-    You haven't followed any users yet! Follow users to build your feed.
-    <% end %>
-</ul>
+      <br>
+      <%= form_tag :vimeo_search, :method => 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search Vimeo", class:"btn btn-default" %>
+        </p>
+      <% end %>
+      <br>
+      <%= form_tag "/instagram_results", :method => 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search Instagram", class:"btn btn-default" %>
+        </p>
+      <% end %>
+      <hr>
+    </div>
+  <% end %>
+​
+  <ul class="timeline">
+    <% if @stories != [] %>
+    <% @stories.each do |story| %>
+      <% if story.subscription.provider == "twitter" %>
+        <li>
+          <div class="timeline-badge timeline-badge-twitter"><i class="fa fa-twitter"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title"><%= story.subscription.username %></h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.post_time %> via Twitter</small></p>
+            </div>
+            <div class="timeline-body">
+​
+              <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <blockquote class="twitter-tweet" lang="en">
+                <a href="https://twitter.com/<%= story.subscription.username %>/status/<%= story.uid %>">
+                </a>
+              </blockquote>
+​
+            </div>
+          </div>
+        </li>
+      <% elsif story.subscription.provider == "vimeo"  %>
+        <li class="timeline-inverted">
+          <div class="timeline-badge timeline-badge-vimeo"><i class="fa fa-vimeo"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title"><%= story.subscription.username %></h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.post_time %> via Vimeo</small></p>
+            </div>
+            <div class="timeline-body">
+              <iframe src="//player.vimeo.com/video/<%= story.uid %>" width="WIDTH" height="HEIGHT" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+          </div>
+        </li>
+      <% elsif story.subscription.provider == "instagram" %>
+        <li class="timeline-inverted">
+          <div class="timeline-badge timeline-badge-vimeo"><i class="fa fa-instagram"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title"><%= story.subscription.username %></h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.post_time %> via Instagram</small></p>
+            </div>
+            <div class="timeline-body">
+              <img src="<%= story.url %>" class="instagram-show">
+            </div>
+          </div>
+        </li>
+      <% end %>
+​
+      <% end %>
+      <% else %>
+      You haven't followed any users yet! Follow users to build your feed.
+      <% end %>
+  </ul>
