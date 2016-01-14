@@ -5,15 +5,35 @@
       <% @results.each do |result| %>
         <li class="listed-users">
           <% if twitter_result? %>
-            <%= result.screen_name %>
+            <div class= "centered padded-top clipped-flow" >
+              <%= result.screen_name %>
+            </div>
+            <div class="centered padded-bottom padded-top">
+            <%= image_tag(result.profile_image_uri, class:"centered") %>
+            </div>
             <% if result.protected? %>
-              <p>This Twitter user is protected; you cannot subscribe to their tweets.</p>
+              <div>Sorry, this user is private</div>
             <% else %>
-              <%= button_to "Subscribe", subscribe_twitter_path, method: :patch, class: 'btn btn-primary', params: { screen_name: result.screen_name } %>
+              <div class="centered">
+                <%= button_to "Subscribe", subscribe_twitter_path, method: :patch, class: 'btn btn-primary', params: { screen_name: result.screen_name } %>
+              </div>
             <% end %>
           <% elsif vimeo_result? %>
-            <%= result["name"] %>
-            <%= button_to "Subscribe", subscribe_vimeo_path, method: :patch, class: 'btn btn-primary', params: { uri: result["uri"] } %>
+            <div class= "centered padded-top clipped-flow" >
+              <%= result["name"] %>
+            </div>
+            <div class= "centered padded-bottom padded-top">
+              <% if result["pictures"].nil? %>
+                <div>
+                <%= image_tag("default_photo.png", class:"centered resized") %>
+                </div>
+              <% else %>
+                <%= image_tag(result["pictures"]["sizes"][1]["link"], class:"centered resized") %>
+              <% end %>
+            </div>
+            <div class= "centered">
+              <%= button_to "Subscribe", subscribe_vimeo_path, method: :patch, class: 'btn btn-primary', params: { uri: result["uri"] } %>
+            </div>
           <% end %>
           <br />
         </li>
