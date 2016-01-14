@@ -26,6 +26,7 @@ body {
 
 .flash {
   color: red;
+  text-align: center;
 }
 
 .col-sm-6 {
@@ -34,6 +35,10 @@ body {
 
 .instagram-show {
   width: 350px;
+}
+
+.fa fa-vimeo {
+  color: red;
 }
 
 .timeline {
@@ -172,11 +177,15 @@ body {
 }
 
 .timeline-badge-twitter {
-  background-color: #5bc0de !important;
+  background-color: #C2B0B6 !important;
 }
 
 .timeline-badge-vimeo {
-  background-color: #5bc0de !important;
+  background-color: #B0BDC2 !important;
+}
+
+.timeline-badge-instagram {
+  background-color: #B1B39F !important;
 }
 
 .timeline-title {
