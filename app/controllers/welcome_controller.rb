@@ -9,7 +9,6 @@ class WelcomeController < ApplicationController
       @feed = make_feed(@current_user)
     end
   end
-end
 
 def make_feed(current_user)
    feed = []
@@ -27,3 +26,4 @@ def make_feed(current_user)
    trimmed = sorted[0...74]
    return trimmed
  end
+end
