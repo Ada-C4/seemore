@@ -14,13 +14,20 @@ RSpec.describe UsersController, type: :controller do
     let(:subscription_2) {Subscription.create(
             username: "Poodle", uid: "4943031" , provider: "vimeo", avatar_url: "https://pbs.twimg.com/profile_images/665340796510466048/-nsoU1Q5.jpg"
             )}
+
+    let(:subscription_3) {Subscription.create(
+            username: "schwarzenegger", uid: "198945880" , provider: "instagram", avatar_url: "https://scontent-sea1-1.cdninstagram.com/hphotos-xta1/t51.2885-19/11373921_1614186788830308_1200274240_a.jpg"
+            )}
     let(:story) {Story.create(uid: 1, text: "blah", subscription_id: 1, post_time: Time.now)}
     let(:story) {Story.create(uid: 2, text: "blah", subscription_id: 2, post_time: Time.now)}
+    let(:story) {Story.create(uid: 3, text: "blah", subscription_id: 3, post_time: Time.now)}
+
 
     it "pulls content for a logged in user" do
       session[:user_id] = user.id
       user.subscriptions << subscription
       user.subscriptions << subscription_2
+      user.subscriptions << subscription_3
 
       get :show
       expect(subject).to render_template :show
@@ -36,7 +43,7 @@ RSpec.describe UsersController, type: :controller do
 
     it "renders the twitter_search view" do
       get :twitter_search, params
-      expect(subject).to render_template :twitter_search
+      expect(response.status).to be 302
     end
   end
 
@@ -99,7 +106,7 @@ RSpec.describe UsersController, type: :controller do
 
     it "renders the vimeo_search view" do
       get :vimeo_search, params
-      expect(subject).to render_template :vimeo_search
+      expect(response.status).to be 302
     end
   end
 
@@ -188,7 +195,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "POST 'twitter_subscribe'" do
+  describe "POST 'instagram_subscribe'" do
     let(:params) do
       {
         id: "justinbieber"

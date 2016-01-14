@@ -33,7 +33,9 @@
       <hr>
     </div>
   <% end %>
-​
+​    <div class="apple_pagination">
+      <%= will_paginate @stories %>
+    </div>
   <ul class="timeline">
     <% if @stories != [] %>
     <% @stories.each do |story| %>
@@ -83,9 +85,14 @@
           </div>
         </li>
       <% end %>
-​
       <% end %>
+
       <% else %>
       You haven't followed any users yet! Follow users to build your feed.
       <% end %>
+
+
   </ul>
+  <div class="apple_pagination">
+    <%= will_paginate @stories %>
+  </div>
