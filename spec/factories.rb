@@ -39,6 +39,5 @@ FactoryGirl.define do
       uri "/videos/102805992"
       provider_created_at "Mon, 21 Dec 2015 17:13:59 +0000"
       embed "<iframe src=\"https://player.vimeo.com/video/150661465?badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"006 Teapot\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>"
-      association :vimeo_user
   end
 end

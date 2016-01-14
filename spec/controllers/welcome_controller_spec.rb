@@ -2,14 +2,15 @@ require 'rails_helper'
 
 RSpec.describe WelcomeController, type: :controller do
   before :each do
-      build(:twitter_user)
-      build(:tweet)
-      build(:vimeo_user)
-      build(:video)
+      twitter_user = build(:twitter_user)
+      tweet= build(:tweet)
+      vimeo_user = build(:vimeo_user)
+      video= build(:video)
   end
 
   describe "GET #index" do
     it "renders welcome index when there is a current user" do
+      session[:id] = "234234"
       get :index
       expect(subject).to render_template :index
     end
