@@ -1,20 +1,24 @@
 <%= link_to "Home", root_path, class:"btn btn-default" %>
 <br>
-<h1><%= @results[0]["user"]["name"] %></h1>
-<%= image_tag(@results[0]["user"]["pictures"]["sizes"][1]["link"], height: '75', width: '75') %>
-
-<br>
-<br>
-
-<% if @button == true %>
-  <%= button_to "Subscribe", vimeo_subscribe_path(@vimeo_user), class:"btn btn-default" %>
+<% if @results == [] %>
+  <p>Sorry, this user's videos are private</p>
 <% else %>
-  <p>You are already subscribed to this feed</p>
+  <h1><%= @results[0]["user"]["name"] %></h1>
+  <%= image_tag(@results[0]["user"]["pictures"]["sizes"][1]["link"], height: '75', width: '75') %>
+  <br>
+  <br>
+    <% if @button == true %>
+      <%= button_to "Subscribe", vimeo_subscribe_path(@vimeo_user), class:"btn btn-default" %>
+    <% else %>
+      <p>You are already subscribed to this feed</p>
+    <% end %>
 <% end %>
-
+<br>
+<br>
 
 <% @results.each do |result| %>
   <div class="well">
-      <%= result["uri"] %>
+    <% url = result["uri"].byteslice(8..-1) %>
+      <iframe src="https://player.vimeo.com/video/<%= url %>?badge=0&autopause=0&player_id=0" width="WIDTH" height="HEIGHT" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
   </div>
 <% end %>

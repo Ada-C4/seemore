@@ -120,15 +120,11 @@ class UsersController < ApplicationController
   def vimeo_search_user
     subscriptions = @current_user.subscriptions
     @vimeo_user = params[:id]
-    vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
-    @results = HTTParty.get("https://api.vimeo.com/users/#{@vimeo_user}/videos?filter=embeddable&filter_embeddable=true", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
+    @results = UsersHelper.vimeo_call_videos(@vimeo_user)
     @results = @results["data"]
-    @results.each do |video|
-      video_uid = video["uri"].byteslice(8..-1)
-      subscrip = Subscription.find(video_uid, "vimeo")
-        if !subscriptions.include? subscrip
-          @button = true
-        end
+    subscrip = Subscription.find(@vimeo_user, "vimeo")
+      if !subscriptions.include? subscrip
+        @button = true
       end
   end
 end

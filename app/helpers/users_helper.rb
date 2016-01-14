@@ -1,5 +1,4 @@
 module UsersHelper
-
   def self.default_content
     stories = []
     stories.push(Story.where(subscription_id: 1))
@@ -36,6 +35,11 @@ module UsersHelper
     username = user_name
     avatar_url = results[0]["user"]["profile_picture"]
     return results, uid, provider, username, avatar_url
+  end
+
+  def self.vimeo_call_videos(vimeo_user)
+    vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
+    return HTTParty.get("https://api.vimeo.com/users/#{vimeo_user}/videos", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
   end
 
   def self.vimeo_subscription_info(vimeo_user)
@@ -80,6 +84,4 @@ module UsersHelper
     post_time = DateTime.parse(video["created_time"].to_s)
     return video_uid, text, url, subscription_id, post_time
   end
-
-
 end

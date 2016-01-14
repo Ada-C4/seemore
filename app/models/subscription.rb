@@ -26,7 +26,6 @@ class Subscription < ActiveRecord::Base
   def self.find(uid, provider)
     subscription = self.find_by(uid: uid, provider: provider)
     if !subscription.nil?
-      #subscription found continue on with your life
       return subscription
     else
       return nil
@@ -35,7 +34,6 @@ class Subscription < ActiveRecord::Base
 
   def self.update_stories
     twitter = Seemore::Application.config.twitter
-#not sure if I can config vimeo this way
     vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
     vimeo = Seemore::Application.config.vimeo
 
@@ -68,12 +66,6 @@ class Subscription < ActiveRecord::Base
             url = video["link"]
             Story.create_new_story(video_uid, text, url, subscription.id, post_time)
           end
-          # video_uid = video["uri"].byteslice(8..-1)
-          # text = video["name"]
-          # url = video["link"]
-          # subscription_id = subscription.id
-          # post_time = DateTime.parse(video["created_time"].to_s)
-          # Story.find_or_create(video_uid, text, url, subscription_id, post_time)
         end
       end
     end
