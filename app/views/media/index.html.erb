@@ -13,9 +13,7 @@
 
 <% if !current_spy.nil? %>
   <% if @marks.empty? %>
-    <h1 class="page-header">ADD MARKS <%= fa_icon "crosshairs" %> </h1>
-    <h3><%= link_to "Search Vimeo", search_path("vimeo"), class: "btn btn-default btn-lg" %></h3>
-    <h3><%= link_to "Search Twitter", search_path("twitter"), class: "btn btn-default btn-lg" %></h3>
+    <h1 class="page-header">NO MARKS YET <%= fa_icon "crosshairs" %> </h1>
   <% else %>
     <div class="container">
       <!-- Header -->

@@ -10,6 +10,14 @@ body {
   background-color: #e6e6e6;
 }
 
+.plus {
+  padding-bottom: 20px;
+}
+
+.row {
+  text-align: center;
+}
+
 .logo {
   font-size: 250px;
 }
@@ -62,7 +70,8 @@ body {
 }
 
 h1 {
-  padding-top: 60px;
+  padding-top: 80px;
+  padding-bottom: 20px;
   font-family: Poiret One, monospace;
   text-align: center;
   font-size: 70px;
@@ -299,6 +308,12 @@ h2:hover {
 }
 
 .profile-image {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+}
+
+.profile-image-home {
   border-radius: 50%;
   height: 250px;
   width: 250px;

@@ -1,6 +1,6 @@
 class MarksController < ApplicationController
-  before_action :search, only: [:vimeo_subscribe]
-  before_action :require_spy, only: [:index, :search, :show]
+  before_action :results, only: [:vimeo_subscribe]
+  before_action :require_spy, only: [:index, :results, :show]
 
   def twitter
     Seemore::Application.config.twitter
@@ -10,15 +10,12 @@ class MarksController < ApplicationController
     @marks = current_spy.marks
   end
 
-  def search
+  def results
     if params[:username].present?
-      search_params = { username: params[:username], provider: params[:provider], id: params[:id] }
+      search_params = { username: params[:username], id: params[:id] }
       @search_term = search_params[:username]
-      if search_params[:provider] == "vimeo"
-        @marks = Mark.vimeo_lookup(@search_term)
-      elsif search_params[:provider] == "twitter"
-        @marks = twitter_lookup(@search_term)
-      end
+      @vimeo_marks = Mark.vimeo_lookup(@search_term)
+      @twitter_marks = twitter_lookup(@search_term)
     end
   end
 

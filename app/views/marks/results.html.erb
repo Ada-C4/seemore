@@ -1,0 +1,45 @@
+<div class="row text-center">
+  <div class="col-md-4 col-md-offset-2 text-center">
+    <h1><%= fa_icon "twitter", class: "search-icon" %></h1>
+    <% @twitter_marks.each do |m| %>
+      <% if !m.nil? %>
+        <h4><%= m.name%></h4>
+        <h5>@<%= m.username%></h5>
+        <%= image_tag m.image_url, class: "profile-image"%>
+        <h5>Location: <%=if  m.location.nil? then "N/A" else m.location end %></h5>
+        <div class="plus"><%= link_to vimeo_subscribe_path(
+          params: {
+            name: m.username,
+            profile_picture: m.image_url
+          }
+          ),
+          method: :post,
+          class: "btn btn-default" do %>
+          <%= fa_icon "plus" %>
+        <% end %></div> 
+      <% end %> 
+    <% end %>
+  </div> 
+
+  <div class="col-md-2 col-md-offset-1 text-center">
+    <h1><%= fa_icon "vimeo", class: "search-icon" %></h1>
+    <% @vimeo_marks.each do |m| %>
+      <% if !m.nil? %>
+        <h4><%= m.name %></h4>
+        <h5><%= m.username%></h5>
+        <%= image_tag m.image_url, class: "profile-image"%>
+        <h5>Location: <%=if  m.location.nil? then "N/A" else m.location end %></h5>
+        <div class="plus"><%= link_to vimeo_subscribe_path(
+          params: {
+            name: m.username,
+            profile_picture: m.image_url
+          }
+          ),
+          method: :post,
+          class: "btn btn-default" do %>
+          <%= fa_icon "plus" %> 
+        <% end %></div> 
+      <% end %>
+    <% end %>
+  </div>
+</div>
