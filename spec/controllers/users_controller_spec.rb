@@ -54,6 +54,11 @@ RSpec.describe UsersController, type: :controller do
       get :twitter_search, params
       expect(response).to render_template :twitter_search
     end
+
+    it "doesn't render the twitter_search view if you are not logged in" do
+      get :twitter_search, params
+      expect(response).to redirect_to root_path
+    end
   end
 
   describe "GET 'twitter_search_user'" do
@@ -186,7 +191,16 @@ RSpec.describe UsersController, type: :controller do
     }
     end
 
+    let!(:user) do
+      User.create(
+      email:    "a@b.com",
+      username: "Ada",
+      uid:      "1234",
+      provider: "twitter")
+    end
+
     it "renders the instagram_search view" do
+      session[:user_id] = 1
       get :instagram_search, params
       expect(subject).to render_template :instagram_search
     end
