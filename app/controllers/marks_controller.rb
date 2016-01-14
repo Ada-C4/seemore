@@ -68,7 +68,7 @@ class MarksController < ApplicationController
 
     @mark.save
     current_spy.marks << @mark
-
+    @mark.refresh
     redirect_to marks_path
   end
 
@@ -83,7 +83,7 @@ class MarksController < ApplicationController
 
     @mark.save
     current_spy.marks << @mark
-    
+    @mark.refresh
     redirect_to marks_path
   end
 
