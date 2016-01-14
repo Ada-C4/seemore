@@ -1,19 +1,19 @@
 <%= link_to "Home", root_path, class:"btn btn-default" %>
 <br>
-<% if @results != [] %>
+<% if @results == [] %>
+  <p>Sorry, this user's videos are private</p>
+<% else %>
   <h1><%= @results[0]["user"]["name"] %></h1>
   <%= image_tag(@results[0]["user"]["pictures"]["sizes"][1]["link"], height: '75', width: '75') %>
-<% else %>
-  <p>Sorry, this user's videos are private</p>
+    <% if @button == true %>
+    <%= button_to "Subscribe", vimeo_subscribe_path(@vimeo_user), class:"btn btn-default" %>
+    <% else %>
+    <p>You are already subscribed to this feed</p>
+    <% end %>
 <% end %>
 <br>
 <br>
 
-<% if @button == true %>
-  <%= button_to "Subscribe", vimeo_subscribe_path(@vimeo_user), class:"btn btn-default" %>
-<% else %>
-  <p>You are already subscribed to this feed</p>
-<% end %>
 
 
 <% @results.each do |result| %>
