@@ -28,6 +28,16 @@ module UsersHelper
     return tweets, uid, provider, username, avatar_url
   end
 
+  def self.instagram_subscription_info(user_name)
+    results = HTTParty.get("https://www.instagram.com/#{user_name}/media/")
+    results = results["items"]
+    uid = results[0]["user"]["id"]
+    provider = "instagram"
+    username = user_name
+    avatar_url = results[0]["user"]["profile_picture"]
+    return results, uid, provider, username, avatar_url
+  end
+
   def self.vimeo_subscription_info(vimeo_user)
     vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
     video_results = HTTParty.get("https://api.vimeo.com/users/#{vimeo_user}/videos", headers: {"Authorization" => "bearer #{vimeo_env}", 'Accept' => 'application/json' }, format: :json).parsed_response
@@ -46,6 +56,20 @@ module UsersHelper
     subscription_id = subscription.id
     post_time = DateTime.parse(tweet.created_at.to_s)
     return uid, text, subscription_id, post_time
+  end
+
+  def self.gram_to_story(gram, subscription)
+    uid = gram["id"]
+    if !gram["caption"].nil?
+      text = gram["caption"]["text"]
+    else
+      text = nil
+    end
+    url = gram["images"]["standard_resolution"]["url"]
+    subscription_id = subscription.id
+    post_time = gram["created_time"]
+    post_time = DateTime.strptime(post_time,'%s')
+    return uid, text, url, subscription_id, post_time
   end
 
   def self.video_to_story(video, subscription)

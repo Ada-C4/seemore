@@ -28,12 +28,30 @@ class UsersController < ApplicationController
     @search_results = twitter.user_search(search_term).take(10)
   end
 
+  def instagram_search
+    client = Instagram.client(:access_token => ENV["INSTAGRAM_ACCESS_TOKEN"])
+    search_term = params[:search]
+    @search_results = client.user_search(search_term)
+  end
+
   def twitter_search_user
     subscriptions = @current_user.subscriptions
     @user_name = params[:id]
     @user_tweets = twitter.user_timeline(@user_name)
     uid = @user_tweets[0].user.id
     subscription = Subscription.find(uid, "twitter")
+    if !subscriptions.include? subscription
+      @button = true
+    end
+  end
+
+  def instagram_search_user
+    subscriptions = @current_user.subscriptions
+    @user_name = params[:id]
+    @results = HTTParty.get("https://www.instagram.com/#{@user_name}/media/")
+    @results = @results["items"]
+    uid = @results[0]["user"]["id"]
+    subscription = Subscription.find(uid, "instagram")
     if !subscriptions.include? subscription
       @button = true
     end
@@ -49,8 +67,24 @@ class UsersController < ApplicationController
     end
 
     tweets.each do |tweet|
-      uid, provider, username, avatar_url = UsersHelper.tweet_to_story(tweet, subscription)
-      Story.find_or_create(uid, provider, username, avatar_url)
+      uid, text, subscription_id, post_time = UsersHelper.tweet_to_story(tweet, subscription)
+      Story.find_or_create(uid, text, subscription_id, post_time)
+    end
+    redirect_to root_path
+  end
+
+  def instagram_subscribe
+    instagram_user = params[:id]
+    grams, uid, provider, username, avatar_url = UsersHelper.instagram_subscription_info(instagram_user)
+    subscription = Subscription.find_or_create(uid, provider, username, avatar_url)
+
+    if !@current_user.subscriptions.include? subscription
+      @current_user.subscriptions << subscription
+    end
+
+    grams.each do |gram|
+      uid, text, url, subscription_id, post_time = UsersHelper.gram_to_story(gram, subscription)
+      Story.find_or_create(uid, text, url, subscription_id, post_time)
     end
     redirect_to root_path
   end

@@ -33,6 +33,7 @@ gem 'font-awesome-rails'
 
 gem 'twitter'
 gem 'vimeo'
+gem 'instagram'
 
 gem 'httparty'
 
