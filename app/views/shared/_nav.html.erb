@@ -16,12 +16,18 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <% if current_spy %>
-          <li><%= link_to root_path do %> Welcome, <%= current_spy.username.titlecase  %><% end %></li>
+          <li><%= link_to root_path do %> Welcome, Spy <%= current_spy.username.titlecase  %><% end %></li>
           <li><%= link_to "Search on Twitter", search_path("twitter") %></li>
           <li><%= link_to "Search on Vimeo", search_path("vimeo") %></li>
           <li><%= link_to "View All Marks", marks_path %></li>
         <% end %>
       </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search Marks">
+        </div>
+        <button type="submit"><%= fa_icon "search" %></button>
+      </form>
       <ul class="nav navbar-nav navbar-right">
         <% if current_spy %>
           <li><%= link_to "Log Out", logout_path %></li>
