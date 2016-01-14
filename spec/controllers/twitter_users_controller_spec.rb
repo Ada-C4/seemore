@@ -114,7 +114,6 @@ RSpec.describe TwitterUsersController, type: :controller do
       it "will not associate a User with a TwitterUser if they are already associated" do
         existing_TwitterUser
         user.twitter_users << TwitterUser.first
-        binding.pry
         VCR.use_cassette 'twitter_response' do
           patch :subscribe, params
         end

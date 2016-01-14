@@ -26,9 +26,6 @@ RSpec.describe SessionsController, type: :controller  do
         end
       end
 
-        it "deletes id from session on destruction" do
-        end
-
       context "when the user has already signed up" do
         before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:prov] }
         let!(:user) { User.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:prov]) }
@@ -63,6 +60,22 @@ RSpec.describe SessionsController, type: :controller  do
           expect(response).to redirect_to root_path
           expect(flash[:notice]).to include "Failed to save the user"
         end
+      end
+    end
+  end
+
+  describe "DELETE #destroy" do
+    context "when logging out" do
+      before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:prov] }
+
+      it "sets the session id to nil" do
+        delete :destroy
+        expect(session[:user_id]).to eq nil
+      end
+
+      it "gives a flash error once logged out" do
+        delete :destroy
+        expect(flash[:notice]).to include "You have been logged out."
       end
     end
   end
