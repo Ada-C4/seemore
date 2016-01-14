@@ -6,10 +6,10 @@ class UsersController < ApplicationController
   def twitter
     Seemore::Application.config.twitter
   end
-
-  def vimeo
-    Seemore::Application.config.vimeo
-  end
+  # 
+  # def vimeo
+  #   Seemore::Application.config.vimeo
+  # end
 
   def show
     # Updates existing subscriptions with new content

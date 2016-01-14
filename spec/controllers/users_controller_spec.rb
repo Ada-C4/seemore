@@ -41,9 +41,18 @@ RSpec.describe UsersController, type: :controller do
     }
     end
 
+    let!(:user) do
+      User.create(
+      email:    "a@b.com",
+      username: "Ada",
+      uid:      "1234",
+      provider: "twitter")
+    end
+
     it "renders the twitter_search view" do
+      session[:user_id] = 1
       get :twitter_search, params
-      expect(response.status).to be 302
+      expect(response).to render_template :twitter_search
     end
   end
 
@@ -98,15 +107,25 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "GET 'vimeo_search'" do
+
     let(:params) do
     {
       search: "justinbieber"
     }
     end
 
+    let!(:user) do
+      User.create(
+      email:    "a@b.com",
+      username: "Ada",
+      uid:      "1234",
+      provider: "twitter")
+    end
+
     it "renders the vimeo_search view" do
+      session[:user_id] = user.id
       get :vimeo_search, params
-      expect(response.status).to be 302
+      expect(response).to render_template :vimeo_search
     end
   end
 

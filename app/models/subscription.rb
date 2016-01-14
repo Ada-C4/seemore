@@ -35,7 +35,7 @@ class Subscription < ActiveRecord::Base
   def self.update_stories
     twitter = Seemore::Application.config.twitter
     vimeo_env = ENV["VIMEO_ACCESS_TOKEN"]
-    vimeo = Seemore::Application.config.vimeo
+    #vimeo = Seemore::Application.config.vimeo
 
     subscriptions = Subscription.all
     subscriptions.each do |subscription|
