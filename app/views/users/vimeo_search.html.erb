@@ -7,10 +7,11 @@ TODO: Add "No results found message when no results (does not happen when there 
   <% photo = video["pictures"] %>
   <% videos = video["metadata"]["connections"]["videos"]["total"] %>
     <% if videos != 0 %>
+    <a href="/vimeo_results/<%= video["uri"] %>" >
       <div class="well well-lg">
         <table width="100%">
           <tr>
-            <td width="40%"><a href="/vimeo_results/<%= video["uri"] %>" ><%= video["name"] %></a></td>
+          <td width="40%"><%= video["name"] %></td>
             <td width="40%">
               <% if photo != nil %>
                 <%= image_tag(video["pictures"]["sizes"][1]["link"], height: '75', width: '75') %>
@@ -19,6 +20,7 @@ TODO: Add "No results found message when no results (does not happen when there 
               <td width="40%"><%= video["bio"] %></td>
             </tr>
           </table>
+        </a>
         </div>
     <% end %>
   <% end %>
