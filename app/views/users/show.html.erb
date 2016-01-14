@@ -6,20 +6,8 @@
         <h1 id="timeline">Skynet</h1>
       <% end %>
   </div>
-  <div class="row">
-    <% if @current_user %>
-      <%= link_to "Logout", "/logout", class: "btn btn-default" %>
-    <% else %>
-      <%= link_to "Sign in with Twitter", "/auth/twitter", class:"btn btn-default" %>
-      <%= link_to "Sign in with Github", "/auth/github", class:"btn btn-default" %>
-      <% if !Rails.env.production? %>
-        <%= link_to "Sign in as OmniAuth Dev", "/auth/developer", class:"btn btn-default" %>
-      <% end %>
-    <% end %>
-    <hr>
-  </div>
-
-
+​
+​
   <% if @current_user %>
     <div class="row">
       <%= form_tag :twitter_search, :method => 'get' do %>
@@ -45,7 +33,7 @@
       <hr>
     </div>
   <% end %>
-
+​
   <ul class="timeline">
     <% if @stories != [] %>
     <%= will_paginate @stories %>
@@ -59,13 +47,13 @@
               <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= story.post_time %> via Twitter</small></p>
             </div>
             <div class="timeline-body">
-
+​
               <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
               <blockquote class="twitter-tweet" lang="en">
                 <a href="https://twitter.com/<%= story.subscription.username %>/status/<%= story.uid %>">
                 </a>
               </blockquote>
-
+​
             </div>
           </div>
         </li>

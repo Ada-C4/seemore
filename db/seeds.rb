@@ -9,6 +9,7 @@
 sample_subscriptions = [
   { username: "Schwarzenegger", uid: "12044602" , provider: "twitter", avatar_url: "https://pbs.twimg.com/profile_images/665340796510466048/-nsoU1Q5.jpg" },
   { username: "Robot", uid: "10333086" , provider: "vimeo", avatar_url: "https://i.vimeocdn.com/portrait/8242122_300x300.webp" },
+  { username: "schwarzenegger", uid:"198945880", provider:"instagram", avatar_url:"https://scontent-sea1-1.cdninstagram.com/hphotos-xta1/t51.2885-19/11373921_1614186788830308_1200274240_a.jpg"}
 ]
 
 sample_subscriptions.each do |subscription|
@@ -44,5 +45,19 @@ sample_videos.each do |video|
   new_story.url = video["link"]
   new_story.subscription_id = 2
   new_story.post_time = video["created_time"]
+  new_story.save
+end
+
+insta_user = "schwarzenegger"
+results = HTTParty.get("https://www.instagram.com/#{insta_user}/media/")
+results = results["items"]
+results.each do |result|
+  new_story = Story.new
+  new_story.uid = result["id"]
+  new_story.url = result["images"]["standard_resolution"]["url"]
+  new_story.subscription_id = 3
+  post_time = result["created_time"]
+  post_time = DateTime.strptime(post_time,'%s')
+  new_story.post_time = post_time
   new_story.save
 end
