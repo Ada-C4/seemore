@@ -5,21 +5,21 @@
       <% @results.each do |result| %>
         <li class="listed-users">
           <% if twitter_result? %>
-            <div class= "centered padded-top" >
+            <div class= "centered padded-top clipped-flow" >
               <%= result.screen_name %>
             </div>
             <div class="centered padded-bottom padded-top">
             <%= image_tag(result.profile_image_uri, class:"centered") %>
             </div>
             <% if result.protected? %>
-              <p>This Twitter user is protected; you cannot subscribe to their tweets.</p>
+              <div>Sorry, this user is private</div>
             <% else %>
               <div class="centered">
                 <%= button_to "Subscribe", subscribe_twitter_path, method: :patch, class: 'btn btn-primary', params: { screen_name: result.screen_name } %>
               </div>
             <% end %>
           <% elsif vimeo_result? %>
-            <div class= "centered padded-top" >
+            <div class= "centered padded-top clipped-flow" >
               <%= result["name"] %>
             </div>
             <div class= "centered padded-bottom padded-top">
