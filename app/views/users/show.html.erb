@@ -33,10 +33,11 @@
       <hr>
     </div>
   <% end %>
-​
+​    <div class="apple_pagination">
+      <%= will_paginate @stories %>
+    </div>
   <ul class="timeline">
     <% if @stories != [] %>
-    <%= will_paginate @stories %>
     <% @stories.each do |story| %>
       <% if story.subscription.provider == "twitter" %>
         <li>
@@ -89,6 +90,9 @@
       <% else %>
       You haven't followed any users yet! Follow users to build your feed.
       <% end %>
-    <%= will_paginate @stories %>
+
 
   </ul>
+  <div class="apple_pagination">
+    <%= will_paginate @stories %>
+  </div>
