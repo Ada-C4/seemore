@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class MediaController < ApplicationController
   def twitter
     Seemore::Application.config.twitter
@@ -9,7 +11,7 @@ class MediaController < ApplicationController
 
       @marks.each do |mark|
         if mark.provider == "twitter"
-          @tweets = twitter.user_timeline(mark.username, count: 20)
+          @tweets = twitter.user_timeline(mark.username, count: 50)
           @tweets.each do |tweet|
             if Medium.find_by(uid: tweet.id).nil?
               Medium.create(
@@ -30,11 +32,11 @@ class MediaController < ApplicationController
         end
       end
       if params[:filter] == "vimeo"
-        @media = Medium.vimeo_filter(current_spy.media)
+        @media = Medium.vimeo_filter(current_spy.media).paginate(:page => params[:page], :per_page => 15)
       elsif params[:filter] == "twitter"
-        @media = Medium.twitter_filter(current_spy.media)
+        @media = Medium.twitter_filter(current_spy.media).paginate(:page => params[:page], :per_page => 15)
       else
-        @media = Medium.no_filter(current_spy.media)
+        @media = Medium.no_filter(current_spy.media).paginate(:page => params[:page], :per_page => 15)
       end
     end
   end

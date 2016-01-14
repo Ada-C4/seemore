@@ -78,6 +78,7 @@
         <% end %>
       <% end %>
     </ul>
+    <div class="paginate"><%= will_paginate @media, renderer: BootstrapPagination::Rails %></div>
   </div>
 <% else %>
   <h1><div class="logo">AP<%= fa_icon "eye" %> SPY</div></h1>
