@@ -1,3 +1,4 @@
+require 'will_paginate/array'
 class UsersController < ApplicationController
 
   before_action :require_login, only: [:twitter_search, :twitter_search_user, :vimeo_search, :vimeo_search_user, :twitter_subscribe, :vimeo_subscribe]
@@ -16,9 +17,9 @@ class UsersController < ApplicationController
 
     @stories = []
     if !@current_user
-      @stories = UsersHelper.default_content
+      @stories = UsersHelper.default_content.paginate(:page => params[:page], :per_page => 15)
     else
-      @stories = UsersHelper.user_content(@current_user)
+      @stories = UsersHelper.user_content(@current_user).paginate(:page => params[:page], :per_page => 15)
     end
     @stories.sort_by! { |story| story[:post_time] }.reverse!
   end

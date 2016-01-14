@@ -6,7 +6,7 @@ module UsersHelper
     stories.push(Story.where(subscription_id: 3))
     stories.flatten!
     return stories
-  end
+  end  
 
   def self.user_content(user)
     stories = []

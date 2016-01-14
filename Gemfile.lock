@@ -265,6 +265,7 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
     whenever (0.9.4)
       chronic (>= 0.6.3)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -299,6 +300,7 @@ DEPENDENCIES
   vimeo
   web-console (~> 2.0)
   whenever
+  will_paginate (~> 3.0.5)
 
 BUNDLED WITH
    1.11.2
