@@ -1,4 +1,3 @@
-require 'pry'
 class TwitterUsersController < ApplicationController
   before_action :current_user
 
@@ -13,7 +12,6 @@ class TwitterUsersController < ApplicationController
         create_tweets(@twitter_user)
       end
       @twitter_user = TwitterUser.find_by(screen_name: @screen_name)
-      # binding.pry
       if @current_user.twitter_users.include?(@twitter_user)
         #if current_user is already subscribed to this twitter_user, show error
         flash[:error] = "You are already subscribed to this user."
