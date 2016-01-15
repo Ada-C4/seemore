@@ -2,6 +2,10 @@ require 'will_paginate/array'
 
 class MediaController < ApplicationController
 
+  def twitter
+    Seemore::Application.config.twitter
+  end
+
   def index
     if !current_spy.nil?
       @marks = current_spy.marks

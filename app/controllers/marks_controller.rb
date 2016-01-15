@@ -34,7 +34,7 @@ class MarksController < ApplicationController
         provider: "twitter"
       )
       marks.push(mark)
-      # raise
+  
     end
     return marks
   end
@@ -57,10 +57,15 @@ class MarksController < ApplicationController
   def vimeo_subscribe
     @mark = Mark.single_mark_vimeo_lookup(params[:name])
 
-    if Mark.find_by(username: @mark.username).nil?
+    if Mark.where(uid: @mark.uid).where(provider: "vimeo").first.nil?
       @mark = Mark.single_mark_vimeo_lookup(params[:name])
     else
-      @mark = Mark.find_by(username: @mark.username)
+
+      if !current_spy.marks.where(uid: @mark.uid).where(provider: @mark.provider).nil?
+        redirect_to root_path
+      else
+        @mark = Mark.where(uid: @mark.uid).where(provider: "vimeo").first
+      end
     end
 
     @mark.save
@@ -72,10 +77,14 @@ class MarksController < ApplicationController
   def twitter_subscribe
     @mark = single_mark_twitter_lookup(params[:name])
 
-    if Mark.find_by(username: @mark.username).nil?
+    if Mark.where(uid: @mark.uid).where(provider: "twitter").first.nil?
       @mark = single_mark_twitter_lookup(params[:name])
     else
-      @mark = Mark.find_by(username: @mark.username)
+      if !current_spy.marks.where(uid: @mark.uid).where(provider: @mark.provider).nil?
+        redirect_to root_url
+      else
+        @mark = Mark.where(uid: @mark.uid).where(provider: "twitter").first
+      end
     end
 
     @mark.save

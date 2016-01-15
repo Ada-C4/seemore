@@ -4,7 +4,7 @@ class Mark < ActiveRecord::Base
   has_many :media
 
   validates :username, :provider, :uid, presence: true
-  validates :username, :uid, uniqueness: true
+  validates :uid, uniqueness: true
 
   def self.vimeo_lookup(search_term)
     auth = "Bearer #{ENV['VIMEO_ACCESS_TOKEN']}"

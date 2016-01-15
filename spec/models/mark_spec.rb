@@ -34,12 +34,6 @@ RSpec.describe Mark, type: :model do
       expect(bad_mark).to be_invalid
     end
 
-    it "must have a unique username" do
-      new_mark.save
-      bad_mark = Mark.new(username: "jeffdesom", provider: "stuff", uid: "9394")
-      expect(bad_mark.save).to eq false
-    end
-
     it "must have a provider" do
       bad_mark = new_mark
       bad_mark.provider = nil
