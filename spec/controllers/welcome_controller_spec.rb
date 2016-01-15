@@ -1,36 +1,34 @@
 require 'rails_helper'
 
 RSpec.describe WelcomeController, type: :controller do
-  before :each do
-      session[:user_id] = create(:user).id
-      twitter_user = build(:twitter_user)
-      tweet= build(:tweet)
-      vimeo_user = build(:vimeo_user)
-      video= build(:video)
-  end
-
-  describe "GET #index" do
-    it "renders welcome index when there is a current user" do
-      get :index
-      expect(subject).to render_template :index
+  context "factory girl only" do
+    before (:each) do
+        @user = build(:user)
     end
 
-    it "redirects to login route when there is no current user" do
-      session[:user_id] = nil
-      get :index
-      expect(subject).to redirect_to login_path
+    describe "GET #index" do
+      it "renders welcome index when there is a current user" do
+        @user.save
+        session[:user_id] = @user.id
+        get :index
+        @current_user = @user
+        expect(subject).to render_template :index
+        @user.destroy
+      end
+
+      it "redirects to login route when there is no current user" do
+        session[:user_id] = nil
+        get :index
+        expect(subject).to redirect_to login_path
+      end
     end
 
-    it "generates a feed for the user" do
-      get :index
-      expect(@feed)
+    describe "make feed" do
+      it "generates a feed for the user" do
+        get :index
+        feed = controller.make_feed(:user)
+        expect(feed).to_not be_nil
+      end
     end
-
   end
-
-  describe "make_feed" do
-    it ""
-  end
-
-
 end

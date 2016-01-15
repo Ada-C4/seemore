@@ -10,20 +10,20 @@ class WelcomeController < ApplicationController
     end
   end
 
-def make_feed(current_user)
-   feed = []
-   current_user.twitter_users.each do |user|
-     user.tweets.each do |tweet|
-         feed.push(tweet)
+  def make_feed(current_user)
+     feed = []
+     current_user.twitter_users.each do |user|
+       user.tweets.each do |tweet|
+           feed.push(tweet)
+       end
      end
-   end
-   current_user.vimeo_users.each do |user|
-     user.videos.each do |video|
-       feed.push(video)
+     current_user.vimeo_users.each do |user|
+       user.videos.each do |video|
+         feed.push(video)
+       end
      end
+     sorted = feed.sort_by(&:provider_created_at).reverse!
+     trimmed = sorted[0...74]
+     return trimmed
    end
-   sorted = feed.sort_by(&:provider_created_at).reverse!
-   trimmed = sorted[0...74]
-   return trimmed
- end
 end
