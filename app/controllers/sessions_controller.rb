@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
       @user = User.find_or_create_from_omniauth(auth_hash)
         if !@user.nil?
           session[:user_id] = @user.id
+          flash[:notice] = nil
         else
           flash[:notice] = "Failed to save the user"
         end

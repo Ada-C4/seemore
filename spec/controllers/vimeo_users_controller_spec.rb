@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'support/vcr_setup'
+
 
 RSpec.describe VimeoUsersController, type: :controller do
   let(:vimeo_user_hash) do {
@@ -39,7 +41,7 @@ RSpec.describe VimeoUsersController, type: :controller do
     context "when subscribe action is called with params before the test" do
       before(:each) do
         session[:user_id] = user.id
-        VCR.use_cassette 'vimeo_response' do
+        VCR.use_cassette 'vimeo_subscribe_success_response' do
           patch :subscribe, params
         end
       end
@@ -60,7 +62,6 @@ RSpec.describe VimeoUsersController, type: :controller do
         expect(User.first.vimeo_users).to include(VimeoUser.first)
         expect(subject).to redirect_to :root
       end
-
     end
 
     context "when subscribe action is called with params inside the test" do
@@ -70,26 +71,30 @@ RSpec.describe VimeoUsersController, type: :controller do
 
       it "does not create a new VimeoUser if the VimeoUser already exists" do
         existing_VimeoUser
-        patch :subscribe, params
+        VCR.use_cassette 'vimeo_subscribe_existing_response' do
+          patch :subscribe, params
+        end
         expect(VimeoUser.all.length).to eq 1
         expect(response.status).to eq 302
         expect(subject).to redirect_to :root
       end
 
-
       it "does not create Videos if the VimeoUser already exists" do
         existing_VimeoUser
-        patch :subscribe, params
+        VCR.use_cassette 'vimeo_subscribe_videos_existing_response' do
+          patch :subscribe, params
+        end
         expect(VimeoUser.first.videos).to be_empty
         expect(response.status).to eq 302
         expect(subject).to redirect_to :root
       end
 
-
       it "will not associate a User with a VimeoUser if they are already associated" do
         existing_VimeoUser
         user.vimeo_users << existing_VimeoUser
-        patch :subscribe, params
+        VCR.use_cassette 'vimeo_subscribe_user_existing_response' do
+          patch :subscribe, params
+        end
         expect(user.vimeo_users.length).to eq 1
         expect(flash[:error]).to eq "You are already subscribed to this user."
         expect(subject).to redirect_to :root

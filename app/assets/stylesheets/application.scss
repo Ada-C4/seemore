@@ -15,9 +15,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body {
+html, body {
   font-family: 'Source Sans Pro', sans-serif;
+  height: 100%;
+  width: 100%;
 }
+
 
 .clipped-flow {
   overflow: hidden;
@@ -35,6 +38,10 @@ body {
 .even-narrower {
   max-width: 520px;
   margin: 0 auto;
+}
+
+.heightlimits {
+  max-height: 58px;
 }
 
 iframe {
@@ -72,9 +79,18 @@ iframe body {
   float: right;
 }
 
+.login-title {
+  font-family: 'Oxygen', sans-serif;
+  text-align: center;
+}
+
 .title-link {
   font-size: 3em;
-  color: #84694f;
+  color: rgb(242, 242, 242);
+}
+
+.title-link:hover {
+  color: rgb(209, 210, 211);
 }
 
 .twitter-tweet {
@@ -142,4 +158,41 @@ img {
 
 .paws {
   margin-left: 40px;
+}
+
+.login-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 33%;
+  margin-right: 33%;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.fake-modal {
+  margin-top: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgba(180,186,190,.7);
+  border-radius: 7px;
+}
+
+.login-background {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background: image_url("background-lynx.jpg") no-repeat 0% 30%;
+  // background-size: cover;
+}
+
+.login-text {
+  font-family: 'Oxygen', sans-serif;
+}
+
+.login-text-p {
+  margin-top: 20px;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.brown-text {
+  color: #645555;
 }
