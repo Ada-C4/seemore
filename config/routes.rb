@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+
+  root 'welcome#index'
+  get 'login' => 'sessions#new'
+  get "/auth/:provider/callback" => 'sessions#create', as: :auth
+  post "/auth/developer/callback" => 'sessions#create', as: :developer_auth
+  delete 'logout' => 'sessions#destroy'
+  post 'users' => 'users#create'
+  patch 'subscribe_twitter' => 'twitter_users#subscribe'
+  patch 'subscribe_vimeo' => 'vimeo_users#subscribe'
+  patch 'unsubscribe_twitter' => 'twitter_users#unsubscribe'
+  patch 'unsubscribe_vimeo' => 'vimeo_users#unsubscribe'
+  get 'search_results' => 'search#index'
+  get 'subscriptions' => 'users#subscriptions'
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
 
 gem "omniauth"
-gem "omniauth-github"
+gem 'omniauth-oauth2', '~> 1.3.1'
+gem "omniauth-twitter"
+gem "omniauth-vimeo"
+gem 'twitter'
+gem 'httparty'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -30,6 +34,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'font-awesome-rails'
 
+gem 'domain_name', '~> 0.5.24'
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -44,6 +51,11 @@ group :development, :test do
   gem 'hirb'
   gem 'dotenv-rails'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'vcr'
+end
+
+group :test do
+  gem 'webmock'
 end
 
 group :production do
