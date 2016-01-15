@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe MarksController, type: :controller do
     let(:new_spy) { build(:spy) }
     let(:new_mark) { build(:mark) }
+    let(:prez) { build(:mark, :prez) }
 
   describe "GET #results" do
     context "logged in" do
@@ -83,6 +84,17 @@ RSpec.describe MarksController, type: :controller do
       expect{ post :vimeo_subscribe, name: "hi" }.to change(Mark, :count).by(0)
 
     end
+
+    it "adds mark to spies_marks when one exists in db vimeo" do 
+      new_spy.save
+      new_mark.save
+      new_spy.marks << new_mark
+      session[:spy_id] = new_spy.id
+      delete :destroy, id: new_mark.id
+      post :vimeo_subscribe, name: "jeffdesom"
+
+      expect(new_spy.marks.size).to eq 1
+    end
   end
 
   describe "POST #twitter_subscribe" do
@@ -108,13 +120,13 @@ RSpec.describe MarksController, type: :controller do
 
     end
 
-    it "adds mark to spies_marks when one exists in db" do 
+    it "adds mark to spies_marks when one exists in db twitter" do 
       new_spy.save
-      new_mark.save
-      new_spy.marks << new_mark
+      prez.save
+      new_spy.marks << prez
       session[:spy_id] = new_spy.id
-      delete :destroy, id: new_mark.id
-      post :twitter_subscribe, uid: new_mark.uid
+      delete :destroy, id: prez.id
+      post :twitter_subscribe, name: "BarackObama"
 
       expect(new_spy.marks.size).to eq 1
     end
