@@ -44,6 +44,25 @@ html, body {
   max-height: 58px;
 }
 
+.user-pic-name {
+  float:left;
+}
+
+.background-shade {
+  padding: 0 10px 20px 10px;
+  margin: 20px 0;
+  border-radius: 4px;
+  border: 1px solid #84694f;
+  }
+
+.name {
+  margin-left: 30px;
+  margin-top: 30px;
+  float: right;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 1em;
+}
+
 iframe {
   max-width: 520px;
   max-height: 420px;
@@ -66,6 +85,19 @@ iframe body {
   padding: 15px;
   border: solid #84694f 3px;
   margin-top: 20px;
+  border-radius: 4px;
+}
+
+.form-holder {
+  display: inline-block;
+  min-width: 800px;
+  max-width: 900px;
+  float: right;
+}
+
+#provider {
+  width: 35% !important;
+  float: right;
 }
 
 .narrower-holder {
@@ -73,10 +105,33 @@ iframe body {
   width: 60%;
 }
 
+.narrow {
+  max-width: 400px;
+  display: inline-block;
+}
+
+.search-button {
+  float: right;
+}
+
+#search_term {
+  min-width: 430px;
+}
+
 .title {
   text-align: right;
   font-family: 'Oxygen', sans-serif;
   float: right;
+}
+
+.brown-title {
+  font-size: 3em;
+  color: #5D4037 !important;
+}
+
+.brown-title:hover {
+  color: #d5bb54 !important;
+
 }
 
 .login-title {
@@ -109,7 +164,6 @@ a:hover {
 .login-out {
   color: #645555;
   font-size: 1.7em;
-
 }
 img {
   margin-top: 28px;
@@ -156,6 +210,7 @@ img {
   color: #645555;
 }
 
+
 .paws {
   margin-left: 40px;
 }
@@ -195,4 +250,10 @@ img {
 
 .brown-text {
   color: #645555;
+}
+
+.creeper-image {
+  height: 100%;
+  width: 100%;
+  margin-bottom: 10%;
 }
