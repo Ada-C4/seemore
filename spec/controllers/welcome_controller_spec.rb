@@ -10,13 +10,13 @@ RSpec.describe WelcomeController, type: :controller do
 
   describe "GET #index" do
     it "renders welcome index when there is a current user" do
-      session[:id] = "234234"
+      session[:user_id] = create(:user).id
       get :index
       expect(subject).to render_template :index
     end
 
     it "redirects to login route when there is no current user" do
-      session[:id] = nil
+      session[:user_id] = nil
       get :index
       expect(subject).to redirect_to login_path
     end
