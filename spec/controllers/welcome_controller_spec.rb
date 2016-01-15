@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe WelcomeController, type: :controller do
   before :each do
+      session[:user_id] = create(:user).id
       twitter_user = build(:twitter_user)
       tweet= build(:tweet)
       vimeo_user = build(:vimeo_user)
@@ -10,7 +11,6 @@ RSpec.describe WelcomeController, type: :controller do
 
   describe "GET #index" do
     it "renders welcome index when there is a current user" do
-      session[:user_id] = create(:user).id
       get :index
       expect(subject).to render_template :index
     end
