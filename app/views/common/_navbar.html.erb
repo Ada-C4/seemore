@@ -1,12 +1,12 @@
 <div class='navbar navbar-default'>
-  <%= link_to 'Home', root_path, class:"btn btn-default"%>
+  <%= link_to 'Home', root_path, class:"btn btn-nav"%>
   <% if @current_user %>
-    <%= link_to "Logout", "/logout", class: "btn btn-default" %>
+    <%= link_to "Logout", "/logout", class: "btn btn-nav" %>
   <% else %>
-    <%= link_to "Sign in with Twitter", "/auth/twitter", class:"btn btn-default" %>
-    <%= link_to "Sign in with Github", "/auth/github", class:"btn btn-default" %>
+    <%= link_to "Sign in with Twitter", "/auth/twitter", class:"btn btn-nav" %>
+    <%= link_to "Sign in with Github", "/auth/github", class:"btn btn-nav" %>
     <% if !Rails.env.production? %>
-      <%= link_to "Sign in as OmniAuth Dev", "/auth/developer", class:"btn btn-default" %>
+      <%= link_to "Sign in as OmniAuth Dev", "/auth/developer", class:"btn btn-nav" %>
     <% end %>
   <% end %>
 </div>

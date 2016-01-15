@@ -119,6 +119,12 @@ RSpec.describe UsersController, type: :controller do
     }
     end
 
+    let(:params_bad) do
+    {
+      search: "asfdeg"
+    }
+    end
+
     let!(:user) do
       User.create(
       email:    "a@b.com",
@@ -131,6 +137,12 @@ RSpec.describe UsersController, type: :controller do
       session[:user_id] = user.id
       get :vimeo_search, params
       expect(response).to render_template :vimeo_search
+    end
+
+    it "renders flash notice" do
+      session[:user_id] = user.id
+      get :vimeo_search, params_bad
+      expect(flash.now[:error]).to eq("No results matched your search.")
     end
   end
 
