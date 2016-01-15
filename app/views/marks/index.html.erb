@@ -1,14 +1,12 @@
 <div class="container error-container">
   <% if !flash[:error].nil? %>
-    <div class="alert alert-danger">
+    <div class="error-message">
       <strong>You can't do that!</strong> <%= flash[:error] %>
     </div>
   <% end %>
 </div>
 
-<h1> CONFIDENTIAL </h1>
-<!-- <img src="assets/confidential.png" class="confidential" alt="CONFIDENTIAL"> -->
-
+<h1 class="marks-header"> CONFIDENTIAL </h1>
 <% if @marks.present? %>
   <div class="col-md-12 text-center">
     <% @marks.each do |m| %>

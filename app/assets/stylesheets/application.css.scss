@@ -12,10 +12,20 @@ body {
 
 .container.error-container {
   padding-top: 100px;
+  max-height: 100px;
 }
 
-.alert.alert-danger {
+.error-message {
+  margin-top: -20px;
   text-align: center;
+  color: #cc0000;
+}
+
+.error-message-home-pg {
+  margin-top: 75px;
+  margin-bottom: -75px;
+  text-align: center;
+  color: #cc0000;
 }
 
 .paginate {
@@ -111,6 +121,10 @@ h1 {
   color: black;
   margin: auto;
   font-size: 55px;
+}
+
+.marks-header {
+  padding-top: 20px;
 }
 
 h2 {
