@@ -41,7 +41,7 @@ html, body {
 }
 
 .heightlimits {
-  max-height: 58px;  
+  max-height: 58px;
 }
 
 iframe {
@@ -86,7 +86,11 @@ iframe body {
 
 .title-link {
   font-size: 3em;
-  color: #84694f;
+  color: rgb(242, 242, 242);
+}
+
+.title-link:hover {
+  color: rgb(209, 210, 211);
 }
 
 .twitter-tweet {
