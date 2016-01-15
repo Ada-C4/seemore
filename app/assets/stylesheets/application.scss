@@ -40,6 +40,10 @@ html, body {
   margin: 0 auto;
 }
 
+.heightlimits {
+  max-height: 58px;  
+}
+
 iframe {
   max-width: 520px;
   max-height: 420px;
