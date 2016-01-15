@@ -1,0 +1,37 @@
+<div class="row row-centered">
+  <% if @creators.length == 0 %>
+   <h3>Sorry, your search did not come up with any results.</h3>
+  <% end %>
+
+  <% @creators.each do |creator| %>
+    <div class="col-md-3 c-search">
+      <div class="col-md-6">
+        <% if creator.has_image?%>
+          <%= image_tag(creator.avatar_url, size:"100x100", class:"display-img") %>
+        <% else %>
+          <%= image_tag("noimage.png", size:"100x100") %>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <strong><%= creator.username %></strong>
+        <br>
+        <%= form_tag(user_path(@current_user.id), method: :patch) do %>
+          <%= hidden_field_tag 'username', creator.username %>
+          <%= hidden_field_tag 'avatar_url', creator.avatar_url %>
+          <%= hidden_field_tag 'p_id', creator.p_id %>
+          <%= hidden_field_tag 'provider', creator.provider %>
+          <br>
+          <% following = @current_user.following(creator.provider, creator.p_id)[1] %>
+          <% if !following %>
+            <%= submit_tag("✚ Follow", class: "btn btn-sm btn-warning") %>
+          <% else %>
+            <button type="button" disabled="diabled" class="btn btn-sm btn-warning">
+              Following
+            </button>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="row text-center"><%= will_paginate @creaters %></div>

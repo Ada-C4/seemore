@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Seemore</title>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <title>IlluminAPI</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
-
+<body class="main-content">
+  <%= render 'layouts/header' %>
+  <% if @current_user %>
+    <%= render 'layouts/navbar' %>
+  <% end %>
+  <div class="container">
+    <%= render partial: "shared/flash_messages", flash: flash %>
+    <%= yield %>
+  </div>
 </body>
 </html>

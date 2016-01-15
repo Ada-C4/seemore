@@ -1,0 +1,24 @@
+<div class="row fm-row-centered">
+  <% if @creators.length == 0 %>
+   <h3>You are not currently following any accounts -<br>Use the illuminate search bar above to begin!</h3>
+  <% end %>
+
+  <% @creators.each do |creator| %>
+    <div class="col-lg-4 feed-manager">
+      <% if creator.has_image?%>
+        <%= image_tag(creator.avatar_url, size:"100x100", class:"display-img") %>
+      <% else %>
+        <%= image_tag("noimage.png", size:"100x100") %>
+      <% end %>
+      <br><br>
+      <% if creator.provider == "twitter" %>
+        <i class="fa fa-twitter twitter-color"></i>
+      <% elsif creator.provider == "vimeo" %>
+        <i class="fa fa-vimeo vimeo-color"></i>
+      <% end %>
+      <strong><%= creator.username %></strong>
+      <br>
+      <%= link_to "✖︎", delete_creator_user_path(@current_user, provider: creator.provider, p_id: creator.p_id), class:"btn btn-sm btn-danger" %>
+    </div>
+  <% end %>
+</div>

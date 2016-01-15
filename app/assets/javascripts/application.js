@@ -12,5 +12,31 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+//= require bootstrap-sprockets
+
+
+$(function(){
+  $('#nav').affix({
+    offset: {
+      top: $('header').height()
+    }
+  });
+});
+
+/**
+ * Listen to scroll to change header opacity class
+ */
+function checkScroll(){
+    var startY = $('.navbar').height(); //The point where the navbar changes in px
+    if($(window).scrollTop() > startY || $(window).width() < 768){
+      $('.navbar').addClass("scrolled");
+    }
+    else{
+      $('.navbar').removeClass("scrolled");
+    }
+}
+// 
+// $(window).on("scroll resize", function(){
+//   checkScroll();
+// });

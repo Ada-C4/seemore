@@ -1,0 +1,53 @@
+<% if @contents.length == 0 %>
+ <h3>Use the illuminate search bar above to begin!</h3>
+<% end %>
+
+<script sync src="https://platform.twitter.com/widgets.js"></script>
+
+<script>
+    window.onload = (function(){
+      $("#waiting").hide();
+      $("#feed").show();
+    });
+
+</script>
+
+<div id="waiting">
+  <div id="floatingCirclesG">
+  	<div class="f_circleG" id="frotateG_01"></div>
+  	<div class="f_circleG" id="frotateG_02"></div>
+  	<div class="f_circleG" id="frotateG_03"></div>
+  	<div class="f_circleG" id="frotateG_04"></div>
+  	<div class="f_circleG" id="frotateG_05"></div>
+  	<div class="f_circleG" id="frotateG_06"></div>
+  	<div class="f_circleG" id="frotateG_07"></div>
+  	<div class="f_circleG" id="frotateG_08"></div>
+  </div>
+</div>
+
+<div id="feed" style="display:none">
+  <% @contents.each do |content| %>
+    <% if content.provider == "vimeo" %>
+      <div class="video"> <iframe src="//player.vimeo.com/video/<%= content.content_id.to_i %>" width="520" height="293" align="center" frameborder="2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+    <% elsif content.provider == "twitter" %>
+      <div class="tweet" tweetID="<%= content.content_id %>"></div>
+    <% end %>
+  <% end %>
+  <script>
+  var tweetList = $(".tweet");
+  for (var i = 0; i < tweetList.length; i++) {
+    var id = tweetList[i].getAttribute("tweetID");
+    twttr.widgets.createTweet(
+      id, tweetList[i],
+      {
+        conversation : 'none',    // or all
+        cards        : 'visible',  // or visible
+        linkColor    : '#EDA83C', // default is blue
+        theme        : 'light',    // or dark
+        width        : '550', // amount in pixels, between 250 and 550
+        align        : 'center' // float the Tweet left, right, or center
+      });
+  }
+  </script>
+  <div class="row text-center"><%= will_paginate @contents %></div>
+</div>
