@@ -17,12 +17,6 @@
         <%= image_tag("paws.gif", class: "paws") %>
         <h1 class="title"><%= link_to "lynx", "/", class: "title-link" %></h1>
       </header>
-      <% if !flash.empty? %>
-        <div>
-          <% flash.each do |key, value| %><%= value %>
-          <% end %>
-        </div>
-      <% end %>
       <div class="row">
         <div class="form">
           <div class="col-md-2 col-xs-6 col-lg-2">
