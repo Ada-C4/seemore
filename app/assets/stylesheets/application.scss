@@ -69,13 +69,34 @@ iframe body {
   border-radius: 4px;
 }
 
+.form-holder {
+  display: inline-block;
+  min-width: 800px;
+  max-width: 900px;
+  float: right;
+}
+
 #provider {
-  width: 25% !important;
+  width: 35% !important;
+  float: right;
 }
 
 .narrower-holder {
   margin: 0 auto;
   width: 60%;
+}
+
+.narrow {
+  max-width: 400px;
+  display: inline-block;
+}
+
+.search-button {
+  float: right;
+}
+
+#search_term {
+  min-width: 430px;
 }
 
 .title {
