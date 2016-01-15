@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.vimeo.com/users?fields=uri,name,pictures&page=1&per_page=25&query=cat
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - bearer d05c3756683259bfcd22921e08a37d74
+      Accept:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/vnd.vimeo.user+json
+      Cache-Control:
+      - no-cache, max-age=315360000
+      Strict-Transport-Security:
+      - max-age=15120000; includeSubDomains; preload
+      Expires:
+      - Sat, 10 Jan 2026 02:37:40 GMT
+      Via:
+      - 1.1 varnish
+      - 1.1 varnish
+      Fastly-Debug-Digest:
+      - 9f2b73b6e1b4ad3c0e14d99dd10439f8287e75cd9f395a4d24f81a7c04be224d
+      Content-Length:
+      - '11583'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Wed, 13 Jan 2016 02:37:40 GMT
+      Age:
+      - '0'
+      Connection:
+      - keep-alive
+      X-Served-By:
+      - cache-iad2127-IAD, cache-sea1920-SEA
+      X-Cache:
+      - MISS, MISS
+      X-Cache-Hits:
+      - 0, 0
+      X-Timer:
+      - S1452652660.268272,VS0,VE244
+      Vary:
+      - Accept,Vimeo-Client-Id,Accept-Encoding
+    body:
+      encoding: UTF-8
+      string: '{"total":7922,"page":1,"per_page":25,"paging":{"next":"/users?page=2&per_page=25&query=cat&fields=uri%2Cname%2Cpictures","previous":null,"first":"/users?page=1&per_page=25&query=cat&fields=uri%2Cname%2Cpictures","last":"/users?page=317&per_page=25&query=cat&fields=uri%2Cname%2Cpictures"},"data":[{"uri":"/users/278624","name":"cat","pictures":{"uri":"/users/278624/pictures/8214811","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/8214811_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/8214811_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/8214811_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/8214811_300x300.jpg?r=pad"}]}},{"uri":"/users/6933694","name":"cat","pictures":{"uri":"/users/6933694/pictures/1958427","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/1958427_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/1958427_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/1958427_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/1958427_300x300.jpg?r=pad"}]}},{"uri":"/users/17546060","name":"Our
+        Country CAT","pictures":{"uri":"/users/17546060/pictures/6707497","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/6707497_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/6707497_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/6707497_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/6707497_300x300.jpg?r=pad"}]}},{"uri":"/users/2634178","name":"Cat
+        James","pictures":null},{"uri":"/users/4806838","name":"Hugo & Cat","pictures":{"uri":"/users/4806838/pictures/9558094","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/9558094_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/9558094_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/9558094_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/9558094_300x300.jpg?r=pad"}]}},{"uri":"/users/25467447","name":"CAT","pictures":{"uri":"/users/25467447/pictures/10960304","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/10960304_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/10960304_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/10960304_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/10960304_300x300.jpg?r=pad"}]}},{"uri":"/users/4003508","name":"cat
+        solen","pictures":{"uri":"/users/4003508/pictures/2707566","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/2707566_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/2707566_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/2707566_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/2707566_300x300.jpg?r=pad"}]}},{"uri":"/users/1016583","name":"Big
+        Cat Rescue","pictures":{"uri":"/users/1016583/pictures/101228","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/101228_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/101228_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/101228_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/101228_300x300.jpg?r=pad"}]}},{"uri":"/users/1827238","name":"Cat
+        Bruce","pictures":{"uri":"/users/1827238/pictures/4914586","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/4914586_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/4914586_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/4914586_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/4914586_300x300.jpg?r=pad"}]}},{"uri":"/users/1631509","name":"Cat","pictures":{"uri":"/users/1631509/pictures/348674","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/348674_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/348674_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/348674_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/348674_300x300.jpg?r=pad"}]}},{"uri":"/users/4915895","name":"Mad
+        Cat","pictures":{"uri":"/users/4915895/pictures/2231515","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/2231515_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/2231515_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/2231515_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/2231515_300x300.jpg?r=pad"}]}},{"uri":"/users/41072438","name":"CAT","pictures":{"uri":"/users/41072438/pictures/10601818","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/10601818_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/10601818_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/10601818_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/10601818_300x300.jpg?r=pad"}]}},{"uri":"/users/2395633","name":"CAT&Docs","pictures":{"uri":"/users/2395633/pictures/7466150","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/7466150_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/7466150_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/7466150_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/7466150_300x300.jpg?r=pad"}]}},{"uri":"/users/6764014","name":"Cat","pictures":{"uri":"/users/6764014/pictures/1902546","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/1902546_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/1902546_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/1902546_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/1902546_300x300.jpg?r=pad"}]}},{"uri":"/users/16450412","name":"Missing
+        Cat","pictures":{"uri":"/users/16450412/pictures/6789215","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/6789215_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/6789215_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/6789215_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/6789215_300x300.jpg?r=pad"}]}},{"uri":"/users/1999309","name":"Fat
+        Cat Productions, LLC","pictures":{"uri":"/users/1999309/pictures/1840529","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/1840529_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/1840529_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/1840529_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/1840529_300x300.jpg?r=pad"}]}},{"uri":"/users/8787172","name":"Black
+        Cat Fireworks","pictures":{"uri":"/users/8787172/pictures/5085252","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/5085252_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/5085252_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/5085252_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/5085252_300x300.jpg?r=pad"}]}},{"uri":"/users/22880237","name":"Cat
+        Around","pictures":{"uri":"/users/22880237/pictures/7280868","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/7280868_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/7280868_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/7280868_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/7280868_300x300.jpg?r=pad"}]}},{"uri":"/users/616592","name":"Cat
+        Acro Team","pictures":{"uri":"/users/616592/pictures/6600378","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/6600378_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/6600378_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/6600378_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/6600378_300x300.jpg?r=pad"}]}},{"uri":"/users/2212440","name":"Blue
+        Cat","pictures":{"uri":"/users/2212440/pictures/4436171","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/4436171_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/4436171_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/4436171_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/4436171_300x300.jpg?r=pad"}]}},{"uri":"/users/87190","name":"cat","pictures":null},{"uri":"/users/33862093","name":"Cat","pictures":{"uri":"/users/33862093/pictures/8608050","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/8608050_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/8608050_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/8608050_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/8608050_300x300.jpg?r=pad"}]}},{"uri":"/users/1429674","name":"Cat
+        Russell","pictures":null},{"uri":"/users/13789097","name":"Cat","pictures":{"uri":"/users/13789097/pictures/9273921","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/9273921_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/9273921_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/9273921_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/9273921_300x300.jpg?r=pad"}]}},{"uri":"/users/8752019","name":"cat
+        hope","pictures":{"uri":"/users/8752019/pictures/3373232","active":true,"type":"custom","sizes":[{"width":30,"height":30,"link":"https://i.vimeocdn.com/portrait/3373232_30x30.jpg?r=pad"},{"width":75,"height":75,"link":"https://i.vimeocdn.com/portrait/3373232_75x75.jpg?r=pad"},{"width":100,"height":100,"link":"https://i.vimeocdn.com/portrait/3373232_100x100.jpg?r=pad"},{"width":300,"height":300,"link":"https://i.vimeocdn.com/portrait/3373232_300x300.jpg?r=pad"}]}}]}'
+    http_version: 
+  recorded_at: Wed, 13 Jan 2016 02:37:39 GMT
+recorded_with: VCR 3.0.1

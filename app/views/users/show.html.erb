@@ -1,0 +1,34 @@
+
+<% if @media == [] %>
+  <div class="jumbotron">
+    <h1>Welcome to CurateTV</h1>
+    <p>
+      Use the search bar above to find your favorite Vimeo and Twitter creators and follow them here.
+    </p>
+  </div>
+  <% else %>
+  <div class="jumbotron">
+    <h1>Your CurateTV Feed</h1>
+  </div>
+      <% @media.each do |media| %>
+        <% if media.class == Video %>
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6 embedded-video">
+            <h3><%= media.name %></h3>
+            <iframe src= <%= media.embed %> width="500" height = "300"frameborder="0" title= <%= media.name %> " webkitallowfullscreen mozallowfullscreen allowfullscreen"></iframe>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+        <% elsif media.class == Tweet %>
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6 embedded-tweet">
+            <% tweet = $twitter.oembed(media.uid) %>
+            <%= raw(tweet.html) %>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+        <% end %>
+      <% end %>
+  <% end %>

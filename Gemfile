@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
+ ruby '2.2.3' 
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -27,9 +28,12 @@ gem "omniauth"
 gem "omniauth-github"
 gem "omniauth-twitter"
 gem "omniauth-vimeo"
+gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'httparty'
+gem 'twitter'
 
 gem 'bootstrap-sass', '~> 3.3.5'
+
 
 
 
@@ -48,6 +52,10 @@ group :production do
   gem "pg"
 end
 
+group :test do
+  gem 'webmock', '1.8.0'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -55,14 +63,18 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'simplecov'
   gem 'pry'
+  gem 'factory_girl_rails'
+  gem 'vcr'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'sqlite3'
   gem 'web-console', '~> 2.0'
   gem "better_errors"
   gem "binding_of_caller"
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'pry-rails'
 end
