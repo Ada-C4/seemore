@@ -62,7 +62,7 @@ class MarksController < ApplicationController
     else
 
       if !current_spy.marks.where(uid: @mark.uid).where(provider: @mark.provider).nil?
-        redirect_to root_path
+        return redirect_to root_path
       else
         @mark = Mark.where(uid: @mark.uid).where(provider: "vimeo").first
       end
@@ -81,7 +81,7 @@ class MarksController < ApplicationController
       @mark = single_mark_twitter_lookup(params[:name])
     else
       if !current_spy.marks.where(uid: @mark.uid).where(provider: @mark.provider).nil?
-        redirect_to root_url
+        return redirect_to root_path
       else
         @mark = Mark.where(uid: @mark.uid).where(provider: "twitter").first
       end
