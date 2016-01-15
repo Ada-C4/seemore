@@ -55,7 +55,7 @@ RSpec.describe MediaController, type: :controller do
         new_mark.save
         new_spy.marks << new_mark
         session[:spy_id] = new_spy.id
-        get :index
+        get :refresh
 
         expect(Medium.all.count).to be > 0
         expect(Medium.all.last.medium_type).to eq "vimeo"
@@ -66,11 +66,20 @@ RSpec.describe MediaController, type: :controller do
         prez_mark.save
         new_spy.marks << prez_mark
         session[:spy_id] = new_spy.id
-        get :index
+        get :refresh
 
         expect(Medium.all.count).to be > 0
         expect(Medium.all.last.medium_type).to eq "twitter"
       end
+    end
+  end
+
+  describe "GET 'refresh'" do
+    it "redirects to the root path" do
+      new_spy.save
+      session[:spy_id] = new_spy.id
+      get :refresh
+      expect(subject).to redirect_to root_path
     end
   end
 end

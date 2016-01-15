@@ -1,7 +1,4 @@
 class MediaController < ApplicationController
-  def twitter
-    Seemore::Application.config.twitter
-  end
 
   def index
     if !current_spy.nil?
