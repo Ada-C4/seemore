@@ -1,15 +1,15 @@
 require 'will_paginate/array'
 class UsersController < ApplicationController
 
-  before_action :require_login, only: [:twitter_search, :twitter_search_user, :vimeo_search, :vimeo_search_user, :twitter_subscribe, :vimeo_subscribe]
+  before_action :require_login, only: [:twitter_search, :twitter_search_user, :vimeo_search, :vimeo_search_user, :instagram_search, :instagram_search_user, :twitter_subscribe, :vimeo_subscribe, :instagram_subscribe]
 
   def twitter
     Seemore::Application.config.twitter
   end
-
-  def vimeo
-    Seemore::Application.config.vimeo
-  end
+  #
+  # def vimeo
+  #   Seemore::Application.config.vimeo
+  # end
 
   def show
     # Updates existing subscriptions with new content
