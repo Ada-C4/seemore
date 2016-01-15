@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   post "vimeo_subscribe", to: "marks#vimeo_subscribe", as: :vimeo_subscribe
 
   post "twitter_subscribe", to: "marks#twitter_subscribe", as: :twitter_subscribe
+
+  get "feed/refresh", to: "media#refresh", as: "refresh_feed"
 end
