@@ -4,23 +4,23 @@ RSpec.describe MarksController, type: :controller do
     let(:new_spy) { build(:spy) }
     let(:new_mark) { build(:mark) }
 
-  describe "GET #search" do
+  describe "GET #results" do
     context "logged in" do
       context "twitter" do
-        it "renders the search template" do
+        it "renders the results template" do
           new_spy.save
           session[:spy_id] = new_spy.id
-          get :search, provider: "twitter", username: "loganmeetsworld"
-          expect(response).to render_template :search
+          get :results, provider: "twitter", username: "loganmeetsworld"
+          expect(response).to render_template :results
         end
       end
 
       context "vimeo" do
-        it "renders the search page" do
+        it "renders the results page" do
           new_spy.save
           session[:spy_id] = new_spy.id
-          get :search, provider: "vimeo", username: "loganmeetsworld"
-          expect(response).to render_template :search
+          get :results, provider: "vimeo", username: "loganmeetsworld"
+          expect(response).to render_template :results
         end
       end
     end
@@ -28,24 +28,24 @@ RSpec.describe MarksController, type: :controller do
     context "not logged in" do
       context "twitter" do
         it "redirects to the home page" do
-          get :search, provider: "twitter"
+          get :results, provider: "twitter"
           expect(response).to redirect_to root_path
         end
 
         it "adds a flash error" do
-          get :search, provider: "twitter"
+          get :results, provider: "twitter"
           expect(flash[:error]).to_not be nil
         end
       end
 
       context "vimeo" do
         it "redirects to the home page" do
-          get :search, provider: "vimeo"
+          get :results, provider: "vimeo"
           expect(response).to redirect_to root_path
         end
 
         it "adds a flash error" do
-          get :search, provider: "vimeo"
+          get :results, provider: "vimeo"
           expect(flash[:error]).to_not be nil
         end
       end

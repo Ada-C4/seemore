@@ -19,6 +19,7 @@
       <!-- Header -->
       <div class="page-header">
         <h1>TRACK YOUR MARKS</h1>
+        <div class="paginate"><%= will_paginate @media, renderer: BootstrapPagination::Rails %></div>
       </div>
 
       <div class="filter">
@@ -73,6 +74,7 @@
                 </div>
               <div class="timeline-body">
             </div>
+
           </li>
           <% media_count -= 1 %>
         <% end %>
