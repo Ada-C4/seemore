@@ -26,8 +26,9 @@ RSpec.describe WelcomeController, type: :controller do
     describe "make feed" do
       it "generates a feed for the user" do
         get :index
-        feed = controller.make_feed(:user)
+        feed = controller.make_feed(@user)
         expect(feed).to_not be_nil
+        expect(feed.length).to eq(2)
       end
     end
   end
