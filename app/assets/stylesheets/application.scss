@@ -22,6 +22,9 @@
 
 body {
   font-family: 'VT323', ;
+  background: #403B4A; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #403B4A , #E7E9BB); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #403B4A , #E7E9BB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
@@ -130,7 +133,9 @@ body {
   border-bottom: 14px solid transparent;
   content: " ";
 }
-
+.text-muted {
+  color: white
+}
 .timeline > li > .timeline-badge {
   color: #fff;
   width: 50px;
@@ -190,6 +195,7 @@ body {
 }
 
 .timeline-badge-twitter {
+
   background-color: #d65126 !important;
 }
 
