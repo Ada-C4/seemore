@@ -59,17 +59,17 @@ class MarksController < ApplicationController
 
     if Mark.where(uid: @mark.uid).where(provider: "vimeo").first.nil?
       @mark = Mark.single_mark_vimeo_lookup(params[:name])
+      @mark.save
+      current_spy.marks << @mark
     else
-
-      if !current_spy.marks.where(uid: @mark.uid).where(provider: @mark.provider).nil?
-        return redirect_to root_path
+      if !current_spy.marks.where(uid: @mark.uid).where(provider: @mark.provider).first.nil?
+        flash[:error] = "You already follow that Mark."
+        return redirect_to marks_path
       else
         @mark = Mark.where(uid: @mark.uid).where(provider: "vimeo").first
       end
     end
 
-    @mark.save
-    current_spy.marks << @mark
     @mark.refresh
     redirect_to marks_path
   end
@@ -79,16 +79,18 @@ class MarksController < ApplicationController
 
     if Mark.where(uid: @mark.uid).where(provider: "twitter").first.nil?
       @mark = single_mark_twitter_lookup(params[:name])
+      @mark.save
+      current_spy.marks << @mark
     else
-      if !current_spy.marks.where(uid: @mark.uid).where(provider: @mark.provider).nil?
-        return redirect_to root_path
+      if !current_spy.marks.where(uid: @mark.uid).where(provider: @mark.provider).first.nil?
+        flash[:error] = "You already follow that Mark."
+        return redirect_to marks_path
+
       else
         @mark = Mark.where(uid: @mark.uid).where(provider: "twitter").first
+        current_spy.marks << @mark
       end
     end
-
-    @mark.save
-    current_spy.marks << @mark
     @mark.refresh
     redirect_to marks_path
   end

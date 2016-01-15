@@ -1,3 +1,11 @@
+<div class="container error-container">
+  <% if !flash[:error].nil? %>
+    <div class="alert alert-danger">
+      <strong>You can't do that!</strong> <%= flash[:error] %>
+    </div>
+  <% end %>
+</div>
+
 <h1> CONFIDENTIAL </h1>
 <!-- <img src="assets/confidential.png" class="confidential" alt="CONFIDENTIAL"> -->
 

@@ -3,13 +3,11 @@
 <script sync src="https://platform.twitter.com/widgets.js"></script>
 
 <!-- Flash notifications -->
-<div class="col-md-12 text-center">
 <% if !flash[:error].nil? %>
   <div class="alert alert-danger">
     <strong>You can't do that!</strong> <%= flash[:error] %>.
   </div>
 <% end %>
-</div>
 
 <% if !current_spy.nil? %>
   <% if @marks.empty? %>

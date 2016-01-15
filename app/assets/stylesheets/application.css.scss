@@ -10,6 +10,14 @@ body {
   background-color: #e6e6e6;
 }
 
+.container.error-container {
+  padding-top: 100px;
+}
+
+.alert.alert-danger {
+  text-align: center;
+}
+
 .paginate {
   text-align: center;
   color: black;
