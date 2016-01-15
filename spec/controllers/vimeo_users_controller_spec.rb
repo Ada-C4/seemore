@@ -39,7 +39,7 @@ RSpec.describe VimeoUsersController, type: :controller do
     context "when subscribe action is called with params before the test" do
       before(:each) do
         session[:user_id] = user.id
-        VCR.use_cassette 'vimeo_response' do
+        VCR.use_cassette 'vimeo_subscribe_response' do
           patch :subscribe, params
         end
       end

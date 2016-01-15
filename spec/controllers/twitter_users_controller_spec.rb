@@ -56,7 +56,7 @@ RSpec.describe TwitterUsersController, type: :controller do
     context "when subscribe action is called with params before the test" do
       before(:each) do
         session[:user_id] = user.id
-        VCR.use_cassette 'twitter_response' do
+        VCR.use_cassette 'twitter_subscribe_response' do
           patch :subscribe, params
         end
       end
@@ -95,7 +95,7 @@ RSpec.describe TwitterUsersController, type: :controller do
     context "when subscribe action is called with protected params before the test" do
       before(:each) do
         session[:user_id] = user.id
-        VCR.use_cassette 'twitter_response' do
+        VCR.use_cassette 'twitter_subscribe_protected_response' do
           patch :subscribe, protected_params
         end
       end
@@ -114,7 +114,7 @@ RSpec.describe TwitterUsersController, type: :controller do
       it "will not associate a User with a TwitterUser if they are already associated" do
         existing_TwitterUser
         user.twitter_users << TwitterUser.first
-        VCR.use_cassette 'twitter_response' do
+        VCR.use_cassette 'twitter_subscribe_existing_response' do
           patch :subscribe, params
         end
         expect(user.twitter_users.length).to eq 1
