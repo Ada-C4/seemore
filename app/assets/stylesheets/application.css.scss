@@ -21,8 +21,26 @@ body {
 .paginate {
   text-align: center;
   color: black;
-  font-size: 20px;
+  font-size: 14px;
   padding: 15px;
+}
+
+.paginate li a {
+  color: #000000;
+}
+
+.paginate li a:hover {
+  color: #000000;
+}
+
+.pagination li.active span {
+  background-color: #bfbfbf;
+  border-color: #bfbfbf;
+}
+
+.pagination li.active span:hover {
+  background-color: #000000;
+  border-color: #000000;
 }
 
 .plus {
