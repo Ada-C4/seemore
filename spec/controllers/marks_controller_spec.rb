@@ -83,14 +83,6 @@ RSpec.describe MarksController, type: :controller do
       expect{ post :vimeo_subscribe, name: "hi" }.to change(Mark, :count).by(0)
 
     end
-
-    it "assigns a mark to a spy if its already in the db" do 
-      new_spy.save
-      session[:spy_id] = new_spy.id 
-      new_mark.save
-      post :vimeo_subscribe
-      expect(new_spy.marks).to eq 1
-    end
   end
 
   describe "POST #twitter_subscribe" do
@@ -114,6 +106,17 @@ RSpec.describe MarksController, type: :controller do
 
       expect{ post :twitter_subscribe, name: "hi" }.to change(Mark, :count).by(0)
 
+    end
+
+    it "adds mark to spies_marks when one exists in db" do 
+      new_spy.save
+      new_mark.save
+      new_spy.marks << new_mark
+      session[:spy_id] = new_spy.id
+      delete :destroy, id: new_mark.id
+      post :twitter_subscribe, uid: new_mark.uid
+
+      expect(new_spy.marks.size).to eq 1
     end
   end
 

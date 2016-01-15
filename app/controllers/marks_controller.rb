@@ -98,7 +98,7 @@ class MarksController < ApplicationController
   def destroy
     @mark = current_spy.marks.find(params[:id])
     @mark.save
-    @mark.destroy
+    current_spy.marks.delete(@mark)
     redirect_to marks_path
   end
 end
