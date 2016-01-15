@@ -1,5 +1,5 @@
 <div class='navbar navbar-default'>
-  <%= link_to 'Home', root_path, class:"btn btn-default"%> |
+  <%= link_to 'Home', root_path, class:"btn btn-default"%>
   <% if @current_user %>
     <%= link_to "Logout", "/logout", class: "btn btn-default" %>
   <% else %>
@@ -10,3 +10,12 @@
     <% end %>
   <% end %>
 </div>
+
+<div class="container">
+  <div class="page-header">
+      <% if @current_user %>
+        <h1 id="timeline">Welcome to Skynet, <%= "#{@current_user.username}" %></h1>
+      <% else %>
+        <h1 id="timeline">Skynet</h1>
+      <% end %>
+  </div>

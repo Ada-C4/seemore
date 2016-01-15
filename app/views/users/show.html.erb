@@ -1,15 +1,4 @@
-
-<div class="container">
-  <div class="page-header">
-      <% if @current_user %>
-        <h1 id="timeline">Welcome to Skynet, <%= "#{@current_user.username}" %></h1>
-      <% else %>
-        <h1 id="timeline">Skynet</h1>
-      <% end %>
-  </div>
-​
-​
-  <% if @current_user %>
+<% if @current_user %>
     <div class="row">
       <%= form_tag :twitter_search, :method => 'get' do %>
         <p>
