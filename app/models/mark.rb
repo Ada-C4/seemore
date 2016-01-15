@@ -73,4 +73,30 @@ class Mark < ActiveRecord::Base
     end
     return result
   end
+
+  def twitter
+    Seemore::Application.config.twitter
+  end
+
+  def refresh
+    if self.provider == "twitter"
+      @tweets = twitter.user_timeline(self.username, count: 20)
+      @tweets.each do |tweet|
+        if Medium.find_by(uid: tweet.id).nil?
+          Medium.create(
+            mark_id: self.id,
+            date_posted: tweet.created_at,
+            link: tweet.source,
+            text: tweet.text,
+            medium_type: "twitter",
+            uid: tweet.id,
+            retweeted_from: tweet.retweeted_status.user.screen_name,
+            retweeted_from_link: tweet.retweeted_status.user.url
+            )
+        end
+      end
+    elsif self.provider == "vimeo"
+      Medium.video_lookup(self.username)
+    end
+  end
 end

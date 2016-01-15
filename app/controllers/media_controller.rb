@@ -1,14 +1,10 @@
 require 'will_paginate/array'
 
 class MediaController < ApplicationController
-  def twitter
-    Seemore::Application.config.twitter
-  end
 
   def index
     if !current_spy.nil?
       @marks = current_spy.marks
-
       @marks.each do |mark|
         if mark.provider == "twitter"
           @tweets = twitter.user_timeline(mark.username, count: 50)
@@ -39,5 +35,13 @@ class MediaController < ApplicationController
         @media = Medium.no_filter(current_spy.media).paginate(:page => params[:page], :per_page => 15)
       end
     end
+  end
+
+  def refresh
+    @marks = current_spy.marks
+    @marks.each do |mark|
+      mark.refresh
+    end
+    redirect_to root_path
   end
 end
