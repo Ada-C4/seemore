@@ -50,9 +50,9 @@
         <% @media.each do |m| %>
 
           <% if media_count % 2 == 0 %>
-            <li>
-          <% else %>
             <li class="timeline-inverted">
+          <% else %>
+            <li>
           <% end %>
 
             <div class="timeline-badge <%= m.medium_type %>"><i class="fa fa-<%= m.medium_type %>"></i></div>
