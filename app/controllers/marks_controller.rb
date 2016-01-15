@@ -67,6 +67,7 @@ class MarksController < ApplicationController
         return redirect_to marks_path
       else
         @mark = Mark.where(uid: @mark.uid).where(provider: "vimeo").first
+        current_spy.marks << @mark
       end
     end
 
@@ -85,7 +86,6 @@ class MarksController < ApplicationController
       if !current_spy.marks.where(uid: @mark.uid).where(provider: @mark.provider).first.nil?
         flash[:error] = "You already follow that Mark."
         return redirect_to marks_path
-
       else
         @mark = Mark.where(uid: @mark.uid).where(provider: "twitter").first
         current_spy.marks << @mark
