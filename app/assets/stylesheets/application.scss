@@ -48,6 +48,20 @@ html, body {
   float:left;
 }
 
+.background-shade {
+  padding: 0 80px 20px 10px;
+  margin: 20px 0;
+  border-radius: 4px;
+  border: 1px solid #84694f;
+  }
+
+.name {
+  margin-left: 30px;
+  margin-top: 30px;
+  float: right;
+  font-family: 'Oxygen', sans-serif;
+}
+
 iframe {
   max-width: 520px;
   max-height: 420px;
