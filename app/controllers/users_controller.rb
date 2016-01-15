@@ -17,11 +17,12 @@ class UsersController < ApplicationController
 
     @stories = []
     if !@current_user
-      @stories = UsersHelper.default_content.paginate(:page => params[:page], :per_page => 15)
+      @stories = UsersHelper.default_content
     else
-      @stories = UsersHelper.user_content(@current_user).paginate(:page => params[:page], :per_page => 15)
+      @stories = UsersHelper.user_content(@current_user)
     end
-    @stories.sort_by! { |story| story[:post_time] }.reverse!
+    @stories = @stories.sort_by! { |story| story[:post_time] }.reverse!
+    @stories = @stories.paginate(:page => params[:page], :per_page => 15)
   end
 
   def twitter_search
