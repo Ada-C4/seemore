@@ -75,6 +75,11 @@ iframe body {
   float: right;
 }
 
+.login-title {
+  font-family: 'Oxygen', sans-serif;
+  text-align: center;
+}
+
 .title-link {
   font-size: 3em;
   color: #84694f;
@@ -148,16 +153,18 @@ img {
 }
 
 .login-button {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   margin-left: 33%;
   margin-right: 33%;
-
+  font-family: 'Oxygen', sans-serif;
 }
 
 .fake-modal {
   margin-top: 40px;
-  background-color: rgba(132,105,79,.7);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgba(132,105,79,.9);
   border-radius: 7px;
 }
 
@@ -167,4 +174,13 @@ img {
   width: 100%;
   background: image_url("background-lynx.jpg") no-repeat 0% 30%;
   // background-size: cover;
+}
+
+.login-text {
+  font-family: 'Oxygen', sans-serif;
+}
+
+.login-text-p {
+  margin-top: 20px;
+  font-family: 'Oxygen', sans-serif;
 }
