@@ -15,9 +15,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body {
+html, body {
   font-family: 'Source Sans Pro', sans-serif;
+  height: 100%;
+  width: 100%;
 }
+
 
 .clipped-flow {
   overflow: hidden;
@@ -70,6 +73,11 @@ iframe body {
   text-align: right;
   font-family: 'Oxygen', sans-serif;
   float: right;
+}
+
+.login-title {
+  font-family: 'Oxygen', sans-serif;
+  text-align: center;
 }
 
 .title-link {
@@ -142,4 +150,37 @@ img {
 
 .paws {
   margin-left: 40px;
+}
+
+.login-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 33%;
+  margin-right: 33%;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.fake-modal {
+  margin-top: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgba(132,105,79,.9);
+  border-radius: 7px;
+}
+
+.login-background {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background: image_url("background-lynx.jpg") no-repeat 0% 30%;
+  // background-size: cover;
+}
+
+.login-text {
+  font-family: 'Oxygen', sans-serif;
+}
+
+.login-text-p {
+  margin-top: 20px;
+  font-family: 'Oxygen', sans-serif;
 }
