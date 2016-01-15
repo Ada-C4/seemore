@@ -1,0 +1,22 @@
+<div class="row">
+  <h1>
+    Creators You Follow
+  </h1>
+</div>
+<% if !@creators.nil? %>
+  <% @creators.in_groups_of(3, false) do |group| %>
+    <div class="row">
+      <% group.each do |creator| %>
+        <div class="col-sm-4 col-md-4 creator-col">
+          <% if !creator.profile_pic.nil? %>
+            <%= image_tag(creator.profile_pic, class: "creator-image") %>
+          <% end %>
+          <h4 class="creator-name">
+            <%= creator.name %>
+          </h4>
+          <%= button_to "Unfollow", root_path, class: "btn btn-default follow-btn" %>
+        </div>
+    <% end %>
+    </div>
+  <% end %>
+<% end %>

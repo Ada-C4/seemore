@@ -1,0 +1,113 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'bootstrap/theme';
+
+
+$light-grey: #707070;
+$med-grey: #454545;
+
+
+body {
+  font-family: 'Cardo', serif;
+  text-align: center;
+  color: $med-grey;
+}
+
+.flash {
+  font-family: 'Cardo', serif;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: $med-grey;
+  color: #FFFFFF;
+}
+
+h1 {
+  font-family: 'Oswald', serif;
+  color: $med-grey;
+}
+
+.navbar-default {
+  background-color: #76CCAF;
+  margin-top: 7px;
+}
+
+.navbar-right {
+  margin-right: 30px;
+  margin-top: 7px;
+}
+
+.navbar-left {
+  margin-left: 20px;
+  margin-top: 12px;
+}
+
+.navbar-links {
+  font-size: 18px;
+}
+
+#navbar-text-right {
+  font-size: 18px;
+  margin-top: 5px;
+  color: $light-grey;
+}
+
+#navbar-text-left {
+  font-size: 18px;
+  color: $light-grey;
+}
+
+.search-button {
+ margin-left: 4px;
+}
+
+.login-links {
+  font-size: 125px;
+}
+
+.login-link-right {
+  margin-left: 15px;
+}
+
+.login-link-left {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.btn-default {
+  font-family: 'Oswald', serif;
+  border: 1px $med-grey solid;
+  margin-top: 8px;
+}
+
+.creator_name {
+  margin-top: 5px;
+}
+
+.creator-image {
+  height: 75px;
+}
+
+.creator-col {
+  height: 200px;
+}
+
+.embedded-video {
+  margin: 30px 0;
+}
+
+.embedded-tweet {
+  float:left;
+  text-align:center;
+}
+
+a {
+  color: $med-grey;
+}
+
+a:hover {
+  color: $light-grey;
+  text-decoration: none;
+}

@@ -1,0 +1,79 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/users/search.json?q=sssskljkkljdfskljlkjdfslkjfaklrqijdgsjkllkjsdfljkgsdjghsdajhgdsa
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - TwitterRubyGem/5.15.0
+      Authorization:
+      - OAuth oauth_consumer_key="dJwBdO5ZoQH2OnCNjMKJvYnhn", oauth_nonce="295650e217800a786aff5acf19812c9d",
+        oauth_signature="UEj7FUkAK55DoKuG1hiz8kgQgHs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1452653564", oauth_token="80077789-0JZP99XKtgmjNYsHFH3PsrkQaAb618jBA3atLCbsl",
+        oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Disposition:
+      - attachment; filename=json.json
+      Content-Length:
+      - '28'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Wed, 13 Jan 2016 02:52:45 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Wed, 13 Jan 2016 02:52:45 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_a
+      Set-Cookie:
+      - guest_id=v1%3A145265356535471526; Domain=.twitter.com; Path=/; Expires=Fri,
+        12-Jan-2018 02:52:45 UTC
+      - lang=en; Path=/
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Access-Level:
+      - read-write
+      X-Connection-Hash:
+      - 86efe0d8ed379092f500edb0e6f0986d
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Rate-Limit-Limit:
+      - '180'
+      X-Rate-Limit-Remaining:
+      - '177'
+      X-Rate-Limit-Reset:
+      - '1452654464'
+      X-Response-Time:
+      - '104'
+      X-Transaction:
+      - e8d96af30ca7ed95
+      X-Twitter-Response-Tags:
+      - BouncerCompliant
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: "[]"
+    http_version: 
+  recorded_at: Wed, 13 Jan 2016 02:52:44 GMT
+recorded_with: VCR 3.0.1

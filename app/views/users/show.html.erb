@@ -1,0 +1,16 @@
+
+<div class="row">
+  <% @media.each do |media| %>
+    <% if media.class == Video %>
+      <div class="col-md-12 embedded-video">
+        <h3><%= media.name %></h3>
+        <iframe src= <%= media.embed %> width="500" height = "300"frameborder="0" title= <%= media.name %> " webkitallowfullscreen mozallowfullscreen allowfullscreen"></iframe>
+      </div>
+    <% elsif media.class == Tweet %>
+      <div class="col-md-12 embedded-tweet">
+        <% tweet = $twitter.oembed(media.uid) %>
+        <%= raw(tweet.html) %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
