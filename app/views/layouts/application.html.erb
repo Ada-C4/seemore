@@ -19,19 +19,25 @@
       </header>
       <div class="row">
         <div class="form">
-          <div class="col-md-2 col-xs-6 col-lg-2">
+          <div class="narrower-holder">
             <%= link_to "LOGOUT", logout_path, method: :delete, class: "login-out" %>
           </div>
+          <div class=narrower-holder>
+            <%= link_to "MANAGE SUBSCRIPTIONS", subscriptions_path, class: "brown-text login-out" %>
+          </div>
+          <div>
             <%= form_tag(search_results_path, :method => "get", class: "form-group") do %>
               <div class="col-md-4 col-md-offset-0 col-xs-offset-3 col-lg-offset-0">
                 <%= select_tag("provider", options_for_select([["Twitter", 1], ["Vimeo", 2]]), class: "form-control") %>
               </div>
+          </div>
+          <div>
               <div class="col-md-4 col-md-offset-0 col-xs-offset-3 col-lg-offset-0">
                 <%= text_field_tag :search_term, params[:search_term], placeholder: "Search", class: "form-control" %>
               </div>
-              <button class="btn btn-default search-button" type="submit">Search</button>
+          </div>
+            <button class="btn btn-default search-button" type="submit">Search</button>
             <% end %>
-            <%= link_to "Manage subscriptions", subscriptions_path, class: "brown-text" %>
           </div>
         </div>
       </div>
@@ -46,7 +52,6 @@
     <% else %>
       <%= yield %>
     <% end %>
-
 
 </body>
 </html>
