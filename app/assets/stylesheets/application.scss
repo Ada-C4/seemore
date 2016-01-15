@@ -15,9 +15,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body {
+html, body {
   font-family: 'Source Sans Pro', sans-serif;
+  height: 100%;
+  width: 100%;
 }
+
 
 .clipped-flow {
   overflow: hidden;
@@ -156,4 +159,12 @@ img {
   margin-top: 40px;
   background-color: rgba(132,105,79,.7);
   border-radius: 7px;
+}
+
+.login-background {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background: image_url("background-lynx.jpg") no-repeat 0% 30%;
+  // background-size: cover;
 }
