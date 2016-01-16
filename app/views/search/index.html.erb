@@ -1,0 +1,57 @@
+<div class="container">
+  <% if !@results.empty? %>
+    <h1 class="search-results">These are your search results:</h1>
+    <ul>
+      <% @results.each do |result| %>
+        <li class="listed-users">
+          <% if twitter_result? %>
+            <div class= "centered padded-top clipped-flow" >
+              <%= result.screen_name %>
+            </div>
+            <div class="centered padded-bottom padded-top">
+            <%= image_tag(result.profile_image_uri, class:"centered") %>
+            </div>
+            <% if result.protected? %>
+              <div>Sorry, this user is private</div>
+            <% else %>
+              <div class="centered">
+                <%= button_to "Subscribe", subscribe_twitter_path, method: :patch, class: 'btn btn-primary', params: { screen_name: result.screen_name } %>
+              </div>
+            <% end %>
+          <% elsif vimeo_result? %>
+            <div class= "centered padded-top clipped-flow" >
+              <%= result["name"] %>
+            </div>
+            <div class= "centered padded-bottom padded-top">
+              <% if result["pictures"].nil? %>
+                <div>
+                <%= image_tag("default_photo.png", class:"centered resized") %>
+                </div>
+              <% else %>
+                <%= image_tag(result["pictures"]["sizes"][1]["link"], class:"centered resized") %>
+              <% end %>
+            </div>
+            <div class= "centered">
+              <%= button_to "Subscribe", subscribe_vimeo_path, method: :patch, class: 'btn btn-primary', params: { uri: result["uri"] } %>
+            </div>
+          <% end %>
+          <br />
+        </li>
+      <% end %>
+    </ul>
+    <% else %>
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="search-results text-center">No results match your search! Keep creepin!</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+          <%= image_tag("im-in-ur.jpg", class: "creeper-image") %>
+        </div>
+        <div class="col-md-2">
+        </div>
+      </div>
+    <% end %>

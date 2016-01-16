@@ -1,0 +1,46 @@
+<div class="row">
+  <h3 class="brown-text">Your Twitter subscriptions:</h3>
+</div>
+<div class="row">
+  <ul>
+    <% @twitter_subscriptions.each do |subscription| %>
+      <li class="listed-users">
+        <div class= "centered padded-top clipped-flow" >
+          <%= subscription.screen_name %>
+        </div>
+        <div class="centered padded-bottom padded-top">
+          <%= image_tag(subscription.profile_image_uri, class:"centered") %>
+        </div>
+        <div class="centered">
+          <%= button_to "Unsubscribe", unsubscribe_twitter_path, method: :patch, class: 'btn btn-primary', params: { screen_name: subscription.screen_name } %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<div class="row">
+  <h3 class="brown-text">Your Vimeo subscriptions:</h3>
+</div>
+<div class="row">
+  <ul>
+    <% @vimeo_subscriptions.each do |subscription| %>
+      <li class="listed-users">
+        <div class= "centered padded-top clipped-flow" >
+          <%= subscription.name %>
+        </div>
+        <div class= "centered padded-bottom padded-top">
+          <% if subscription["pictures"].nil? %>
+            <div>
+            <%= image_tag("default_photo.png", class:"centered resized") %>
+            </div>
+          <% else %>
+            <%= image_tag(subscription["pictures"]["sizes"][1]["link"], class:"centered resized") %>
+          <% end %>
+        </div>
+        <div class= "centered">
+          <%= button_to "Unsubscribe", unsubscribe_vimeo_path, method: :patch, class: 'btn btn-primary', params: { uri: subscription.uri } %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

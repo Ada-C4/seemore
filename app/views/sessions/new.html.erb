@@ -1,0 +1,23 @@
+<div class="container login-background">
+  <div class="row">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-3">
+      <h1 class="login-title"><%= link_to "lynx", "/", class: "title-link" %></h1>
+    </div>
+    <div class="col-xs-8">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-3 fake-modal">
+      <h3 class="text-center login-text">log in with Twitter</h3>
+      <%= link_to "Go to Twitter", "/auth/twitter", class: "btn btn-info login-button" %>
+      <h3 class="text-center login-text">log in with Vimeo</h3>
+      <%= link_to "Go to Vimeo", "/auth/vimeo", class: "btn btn-info login-button" %>
+    </div>
+    <div class="col-xs-8">
+    </div>
+  </div>
+</div>
