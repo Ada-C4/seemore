@@ -1,7 +1,22 @@
 Rails.application.routes.draw do
 
 root 'users#show'
-get "/auth/:twitter/callback", to: "sessions#create"
+match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post]
+
+get '/vimeo_results' => 'users#vimeo_search', as: :vimeo_search
+get '/twitter_results' => 'users#twitter_search', as: :twitter_search
+get '/instagram_results' => 'users#instagram_search', as: :instagram_search
+
+get '/vimeo_results/users/:id' => 'users#vimeo_search_user', as: :vimeo_search_user
+get '/twitter_results/:id' => 'users#twitter_search_user', as: :twitter_search_user
+get '/instagram_results/:id' => 'users#instagram_search_user', as: :instagram_search_user
+
+post '/vimeo_results/users/:id' => 'users#vimeo_subscribe', as: :vimeo_subscribe
+post '/twitter_results/:id' => 'users#twitter_subscribe', as: :twitter_subscribe
+post '/instagram_results/:id' => 'users#instagram_subscribe', as: :instagram_subscribe
+
+
+get '/logout' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

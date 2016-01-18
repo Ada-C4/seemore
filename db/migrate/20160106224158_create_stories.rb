@@ -4,6 +4,9 @@ class CreateStories < ActiveRecord::Migration
       t.string :uid
       t.string :text
       t.string :url
+      t.string :media_content
+      t.integer :subscription_id
+      t.datetime :post_time
 
       t.timestamps null: false
     end

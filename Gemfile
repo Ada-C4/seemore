@@ -25,15 +25,23 @@ gem 'omniauth'
 
 gem 'omniauth-twitter'
 
+gem 'omniauth-github'
+
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'font-awesome-rails'
 
 gem 'twitter'
+gem 'vimeo'
+gem 'instagram'
 
 gem 'httparty'
 
 gem 'pg'
+
+gem 'whenever'
+
+gem 'will_paginate', '~> 3.0.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

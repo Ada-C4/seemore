@@ -1,0 +1,24 @@
+<h1><%= @user_name %></h1>
+<%= image_tag(@results[0]["user"]["profile_picture"]) %>
+<br>
+<br>
+
+<% if @button == true %>
+  <%= button_to "Subscribe", instagram_subscribe_path(@user_name), class:"btn btn-default" %>
+<% else %>
+  <p>You are already subscribed to this feed</p>
+<% end %>
+
+<br>
+<br>
+
+<div class="col-sm-8">
+  <% @results.each do |result| %>
+  <div class="well">
+    <%= image_tag(result["images"]["standard_resolution"]["url"]) %>
+    <p><%= post_time = DateTime.strptime(result["created_time"],'%s') %></p>
+  </div>
+  <% end %>
+</ul>
+</div>
+<div class="col-sm-4"></div>

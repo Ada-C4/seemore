@@ -6,12 +6,58 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-sample_subscribers = [
-  { username: "Schwarzenegger", uid: "12044602" , provider: "twitter", avatar_url: "https://pbs.twimg.com/profile_images/665340796510466048/-nsoU1Q5.jpg" }
+sample_subscriptions = [
+  { username: "Schwarzenegger", uid: "12044602" , provider: "twitter", avatar_url: "https://pbs.twimg.com/profile_images/665340796510466048/-nsoU1Q5.jpg" },
+  { username: "Robot", uid: "10333086" , provider: "vimeo", avatar_url: "https://i.vimeocdn.com/portrait/8242122_300x300.webp" },
+  { username: "schwarzenegger", uid:"198945880", provider:"instagram", avatar_url:"https://scontent-sea1-1.cdninstagram.com/hphotos-xta1/t51.2885-19/11373921_1614186788830308_1200274240_a.jpg"}
 ]
 
-sample_stories = Twitter.user_time("Schwarzenegger")
+sample_subscriptions.each do |subscription|
+  Subscription.create(subscription)
+end
 
-sample_subscribers.each do |subscriber|
-  Subscriber.create(subscriber)
+
+client =  Seemore::Application.config.twitter
+sample_stories = client.user_timeline("Schwarzenegger")
+sample_stories.each do |story|
+  new_story = Story.new
+  new_story.uid = story.id
+  new_story.text = story.text
+  if !story.media.empty?
+    new_story.media_content = story.media[0].media_url.host + story.media[0].media_url.path
+  end
+  new_story.subscription_id = 1
+  new_story.post_time = story.created_at
+  new_story.save
+end
+
+user_id = "10333086"
+api_url = "https://api.vimeo.com/users/#{user_id}/videos"
+auth = "Bearer #{ENV["VIMEO_ACCESS_TOKEN"]}"   # use your access token
+r = HTTParty.get(api_url, headers: { "Authorization" => auth, "Accept" => "application/json" })  # make sure to use the proper Accept header as recommended in the API docs
+sample_videos = JSON.parse(r)["data"]
+
+sample_videos.each do |video|
+  new_story = Story.new
+  a = video["uri"]
+  a.slice!"/videos/"
+  new_story.uid = a
+  new_story.url = video["link"]
+  new_story.subscription_id = 2
+  new_story.post_time = video["created_time"]
+  new_story.save
+end
+
+insta_user = "schwarzenegger"
+results = HTTParty.get("https://www.instagram.com/#{insta_user}/media/")
+results = results["items"]
+results.each do |result|
+  new_story = Story.new
+  new_story.uid = result["id"]
+  new_story.url = result["images"]["standard_resolution"]["url"]
+  new_story.subscription_id = 3
+  post_time = result["created_time"]
+  post_time = DateTime.strptime(post_time,'%s')
+  new_story.post_time = post_time
+  new_story.save
 end

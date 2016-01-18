@@ -10,13 +10,52 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
+ */
+
+ /*
+ *= require font-awesome
  */
 
 @import "font-awesome";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  font-family: 'VT323', ;
+  background: #403B4A; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #403B4A , #E7E9BB); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #403B4A , #E7E9BB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.flash {
+  color: red;
+  text-align: center;
+}
+
+.col-sm-6 {
+  width: 100%;
+}
+.row {
+  display: inline-flex;
+}
+.btn {
+  width: 131px;
+  margin-right: 50px;
+  margin-top: 2px;
+}
+
+.btn-nav {
+  width: 150px;
+}
+
+.instagram-show {
+  width: 350px;
+}
+
+.fa fa-vimeo {
+  color: red;
+}
 
 .timeline {
   list-style: none;
@@ -94,7 +133,9 @@
   border-bottom: 14px solid transparent;
   content: " ";
 }
-
+.text-muted {
+  color: white
+}
 .timeline > li > .timeline-badge {
   color: #fff;
   width: 50px;
@@ -116,6 +157,7 @@
 
 .timeline > li.timeline-inverted > .timeline-panel {
   float: right;
+
 }
 
 .timeline > li.timeline-inverted > .timeline-panel:before {
@@ -152,6 +194,19 @@
   background-color: #5bc0de !important;
 }
 
+.timeline-badge-twitter {
+
+  background-color: #d65126 !important;
+}
+
+.timeline-badge-vimeo {
+  background-color: #3f983f !important;
+}
+
+.timeline-badge-instagram {
+  background-color: #2b809c !important;
+}
+
 .timeline-title {
   margin-top: 0;
   color: inherit;
@@ -165,3 +220,31 @@
 .timeline-body > p + p {
   margin-top: 5px;
 }
+
+.apple_pagination {
+  background: #f1f1f1;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 1em;
+  cursor: default; }
+  .apple_pagination a, .apple_pagination span {
+    padding: 0.2em 0.3em; }
+  .apple_pagination .disabled {
+    color: #aaaaaa; }
+  .apple_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background-color: #bebebe;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.5;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+  .apple_pagination a {
+    text-decoration: none;
+    color: black; }
+    .apple_pagination a:hover, .apple_pagination a:focus {
+      text-decoration: underline; }

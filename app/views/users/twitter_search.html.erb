@@ -1,0 +1,16 @@
+<h1> Search Results </h1>
+<div class="col-sm-6">
+  <% @search_results.each do |search| %>
+  <a href="/twitter_results/<%= search.screen_name %>" >
+  <div class="well well-lg">
+    <table width="100%">
+      <tr>
+        <td width="40%"><%= search.screen_name %></td>
+        <td width="40%"><%= search.name %></td>
+        <td width="20%"><%= image_tag(search.profile_image_url, height: '50', width: '50') %></td>
+      </tr>
+    </table>
+  </div>
+  </a>
+  <% end %>
+  </div>
