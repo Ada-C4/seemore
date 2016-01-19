@@ -1,62 +1,32 @@
-# SeeMore
+# FancyFeed
 
-![SeeMore](http://www.theirishduck.info/wp-content/uploads/2013/06/plant.png)
+![FancyFeed](http://cdn0.rubylane.com/shops/1089582/MCGP1514.1L.jpg)
+
+## Feasting on Feeds
+
+FancyFeed is a project of students in the 4th cohort of Ada Developers Academy. The team includes: [Ricky Hougland](https://github.com/hougland), [Jenna Nichols] (https://github.com/jennaplusplus), [Daphne Gold](https://github.com/daphnegold), and [Kelley Devlin](https://github.com/Kedevlin).
+
+To view original project requirements, [click here](https://github.com/Ada-C4/seemore/blob/fancyfeed/master/README.md).
 
 A **feed** is an API that a web service uses to provide users with frequently updated content. A *feed aggregator*  is an application that acts as a central location for reviewing the content of feeds. It **injests** feeds and stores their content in its own datastore after transforming it into a standard format.
 
-You and your team will build a feed aggregator service that allows users to login via Twitter, Github, Instagram and Vimeo. It will allow users to subscribe to updates from these feeds. Users can then view these updates all in one location as an aggregated feed.
+FancyFeed is a feed aggregator service that allows users to login via Twitter or Vimeo. Once logged in, a user can search for and subscribe to Vimeo and Twitter handles. FancyFeed pulls those handles' updates together into one aggregated feed on the homepage.
 
-## Goals
-+ Learn how to work with OAuth
-+ Gain experience in consuming with 3rd party APIs
-+ Coordinate with a larger team
-+ Accept challenges by working on parts of the project outside your individual comfort zone
+## Set Up
 
-## Guidelines
-+ Teams of three or four will work with a Teacher acting as a Project Manager
-+ Teams will rotate team leader and standup leader roles on a weekly basis
-+ Practice TDD
-+ Spend time at the beginning creating user stories and defining precise requirements
+Get FancyFeed set up on your local computer:
 
-### Technical Requirements
-#### Authentication
-  - Allows Users to sign in and out using [OmniAuth's Developer Strategy](http://rubydoc.info/github/intridea/omniauth/master/OmniAuth/Strategies/Developer) in development only. This should not be enabled for Production (a.k.a. Heroku deployment)
-  - Allows Users to sign-up and login with at least two social media accounts (Instagram, Twitter, Vimeo, Github)
+1. Runs on ruby version 2.2.3
+2. Fork our [repo](https://github.com/jennaplusplus/seemore/tree/fancyfeed/master), clone it to your local computer, and create your own branch to work from
+3. Run ```bundle install```. If you get an error, try ```gem install bundle```, then ```bundle install``` again.
+4. Run ```rake db:migrate``` to set up the database.
+5. Run ```rails s``` then visit your local server to see the website.
+6. We highly recommend you log in using OmniAuth's Developer Strategy, which is already configured. Instead of clicking the Twitter or Vimeo icons to log in, visit ```http://localhost:3000/auth/developer/```. This gives you a sample login from which you can play around. **NOTE:** this is **not** secure in any way and should never be used in deployment!
+7. You can run the test suite by typing ```rspec```.
 
-#### APIs
-  Choose two of the APIs below to implement:
-  - Twitter
-    - Search users
-    - Subscribe to a user's Twitter updates
-  - Vimeo
-    - Search users
-    - Subscribe to a user's Vimeo updates
-  - Instagram
-    - Search users
-    - Subscribe to a user's Instagram updates
+## Contribute!
+We welcome contributions to FancyFeed! Bugs and enhancements are tracked as Github Issues.
 
-#### Functionality
-  - A user can view all subscribed feeds on one page in chronological order
-  - Save each social media post to the local database, duplicates should not be allowed
+ Comment on the issue you want to work on, then create a new branch for that feature or bug-fix. Please run ```rspec``` as you work, so we can ensure tests continue to pass, and test coverage remains above 95%.
 
-#### Testing
-  - 95% Test Coverage
-
-#### Look & Feel
-  - Visually appealing and polished
-
-### Baseline
-- Each team shall submit a baseline Pull Request with their Rails application created, ruby version, ruby gemset and gemfile updated with default gems
-- This PR shall be merged with the baseline setup prior to any other code being pushed to the branch/fork
-
-### Final Submission
-- Deployed to Heroku and link included in the Pull Request and README
-- No major bugs
-- Minor bugs noted as Github issues
-
-### Added Fun!
-  - Automatically pulls in Twitter timeline feed for the authenticated user
-  - Automatically pulls in Instagram timeline feed for the authenticated user
-  - Use any additional APIs not in your chosen two for authentication or feed aggregation
-  - Use **cron** to periodically update feeds without duplication
-  - Allow Users to share favorite stories back to social media services
+When you're done, submit a pull request for us to review.

@@ -1,0 +1,441 @@
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "handles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar, "uri" varchar, "profile_image_uri" varchar, "twitter_id" integer) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "handles_users" ("handle_id" integer, "user_id" integer) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  CREATE  INDEX "index_handles_users_on_handle_id" ON "handles_users" ("handle_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_handles_users_on_handle_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_handles_users_on_handle_id' AND type='index'
+[0m
+  [1m[35m (0.7ms)[0m  CREATE  INDEX "index_handles_users_on_user_id" ON "handles_users" ("user_id")
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "identities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "uid" varchar, "provider" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "media" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar, "handle_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "text" varchar, "uri" varchar) 
+  [1m[36m (0.7ms)[0m  [1mCREATE  INDEX "index_media_on_handle_id" ON "media" ("handle_id")[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.7ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160107215543')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160106220402')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160106220432')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160106222840')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160106222951')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160106223925')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160106234057')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160107200842')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "handles" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2016-01-07 22:52:19.315070"], ["updated_at", "2016-01-07 22:52:19.315070"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by HandlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mHandle Load (0.1ms)[0m  SELECT  "handles".* FROM "handles" WHERE "handles"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered handles/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 20ms (Views: 12.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "handles" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2016-01-07 23:05:18.513682"], ["updated_at", "2016-01-07 23:05:18.513682"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by HandlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mHandle Load (0.2ms)[0m  SELECT  "handles".* FROM "handles" WHERE "handles"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered handles/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 23ms (Views: 12.2ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:05:18.559236"], ["updated_at", "2016-01-07 23:05:18.559236"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mIdentity Load (0.1ms)[0m  SELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1  [["uid", "123545"], ["provider", "twitter"]]
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mIdentity Load (0.1ms)[0m  [1mSELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1[0m  [["uid", "123"], ["provider", "twitter"]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:05:18.564449"], ["updated_at", "2016-01-07 23:05:18.564449"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Ada"], ["created_at", "2016-01-07 23:05:18.571418"], ["updated_at", "2016-01-07 23:05:18.571418"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "handles" ("name", "twitter_id", "uri", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "example"], ["twitter_id", 1], ["uri", "link"], ["created_at", "2016-01-07 23:06:46.632497"], ["updated_at", "2016-01-07 23:06:46.632497"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by HandlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mHandle Load (0.1ms)[0m  SELECT  "handles".* FROM "handles" WHERE "handles"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered handles/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 14ms (Views: 8.2ms | ActiveRecord: 0.1ms)
+  [1m[36m (2.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "handles"[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "handles"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "handles" ("name", "description", "uri", "profile_image_uri", "twitter_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "houglande"], ["description", "Ricky. activist, queer, jr dev, ada cohort [3], grinnellian. https://t.co/ucZRAWkG2S"], ["uri", "https://twitter.com/houglande"], ["profile_image_uri", "http://pbs.twimg.com/profile_images/618623978857299968/mK9FDEy8_normal.jpg"], ["twitter_id", 18424269], ["created_at", "2016-01-07 23:06:46.929053"], ["updated_at", "2016-01-07 23:06:46.929053"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "handles"
+  [1m[36m (2.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:06:46.944912"], ["updated_at", "2016-01-07 23:06:46.944912"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mIdentity Load (0.1ms)[0m  SELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1  [["uid", "123545"], ["provider", "twitter"]]
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mIdentity Load (0.1ms)[0m  [1mSELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1[0m  [["uid", "123"], ["provider", "twitter"]]
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:06:46.948514"], ["updated_at", "2016-01-07 23:06:46.948514"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Ada"], ["created_at", "2016-01-07 23:06:46.965632"], ["updated_at", "2016-01-07 23:06:46.965632"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "handles" ("name", "twitter_id", "uri", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "example"], ["twitter_id", 1], ["uri", "link"], ["created_at", "2016-01-07 23:28:32.191231"], ["updated_at", "2016-01-07 23:28:32.191231"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by HandlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mHandle Load (0.1ms)[0m  SELECT  "handles".* FROM "handles" WHERE "handles"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered handles/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 19ms (Views: 12.0ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Processing by SessionsController#create as HTML
+  Parameters: {"provider"=>"twitter"}
+  [1m[36mIdentity Load (0.4ms)[0m  [1mSELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1[0m  [["uid", "123545"], ["provider", "twitter"]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:28:32.225476"], ["updated_at", "2016-01-07 23:28:32.225476"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Ada"], ["created_at", "2016-01-07 23:28:32.235511"], ["updated_at", "2016-01-07 23:28:32.235511"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "identities" SET "user_id" = ?, "updated_at" = ? WHERE "identities"."id" = ?  [["user_id", 1], ["updated_at", "2016-01-07 23:28:32.237119"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/
+Completed 302 Found in 18ms (ActiveRecord: 1.7ms)
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "handles"
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "handles"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "handles" ("name", "description", "uri", "profile_image_uri", "twitter_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "houglande"], ["description", "Ricky. activist, queer, jr dev, ada cohort [3], grinnellian. https://t.co/ucZRAWkG2S"], ["uri", "https://twitter.com/houglande"], ["profile_image_uri", "http://pbs.twimg.com/profile_images/618623978857299968/mK9FDEy8_normal.jpg"], ["twitter_id", 18424269], ["created_at", "2016-01-07 23:28:32.543242"], ["updated_at", "2016-01-07 23:28:32.543242"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "handles"[0m
+  [1m[35m (2.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:28:32.553481"], ["updated_at", "2016-01-07 23:28:32.553481"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mIdentity Load (0.0ms)[0m  [1mSELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1[0m  [["uid", "123545"], ["provider", "twitter"]]
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mIdentity Load (0.1ms)[0m  SELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1  [["uid", "123"], ["provider", "twitter"]]
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:28:32.557057"], ["updated_at", "2016-01-07 23:28:32.557057"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Ada"], ["created_at", "2016-01-07 23:28:32.562146"], ["updated_at", "2016-01-07 23:28:32.562146"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "handles" ("name", "twitter_id", "uri", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "example"], ["twitter_id", 1], ["uri", "link"], ["created_at", "2016-01-07 23:35:01.423290"], ["updated_at", "2016-01-07 23:35:01.423290"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by HandlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mHandle Load (0.1ms)[0m  SELECT  "handles".* FROM "handles" WHERE "handles"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered handles/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 18ms (Views: 11.2ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Processing by SessionsController#create as HTML
+  Parameters: {"provider"=>"twitter"}
+  [1m[36mIdentity Load (0.3ms)[0m  [1mSELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1[0m  [["uid", "123545"], ["provider", "twitter"]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:35:01.456336"], ["updated_at", "2016-01-07 23:35:01.456336"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Ada"], ["created_at", "2016-01-07 23:35:01.466847"], ["updated_at", "2016-01-07 23:35:01.466847"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "identities" SET "user_id" = ?, "updated_at" = ? WHERE "identities"."id" = ?  [["user_id", 1], ["updated_at", "2016-01-07 23:35:01.468303"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/
+Completed 302 Found in 18ms (ActiveRecord: 1.7ms)
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Processing by SessionsController#create as HTML
+  Parameters: {"provider"=>"twitter"}
+  [1m[35mIdentity Load (0.1ms)[0m  SELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1  [["uid", "123545"], ["provider", "twitter"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:35:01.473224"], ["updated_at", "2016-01-07 23:35:01.473224"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Ada"], ["created_at", "2016-01-07 23:35:01.474729"], ["updated_at", "2016-01-07 23:35:01.474729"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "identities" SET "user_id" = ?, "updated_at" = ? WHERE "identities"."id" = ?[0m  [["user_id", 1], ["updated_at", "2016-01-07 23:35:01.475891"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/
+Completed 302 Found in 4ms (ActiveRecord: 0.8ms)
+Processing by SessionsController#create as HTML
+  Parameters: {"provider"=>"twitter"}
+  [1m[36mIdentity Load (0.0ms)[0m  [1mSELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1[0m  [["uid", "123545"], ["provider", "twitter"]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://test.host/
+Completed 302 Found in 5ms (ActiveRecord: 0.1ms)
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "handles"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "handles"
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "handles" ("name", "description", "uri", "profile_image_uri", "twitter_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "houglande"], ["description", "Ricky. activist, queer, jr dev, ada cohort [3], grinnellian. https://t.co/ucZRAWkG2S"], ["uri", "https://twitter.com/houglande"], ["profile_image_uri", "http://pbs.twimg.com/profile_images/618623978857299968/mK9FDEy8_normal.jpg"], ["twitter_id", 18424269], ["created_at", "2016-01-07 23:35:03.829076"], ["updated_at", "2016-01-07 23:35:03.829076"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "handles"
+  [1m[36m (2.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:35:03.839508"], ["updated_at", "2016-01-07 23:35:03.839508"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mIdentity Load (0.0ms)[0m  SELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1  [["uid", "123545"], ["provider", "twitter"]]
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mIdentity Load (0.1ms)[0m  [1mSELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1[0m  [["uid", "123"], ["provider", "twitter"]]
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:35:03.843238"], ["updated_at", "2016-01-07 23:35:03.843238"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Ada"], ["created_at", "2016-01-07 23:35:03.848370"], ["updated_at", "2016-01-07 23:35:03.848370"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "handles" ("name", "twitter_id", "uri", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "example"], ["twitter_id", 1], ["uri", "link"], ["created_at", "2016-01-07 23:40:10.940332"], ["updated_at", "2016-01-07 23:40:10.940332"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by HandlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mHandle Load (0.1ms)[0m  SELECT  "handles".* FROM "handles" WHERE "handles"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered handles/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 24ms (Views: 14.9ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Processing by SessionsController#create as HTML
+  Parameters: {"provider"=>"twitter"}
+  [1m[36mIdentity Load (0.4ms)[0m  [1mSELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1[0m  [["uid", "123545"], ["provider", "twitter"]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:40:10.981450"], ["updated_at", "2016-01-07 23:40:10.981450"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Ada"], ["created_at", "2016-01-07 23:40:10.992982"], ["updated_at", "2016-01-07 23:40:10.992982"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "identities" SET "user_id" = ?, "updated_at" = ? WHERE "identities"."id" = ?  [["user_id", 1], ["updated_at", "2016-01-07 23:40:10.994529"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/
+Completed 302 Found in 21ms (ActiveRecord: 2.1ms)
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Processing by SessionsController#create as HTML
+  Parameters: {"provider"=>"twitter"}
+  [1m[35mIdentity Load (0.1ms)[0m  SELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1  [["uid", "123545"], ["provider", "twitter"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:40:11.001094"], ["updated_at", "2016-01-07 23:40:11.001094"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Ada"], ["created_at", "2016-01-07 23:40:11.003280"], ["updated_at", "2016-01-07 23:40:11.003280"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "identities" SET "user_id" = ?, "updated_at" = ? WHERE "identities"."id" = ?[0m  [["user_id", 1], ["updated_at", "2016-01-07 23:40:11.005135"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/
+Completed 302 Found in 7ms (ActiveRecord: 1.2ms)
+Processing by SessionsController#create as HTML
+  Parameters: {"provider"=>"twitter"}
+  [1m[36mIdentity Load (0.1ms)[0m  [1mSELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1[0m  [["uid", "123545"], ["provider", "twitter"]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://test.host/
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms)
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Processing by SessionsController#create as HTML
+  Parameters: {"provider"=>"vimeo"}
+  [1m[36mIdentity Load (0.1ms)[0m  [1mSELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1[0m  [["uid", "123545"], ["provider", "vimeo"]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["uid", "123545"], ["provider", "vimeo"], ["created_at", "2016-01-07 23:40:11.015998"], ["updated_at", "2016-01-07 23:40:11.015998"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Ada"], ["created_at", "2016-01-07 23:40:11.018789"], ["updated_at", "2016-01-07 23:40:11.018789"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  UPDATE "identities" SET "user_id" = ?, "updated_at" = ? WHERE "identities"."id" = ?  [["user_id", 1], ["updated_at", "2016-01-07 23:40:11.020306"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/
+Completed 302 Found in 6ms (ActiveRecord: 1.1ms)
+Processing by SessionsController#create as HTML
+  Parameters: {"provider"=>"twitter"}
+  [1m[35mIdentity Load (0.0ms)[0m  SELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1  [["uid", "123545"], ["provider", "vimeo"]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Redirected to http://test.host/
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "handles"
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "handles"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "handles" ("name", "description", "uri", "profile_image_uri", "twitter_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "houglande"], ["description", "Ricky. activist, queer, jr dev, ada cohort [3], grinnellian. https://t.co/ucZRAWkG2S"], ["uri", "https://twitter.com/houglande"], ["profile_image_uri", "http://pbs.twimg.com/profile_images/618623978857299968/mK9FDEy8_normal.jpg"], ["twitter_id", 18424269], ["created_at", "2016-01-07 23:40:11.254086"], ["updated_at", "2016-01-07 23:40:11.254086"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "handles"[0m
+  [1m[35m (2.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:40:11.264503"], ["updated_at", "2016-01-07 23:40:11.264503"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mIdentity Load (0.0ms)[0m  [1mSELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1[0m  [["uid", "123545"], ["provider", "twitter"]]
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mIdentity Load (0.1ms)[0m  SELECT  "identities".* FROM "identities" WHERE "identities"."uid" = ? AND "identities"."provider" = ? LIMIT 1  [["uid", "123"], ["provider", "twitter"]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "identities" ("uid", "provider", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["uid", "123545"], ["provider", "twitter"], ["created_at", "2016-01-07 23:40:11.268802"], ["updated_at", "2016-01-07 23:40:11.268802"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Ada"], ["created_at", "2016-01-07 23:40:11.273622"], ["updated_at", "2016-01-07 23:40:11.273622"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m

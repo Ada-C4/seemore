@@ -1,0 +1,38 @@
+<% if current_user.nil? %>
+  <body id="welcome-page">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <div class="transbox">
+            <p class="welcome">
+              Welcome to FancyFeed
+            </p>
+            <p class="about-fancy-feed">
+              FancyFeed gives you access to the Twitter and Vimeo
+              feeds you love to browse but don't want to follow publicly.
+            </p>
+            <p class="about-fancy-feed">
+              Whether you want to see updates from your guilty pleasures or
+              simply indulge in some old-fashioned creeping, now you can feel a little fancier doing it.
+            </p>
+          <div class="row">
+            <div class="login-links">
+              <%= link_to "/auth/vimeo/", class: "btn btn-default" do %>
+                <%= image_tag "1452218356_vimeo.png" %>
+                <p class="login-button">log in with vimeo</p>
+              <% end %>
+              <%= link_to "/auth/twitter/", class: "btn btn-default" do %>
+                <%= image_tag "1452218263_twitter.png" %>
+                <p class="login-button">log in with twitter</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+<% else %>
+  <body id="feed-page">
+    <%= render 'shared/header' %>
+    <%= render 'shared/feed' %>
+  </body>
+<% end %>

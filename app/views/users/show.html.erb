@@ -1,0 +1,82 @@
+<body id="settings-page">
+  <div class="row">
+    <div class="container">
+      <h1>Account Settings</h1>
+      <div class="panel panel-default">
+        <div class="panel-heading">Linked Accounts:</div>
+          <div class="panel-body">
+            <% @user.identities.each do |i| %>
+              <p>
+                <% if i.provider == "twitter" %>
+                  <%= fa_icon("twitter lg") %> Twitter
+                <% elsif i.provider == "vimeo" %>
+                  <%= fa_icon("vimeo lg") %> Vimeo
+                <% else %>
+                  <%= i.provider.capitalize %>
+                <% end %>
+
+                <% if @user.identities.length <= 1 %>
+                  <%= link_to "Remove", deauthorize_path(@user.id, i.provider), method: :put, class: "btn btn-danger btn-sm", data: { confirm: "TBD" } %>
+                <% else %>
+                  <%= link_to "Remove", deauthorize_path(@user.id, i.provider), method: :put, class: "btn btn-danger btn-sm", data: { confirm: "Are you sure? This will remove your ability to log on with this account." } %>
+                <% end %>
+
+              </p>
+            <% end %>
+
+            <% unless @user.identities.where(provider: "vimeo").first && @user.identities.where(provider: "twitter").first %>
+              <h4>Link Another Account:</h4>
+              <% if !@user.identities.where(provider: "twitter").first %>
+                <%= link_to "/auth/twitter", class: "btn btn-default", data: { confirm: "Once you link your accounts, you can log in with either Twitter or Vimeo to access your feed. Are you sure you want to link these accounts?" } do %>
+                  <%= fa_icon("twitter lg") %>
+                <% end %>
+              <% end %>
+              <% if !@user.identities.where(provider: "vimeo").first %>
+                <%= link_to "/auth/vimeo", class: "btn btn-default", data: { confirm: "Once you link your accounts, you can log in with either Twitter or Vimeo to access your feed. Are you sure you want to link these accounts?" } do %>
+                  <%= fa_icon("vimeo lg") %>
+                <% end %>
+              <% end %>
+            <% end %>
+        </div>
+        <div class="panel-heading">Vimeo Subscriptions:</div>
+        <div class="panel-body">
+          <div class="panel-body">
+            <% if @vimeo_handles.length == 0 %>
+              <p>
+                None :(
+              </p>
+            <% else %>
+              <% @vimeo_handles.each do |h| %>
+                <%= h.name %>
+                <%= link_to unsubscribe_path(:handle_uri => h.uri), class: "btn menu-button", :method => :put do %>
+                  <label class="sr-only">Unsubscribe</label>
+                  <span class="glyphicon glyphicon-minus"></span>
+                <% end %>
+                <br>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="panel-heading">Twitter Subscriptions:</div>
+        <div class="panel-body">
+          <div class="panel-body">
+            <% if @twitter_handles.length == 0 %>
+              <p>
+                None :(
+              </p>
+            <% else %>
+              <% @twitter_handles.each do |t| %>
+                <%= t.name %>
+                <%= link_to unsubscribe_path(:handle_uri => t.uri), class: "btn menu-button", :method => :put do %>
+                  <label class="sr-only">Unsubscribe</label>
+                  <span class="glyphicon glyphicon-minus"></span>
+                <% end %>
+                <br>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
