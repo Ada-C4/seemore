@@ -1,0 +1,33 @@
+<div class="container error-container">
+  <% if !flash[:error].nil? %>
+    <div class="error-message">
+      <strong>You can't do that!</strong> <%= flash[:error] %>
+    </div>
+  <% end %>
+</div>
+
+<h1 class="marks-header"> CONFIDENTIAL </h1>
+<% if @marks.present? %>
+  <div class="col-md-12 text-center">
+    <% @marks.each do |m| %>
+      <div class="col-md-4 bottom-margin">
+        <% if !m.nil? %>
+          <% if m.provider == "twitter" %>
+            <h4><%= m.name%></h4>
+            <h5>@<%= m.username%></h5>
+            <%= image_tag m.image_url, class: "profile-image-home"%>
+            <h5><a class="profile-link" href="<%= m.link %>"><%= fa_icon "twitter" %></a> </h5>
+          <% elsif m.provider == "vimeo" %>
+            <h4><%= m.name %></h4>
+            <h5><%= m.username%></h5>
+            <%= image_tag m.image_url, class: "profile-image-home"%>
+            <h5><a class="profile-link" href="<%= m.link %>"><%= fa_icon "vimeo" %></a> </h5>
+          <% end %>
+          <%= link_to "Unfollow", mark_path(m), method: "delete", class: "btn btn-default gray-btn" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <h3>No Marks yet!</h3>
+<% end %>

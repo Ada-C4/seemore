@@ -12,5 +12,22 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+
+window.onload = (function(){
+
+  var tweetList = $(".tweet");
+
+  for (var i = 0; i < tweetList.length; i++) {
+    var id = tweetList[i].getAttribute("tweetID");
+
+    twttr.widgets.createTweet(
+      id, tweetList[i],
+      {
+        align: 'center'
+      });
+  }
+});
+
+
+

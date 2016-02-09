@@ -1,14 +1,19 @@
 source 'https://rubygems.org'
 
-#style 
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
+gem 'httparty'
+gem 'twitter'
+#style
 gem "font-awesome-rails"
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 
 # omniauth
 gem 'omniauth'
-gem 'omniauth-github'
+gem 'omniauth-oauth2', '~> 1.3.1'
+gem "omniauth-vimeo"
 gem 'omniauth-twitter'
-gem 'omniauth-instagram'
+gem 'omniauth-facebook'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 
@@ -43,12 +48,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'typhoeus', '0.4.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'
   gem 'simplecov'
-  gem 'pry'
+  gem 'pry-rails'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'vcr', '2.2.5'
 end
 
 group :development do

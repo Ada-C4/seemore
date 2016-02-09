@@ -1,0 +1,60 @@
+<div class="row text-center">
+  <div class="col-md-5 col-md-offset-1 text-center">
+    <h1><%= fa_icon "twitter", class: "search-icon" %></h1>
+    <% @twitter_marks.each do |m| %>
+      <% if !m.nil? %>
+        <div class="col-md-12 bottom-margin">
+          <div class="col-md-4">
+            <%= image_tag m.image_url, class: "profile-image"%>
+          </div>
+          <div class="col-md-8">
+            <div class="text-left profile-name"><%= m.name%></div>
+            <div class="text-left">@<%= m.username%></div>
+            <div class="text-left">Location: <%=if  m.location.nil? then "N/A" else m.location end %></div>
+            <div class="plus text-left top-margin"><%= link_to twitter_subscribe_path(
+              params: {
+                name: m.username,
+                profile_picture: m.image_url
+              }
+              ),
+              method: :post,
+              class: "btn gray-btn" do %>
+              <%= fa_icon "plus" %> Follow
+              <% end %>
+            </div>
+        </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="col-md-5 text-center">
+    <h1><%= fa_icon "vimeo", class: "search-icon" %></h1>
+    <% @vimeo_marks.each do |m| %>
+      <% if !m.nil? %>
+      <div class="col-md-12 bottom-margin">
+        <div class="col-md-4">
+          <%= image_tag m.image_url, class: "profile-image"%>
+        </div>
+        <div class="col-md-8">
+          <div class="text-left profile-name"><%= m.name%></div>
+          <div class="text-left">@<%= m.username%></div>
+          <div class="text-left">Location: <%=if  m.location.nil? then "N/A" else m.location end %></div>
+          <div class="plus text-left top-margin"><%= link_to vimeo_subscribe_path(
+            params: {
+              name: m.username,
+              profile_picture: m.image_url
+            }
+            ),
+            method: :post,
+            class: "btn gray-btn" do %>
+            <%= fa_icon "plus" %> Follow
+            <% end %>
+          </div>
+      </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

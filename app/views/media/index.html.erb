@@ -1,0 +1,86 @@
+<!-- javascript requirements -->
+<%= javascript_include_tag 'application' %>
+<script sync src="https://platform.twitter.com/widgets.js"></script>
+
+<!-- Flash notifications -->
+<% if !flash[:error].nil? %>
+  <div class="error-message-home-pg">
+    <strong>You can't do that!</strong> <%= flash[:error] %>.
+  </div>
+<% end %>
+
+<% if !current_spy.nil? %>
+  <% if @marks.empty? %>
+    <h1 class="page-header">NO MARKS YET <%= fa_icon "crosshairs" %> </h1>
+  <% else %>
+    <div class="container">
+      <!-- Header -->
+      <div class="page-header">
+        <h1>TRACK YOUR MARKS</h1>
+      </div>
+
+      <div class="filter">
+        <%= link_to root_path(
+            params: {
+              filter: "vimeo"
+            }
+          ) do %>
+            <%= fa_icon "vimeo", class: "filter-button", alt: "sort by vimeo" %>
+        <% end %>
+
+        <%= link_to root_path(
+            params: {
+              filter: "twitter"
+            }
+          ) do %>
+            <%= fa_icon "twitter", class: "filter-button", alt: "sort by twitter" %>
+        <% end %>
+
+        <%= link_to refresh_feed_path do %>
+          <%= fa_icon "refresh", class: "filter-button", alt: "refresh" %>
+        <% end %>
+
+      </div>
+      <ul class="timeline">
+        <% media_count = @media.length %>
+
+        <% @media.each do |m| %>
+
+          <% if media_count % 2 == 0 %>
+            <li class="timeline-inverted">
+          <% else %>
+            <li>
+          <% end %>
+
+            <div class="timeline-badge <%= m.medium_type %>"><i class="fa fa-<%= m.medium_type %>"></i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+
+                <% if m.medium_type == "vimeo" %>
+                  <h4 class="timeline-title"><%= m.title %> by <%= m.mark.name %></h4>
+                  <p><small class="text-muted"><i class="fa fa-clock-o"></i> <%= distance_of_time_in_words(DateTime.strptime(m.date_posted), Time.now) %> ago</small></p>
+                  <iframe src="https://player.vimeo.com/video/<%= m.link.gsub(/[^\d]/, '') %>?badge=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+                <% elsif m.medium_type == "twitter" %>
+                  <% if !m.retweeted_from.nil? %>
+                    <h5 class="timeline-title"><%= fa_icon "retweet", class: "retweet", alt: "retweet" %> <%= link_to m.mark.username, m.mark.link %> Retweeted</h5>
+                  <% end %>
+                  <div class="tweet" tweetID="<%= m.uid %>"></div>
+                <% end %>
+
+                </div>
+              <div class="timeline-body">
+            </div>
+
+          </li>
+          <% media_count -= 1 %>
+        <% end %>
+      <% end %>
+    </ul>
+    <div class="paginate"><%= will_paginate @media, renderer: BootstrapPagination::Rails %></div>
+  </div>
+<% else %>
+  <h1><div class="logo">AP<%= fa_icon "eye" %> SPY</div></h1>
+  <h1><a class="company" href="/auth/twitter"><%= fa_icon "twitter" %></a>
+  <a class="company" href="/auth/vimeo"><%= fa_icon "vimeo" %></a></h1>
+<% end %>
