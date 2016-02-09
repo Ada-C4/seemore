@@ -13,6 +13,7 @@ gem 'omniauth'
 gem 'omniauth-oauth2', '~> 1.3.1'
 gem "omniauth-vimeo"
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 
@@ -54,7 +55,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'simplecov'
-  gem 'pry'
+  gem 'pry-rails'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'vcr', '2.2.5'
 end
